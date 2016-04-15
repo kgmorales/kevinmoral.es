@@ -1,12 +1,9 @@
-//emoji support
-window.onload = function() {
 
-  // Set the size of the rendered Emojis
-  // This can be set to 16x16, 36x36, or 72x72
-  twemoji.size = '16x16';
 
-  // Parse the document body and
-  // insert <img> tags in place of Unicode Emojis
-  twemoji.parse(document.body);
-
-}
+// emoji
+  function addEmoji() {
+    if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+      window.location.hash = "🍕";
+    }
+  };
+  addEmoji();
