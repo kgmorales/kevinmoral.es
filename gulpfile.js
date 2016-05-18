@@ -74,7 +74,7 @@ gulp.task('js', ['clean'], function() {
 });
 //images
 gulp.task('images', function() {
-    return gulp.src('./assets/*')
+    return gulp.src('./images/*')
         .pipe(imagemin({ progressive: true }))
         .pipe(gulp.dest('./assets/min'));
 });
