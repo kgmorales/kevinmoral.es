@@ -16,7 +16,8 @@ var gulp = require('gulp'),
 gulp.task('clean', function() {
     return del([
         'css/main.min.css',
-        'js/app.min.js'
+        'js/app.min.js',
+        'assets/'
     ]);
 });
 /**
@@ -73,7 +74,7 @@ gulp.task('js', ['clean'], function() {
 });
 //images
 gulp.task('images', function() {
-    return gulp.src('./images/*')
+    return gulp.src('./assets/*')
         .pipe(imagemin({ progressive: true }))
         .pipe(gulp.dest('./assets/min'));
 });
