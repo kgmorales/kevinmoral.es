@@ -1,12 +1,4 @@
 
-<<<<<<< HEAD
-# Site settings
-title: Gnarfugh
-email: kmorales076@gmail.com
-description: Front End Developer from Chicago, IL
-#baseurl: "/kevinmoral.es" # the subpath of your site, e.g. /blog
-url: "http://kevinmoral.es" # the base hostname & protocol for your site
-=======
 name: Kevin Morales
 title: kevin morales
 description: Front End Developer | Chicago, IL
@@ -16,7 +8,6 @@ highlighter: pygments # or rouge or null
 exclude: ["node_modules", "gulpfile.js", "package.json"]
 redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
->>>>>>> master
 twitter_username: gnarfugh
 github_username:  gnarfugh
 linkedin_username: kgmorales
