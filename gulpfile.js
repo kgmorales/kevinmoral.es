@@ -16,8 +16,7 @@ var gulp = require('gulp'),
 gulp.task('clean', function() {
     return del([
         'css/main.min.css',
-        'js/app.min.js',
-        'assets/'
+        'js/app.min.js'
     ]);
 });
 /**
