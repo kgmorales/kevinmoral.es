@@ -1,4 +1,3 @@
 ---
-title: Contact
-permalink: /contact/🍕
+title: contact
 ---
