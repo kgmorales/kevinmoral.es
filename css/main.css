@@ -167,7 +167,7 @@ figure {
  * Basic styling
  */
 body {
-  font: 400 16px / 1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 400 16px/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #111;
   background-color: #fdfdfd;
   -webkit-text-size-adjust: 100%;
@@ -626,7 +626,7 @@ pre {
 
 .avatar {
   border-radius: 50%;
-  width: 70%;
+  max-width: 60%;
   border: 2px solid #fff;
   margin: 0 auto 2rem; }
 
