@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     cp = require('child_process'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    deploy = require('gulp-gh-pages'),
     del = require('del'),
     imagemin = require('gulp-imagemin'),
     jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll',
@@ -80,6 +81,11 @@ gulp.task('images', function() {
         .pipe(imagemin({ progressive: true }))
         .pipe(gulp.dest('_site/images'));
 });
+
+gulp.task('deploy', ['jekyll-build'], function(){
+    return gulp.src("./_site/**/*")
+    .pipe(deploy());
+    });
 
 /**
  * Watch scss files for changes & recompile
