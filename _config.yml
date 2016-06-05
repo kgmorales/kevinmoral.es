@@ -11,6 +11,7 @@ redcarpet:
 twitter_username: gnarfugh
 github_username:  gnarfugh
 linkedin_username: kgmorales
+codepen_username: gnarfugh
 email: kmorales076@gmail.com
 gems: [jekyll-paginate]
 paginate: 5
