@@ -316,9 +316,6 @@ pre {
   .icon > svg path {
     fill: #828282; }
 
-/**
- * Site header
- */
 .site-header {
   border-top: 5px solid #424242;
   border-bottom: 1px solid #e8e8e8;
@@ -335,11 +332,9 @@ pre {
   .site-title, .site-title:visited {
     color: #424242; }
 
-/**
- * Page content
- */
 .page-content {
-  padding: 30px 3; }
+  width: calc(100% - 350px);
+  float: right; }
 
 .page-heading {
   font-size: 20px; }
@@ -358,9 +353,6 @@ pre {
   display: block;
   font-size: 24px; }
 
-/**
- * Posts
- */
 .post-header {
   margin-bottom: 30px; }
 
@@ -544,15 +536,14 @@ img.emoji {
 
 .sidebar {
   text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 350px;
   padding: 2rem 1rem;
   color: rgba(255, 255, 255, 0.5);
   background-color: #1ABC9C; }
-
-@media (min-width: 48em) {
-  .sidebar {
-    top: 50%;
-    width: 350px;
-    text-align: center; } }
 
 /* Sidebar links */
 .sidebar a {
@@ -589,7 +580,9 @@ a.sidebar-nav-item:focus {
 
 .content {
   padding-top: 4rem;
-  padding-bottom: 4rem; }
+  padding-bottom: 4rem;
+  width: calc(100% - 350px);
+  float: right; }
 
 @media (min-width: 48em) {
   .content {
