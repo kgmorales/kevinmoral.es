@@ -1,15 +1,13 @@
 .sidebar {
   text-align: center;
+  position: fixed;
+  top: 0;
+  left:0;
+  height:100vh;
+  width: 350px;
   padding: 2rem 1rem;
-  color: rgba(255,255,255,.5);
+  color: rgba(255, 255, 255, .5);
   background-color: #1ABC9C;
-}
-@media (min-width: 48em) {
-  .sidebar {
-    top:50%;
-    width: 350px;
-    text-align: center;
-  }
 }
 
 /* Sidebar links */
@@ -18,6 +16,7 @@
 }
 
 /* About section */
+
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
@@ -26,31 +25,39 @@
 }
 
 /* Sidebar nav */
+
 .sidebar-nav {
   margin-bottom: 1rem;
 }
+
 .sidebar-nav-item {
   display: block;
   line-height: 2;
 }
+
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
   text-decoration: underline;
 }
+
 .sidebar-nav-item.active {
   font-weight: bold;
 }
-.sidebar--social{
-  margin:1rem auto;
+
+.sidebar--social {
+  margin: 1rem auto;
 }
-.sidebar--social li{
-  display:inline-block;
-  list-style-type:0;
+
+.sidebar--social li {
+  display: inline-block;
+  list-style-type: 0;
 }
 
 .content {
-  padding-top:    4rem;
+  padding-top: 4rem;
   padding-bottom: 4rem;
+  width: calc(100% - 350px);
+  float:right;
 }
 
 @media (min-width: 48em) {
@@ -67,3 +74,4 @@ a.sidebar-nav-item:focus {
     margin-right: 4rem;
   }
 }
+

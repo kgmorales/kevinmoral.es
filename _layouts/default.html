@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
+{% include head.html %}
 
-  {% include head.html %}
-
-  <body>
-
-    {% include sidebar.html %}
-
-    <div class="content">
-        {{ content }}
-    </div>
-
-    {% include footer.html %}
-<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-<script defer src="{{site.url}}/js/app.min.js"></script>
-
-  </body>
+<body>
+  {% include sidebar.html %}
+  <div class="content">
+    {{ content }}
+  </div>
+  {% include footer.html %}
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script defer src="{{site.url}}/js/app.min.js"></script>
+</body>
 
 </html>
