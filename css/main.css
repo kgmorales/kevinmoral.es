@@ -11,7 +11,7 @@
   text-decoration: none; }
 
 html, body {
-  height: 100%; }
+  min-height: 100%; }
 
 body {
   background-color: black;
@@ -184,8 +184,7 @@ body {
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-align: center;
-      align-items: center;
-  height: 100vh; }
+      align-items: center; }
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -247,17 +246,24 @@ a {
 /**
  * Icons
  */
-.icon > svg {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  vertical-align: middle; }
-  @media (min-width: 768px) {
-    .icon > svg {
-      width: 64px;
-      height: 64px; } }
-  .icon > svg path {
-    fill: #fff; }
+.icon {
+  cursor: pointer;
+  transition: margin-top 300ms ease;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0); }
+  .icon:hover {
+    margin-top: -1px; }
+  .icon > svg {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle; }
+    @media (min-width: 768px) {
+      .icon > svg {
+        width: 64px;
+        height: 64px; } }
+    .icon > svg path {
+      fill: #fff; }
 
 header {
   padding: 2em auto 0;
