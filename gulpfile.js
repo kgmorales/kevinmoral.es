@@ -18,8 +18,10 @@ var gulp = require('gulp'),
 //Clean dist folder before each build
 gulp.task('clean', function() {
   return del([
-    'css/main.min.css',
-    'js/app.min.js',
+    '_site/css/*.css',
+    'css/*.css',
+    '_site/js/*.js',
+    'js/*.min.js',
     '_site/images'
   ]);
 });

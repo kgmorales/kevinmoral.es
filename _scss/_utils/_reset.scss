@@ -8,6 +8,7 @@
 * {
     margin: 0;
     padding: 0;
+    text-decoration:none;
 }
 
 html, body { height: 100%; }
@@ -28,6 +29,9 @@ p { margin: 1em 0; }
 a         { color: #00a; }
 a:hover   { color: #000; }
 a:visited { color: #a0a; }
+ul{
+    list-style-type:none;
+}
 
 /*****************************************************************************/
 /*
