@@ -10,7 +10,7 @@ redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 twitter_username: gnarfugh
 github_username:  gnarfugh
-linkedin_username: kgmorales
+linkedin_username: kevingmorales
 codepen_username: gnarfugh
 email: kmorales076@gmail.com
 gems: [jekyll-paginate]
