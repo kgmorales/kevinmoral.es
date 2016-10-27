@@ -1,0 +1,17 @@
+<button id="button" class="hamburger">
+    <span class="burger"></span>
+    <span class="burger"></span>
+    <span class="burger"></span>
+</button>
+
+<div class="content">
+  <div class="flex">
+    <nav>
+      <ul id="links" class="navigation">
+        <li><a {% if page.title == "Home" %}class="active"{% endif %} href="/">Home</a></li>
+        <li><a {% if page.title == "About" %}class="active"{% endif %} href="/about">About</a></li>
+        <li><a {% if page.title == "Portfolio" %}class="active"{% endif %} href="/about">Work</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
