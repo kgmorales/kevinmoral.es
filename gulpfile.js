@@ -23,7 +23,7 @@ gulp.task('clean', function() {
     '_site/css/*.css',
     'css/*.css',
     '_site/js/*.js',
-    'js/*.min.js',
+    'js/*.js',
     '_site/images'
   ]);
 });
