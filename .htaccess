@@ -1,5 +1,4 @@
-# Set browser caching
-# ---------------------------------------------------------------------
+## EXPIRES CACHING ##
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresByType image/jpg "access 1 year"
@@ -14,7 +13,7 @@ ExpiresByType application/x-shockwave-flash "access 1 month"
 ExpiresByType image/x-icon "access 1 year"
 ExpiresDefault "access 1 month"
 </IfModule>
-# End caching block
+## EXPIRES CACHING ##
 
 # GZIP
 <ifModule mod_gzip.c>
