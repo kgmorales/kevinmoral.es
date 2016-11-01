@@ -24,3 +24,8 @@
     @warn "Breakpoint mixin supports: xs, sm, md, lg";
   }
 }
+//font size for responsive text
+@mixin fontsize($size){
+  font-size: $size * 1.6px;
+  font-size: $size * 0.1rem;
+}

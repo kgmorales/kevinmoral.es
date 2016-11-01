@@ -1,0 +1,53 @@
+.portfolio {
+  border-top: 1px solid #fff;
+  margin: 0 auto;
+  width: 100%;
+  .row {
+    justify-content: center;
+    padding: 3em 0;
+    .portfolio--left {
+      display: flex;
+    }
+    .portfolio--text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+}
+
+.portfolio--container:nth-child(even) {
+  background: #F2F2F2;
+}
+
+.portfolio--container:nth-child(odd) {
+  background: #D3D3D3;
+}
+
+.portfolio img {
+  display: block;
+  height: auto;
+}
+
+.portfolio--text {
+  h2 {
+    @include fontsize(20);
+    color:#4A4E69;
+  }
+}
+
+.portfolio--logos{
+	width:40%;
+	padding-bottom:1em;
+}
+.crc-logo {
+	width:70%;
+}
+.mpe-logo {
+	width:25%;
+}
+

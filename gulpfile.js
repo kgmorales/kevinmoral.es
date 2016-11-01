@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   del = require('del'),
   sass = require('gulp-sass'),
+  size = require('gulp-size'),    
   cp = require('child_process'),
   nano = require('gulp-cssnano'),
   rename = require('gulp-rename'),
@@ -64,9 +65,11 @@ gulp.task('scss', function() {
     .pipe(plumber({ errorHandler: onError }))
     .pipe(sass({ includePaths: ['scss'] }))
     .pipe(prefix(['last 15 versions', '> 1%'], { cascade: true }))
+    .pipe(size({ gzip: false, showFiles: true }))
     .pipe(gulp.dest('css'))
     .pipe(nano())
     .pipe(rename('main.min.css'))
+    .pipe(size({ gzip: true, showFiles: true }))
     .pipe(gulp.dest('css'))
     .pipe(browserSync.reload({ stream: true }));
 });
@@ -77,6 +80,7 @@ gulp.task('js', function() {
     .pipe(concat('app.js'))
     .pipe(rename('app.min.js'))
     .pipe(uglify())
+    .pipe(size({ gzip: true, showFiles: true }))
     .pipe(gulp.dest('js'));
 });
 

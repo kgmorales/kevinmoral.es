@@ -1,5 +1,6 @@
 //utils
 @import '_utils/reset';
+@import '_utils/grid';
 //depends
 @import '_depends/variables';
 @import '_depends/mixins';
@@ -11,4 +12,6 @@
 @import '_components/emoji';
 //regions
 @import '_regions/nav';
+@import '_regions/intro';
+@import '_regions/portfolio';
 @import '_regions/footer';

@@ -1,9 +1,9 @@
 .avatar{
 	border-radius:50%;
-	max-width:60%;
+	max-width:40%;
 	border:2px solid #fff;
 	margin:0 auto 2rem;
 	@include bp(sm){
-		max-width:40%;
+		max-width:20%;
 	}
 }
