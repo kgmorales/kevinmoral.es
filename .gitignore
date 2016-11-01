@@ -1,5 +1,5 @@
-_site/*
-css/*
+_site/
+css/
 .sass-cache/
 .jekyll-metadata
 .idea
