@@ -66,21 +66,21 @@ gulp.task('scss', function() {
     .pipe(plumber({ errorHandler: onError }))
     .pipe(sass({ includePaths: ['scss'] }))
     .pipe(prefix(['last 15 versions', '> 1%'], { cascade: true }))
-    .pipe(size({ gzip: false, showFiles: true }))
-    .pipe(gulp.dest('css'))
-    .pipe(uncss({
+     .pipe(uncss({
             html: ['_site/index.html']
         }))
+    .pipe(size({ gzip: false, showFiles: true }))
+    .pipe(gulp.dest('css'))
     .pipe(nano())
     .pipe(rename('main.min.css'))
     .pipe(size({ gzip: true, showFiles: true }))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('_includes'))
     .pipe(browserSync.reload({ stream: true }));
 });
 
 //concat & uglify JS files
 gulp.task('js', function() {
-  return gulp.src('js/*.js')
+  return gulp.src('scripts/*.js')
     .pipe(concat('app.js'))
     .pipe(rename('app.min.js'))
     .pipe(uglify())
@@ -105,7 +105,7 @@ gulp.task('deploy', ['jekyll-build'], function() {
 gulp.task('watch', ['scss'], function() {
   gulp.watch(['*.html', '_layouts/*.html', '_posts/*.html', '_includes/*.html'], ['jekyll-rebuild']);
   gulp.watch('_scss/**/*.scss', ['scss', 'jekyll-rebuild']);
-  gulp.watch('js/*.js', ['js', 'jekyll-rebuild']);
+  gulp.watch('scripts/*.js', ['js', 'jekyll-rebuild']);
   gulp.watch('images/*', ['images', 'jekyll-rebuild']);
 });
 
