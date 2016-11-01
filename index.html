@@ -16,17 +16,6 @@
 
 
 <body>
-<script>
-      var cb = function() {
-        var l = document.createElement('link'); l.rel = 'stylesheet';
-        l.href = 'css/main.min.css';
-        var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
-      };
-      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-          webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) raf(cb);
-      else window.addEventListener('load', cb);
-</script>
   <section class="intro">
   <div class="wrapper">
     <a href="http://kevinmoral.es"><img class="avatar" src="images/avatar.jpg"></a>
@@ -61,11 +50,11 @@
   <div class="portfolio--container">
     <div class="row middle-sm">
       <div class="col-sm-5">
-        <img src="images/port-sikich.png">
+        <img src="images/port-sikich.png" class="lazy">
       </div>
       <div class="col-sm-4 col-sm-offset-1">
         <div class="portfolio--text">
-          <img class="portfolio--logos" src="images/sikich-logo.svg" alt="sikich logo">
+          <img class="portfolio--logos lazy" src="images/sikich-logo.svg" alt="sikich logo">
           <p>A site designed and developed around the concept of organizing a lot of content. The old site needed to be stripped and completely redone. With this in mind, the use of Wordpress CMS was used in order to keep track of all pages and posts. It needed to be easy for the internal team to maintain once it was pushed live.</p>
           <p><strong>I'm proud of:</strong> the development of the flex grid used for the posts and the push navigation.</p>
           <a href="http://162.247.142.194/" title="Sikich" target="_blank">Click to view</a>
@@ -77,14 +66,14 @@
     <div class="row middle-sm">
       <div class="col-sm-4">
         <div class="portfolio--text">
-          <img class="portfolio--logos" src="images/petag-logo.svg" alt="petag logo">
+          <img class="portfolio--logos lazy" src="images/petag-logo.svg" alt="petag logo">
           <p>PetAg was made with the intention to inform the public about their products. A lot of research and process went into the design and UX of their main key target groups. While creating this I learned a alot about the cms we used, CRAFT CMS. I got more familiar with twig as I developed each page. It was also the first site I used using Foundation 6, which was new at the time and really learned the inner workings of the framework.</p>
           <p><strong>I'm proud of:</strong> The client selected a significant amount of my concepts, which I then went on to develop.</p>
           <a href="http://petag.com" title="Petag.com" target="_blank">Click to view</a>
         </div>
       </div>
       <div class="col-sm-5 col-sm-offset-1">
-        <img src="images/port-petag.png">
+        <img src="images/port-petag.png" class="lazy">
       </div>
     </div>
   </div>
@@ -92,12 +81,12 @@
     <div class="row middle-sm">
       <div class="col-sm-5">
         <div class="portfolio--img">
-          <img src="images/port-crc.png">
+          <img src="images/port-crc.png" class="lazy">
         </div>
       </div>
       <div class="col-sm-4 col-sm-offset-1">
         <div class="portfolio--text">
-          <img class="portfolio--logos crc-logo" src="images/crc-logo.svg" alt="crc logo">
+          <img class="portfolio--logos crc-logo lazy" src="images/crc-logo.svg" alt="crc logo">
           <p>Creating this micro-site was fun and really allowed me to explore with different types of UX/UI functionality. This was a smaller site in general but was required to use Foundation 5 Framework.</p>
           <p><strong>I'm proud of:</strong> The combustible dust testing page</p>
           <a href="http://combustionresearchcenter.hoerbiger.com/" target="_blank" title="Combustion Research Center">Click to view</a>
@@ -109,25 +98,25 @@
     <div class="row middle-sm">
       <div class="col-sm-4">
         <div class="portfolio--text">
-          <img class="portfolio--logos" src="images/mol-logo.svg" alt="mol logo">
+          <img class="portfolio--logos lazy" src="images/mol-logo.svg" alt="mol logo">
           <p>This was a quick turn around site that I was hit with a very tight deadline. The project was to be front end only and to be handed off to another development firm to be implemented within a custom CMS. I had to create instructions on how to function throughout the code for them. I was able to complete all functionality they requested and some last minute requests as well.</p>
           <p><strong>I'm proud of:</strong> I was complemented from the other development team on my code organization and the clarity of the instructions.</p>
           <a href="http://codepen.io/gnarfugh/pen/vGjOJr" title="Sikich" target="_blank">Click to view</a>
         </div>
       </div>
       <div class="col-sm-5 col-sm-offset-1">
-        <img src="images/port-mol.png">
+        <img src="images/port-mol.png" class="lazy">
       </div>
     </div>
   </div>
   <div class="portfolio--container">
     <div class="row middle-sm">
       <div class="col-sm-5">
-        <img src="images/port-codered.png">
+        <img src="images/port-codered.png" class="lazy">
       </div>
       <div class="col-sm-4 col-sm-offset-1">
         <div class="portfolio--text">
-          <img class="portfolio--logos" src="images/codered-logo.png" alt="code red safety logo">
+          <img class="portfolio--logos lazy" src="images/codered-logo.png" alt="code red safety logo">
           <p>This site was created because the company did not have any online presence. I was involved in everything. From conception to live push to maintenance. I travelled throughout the country with a co-worker to shoot all photos,video,interviews, etc. I created an online social presence while also creating content and maintaining marketing. During the time I made the company an extra $300k in sales in four months.</p>
           <p><strong>I'm proud of:</strong> I did everything (with the exception of photography and video) by myself and came out successful.</p>
           <a href="http://coderedsafety.com" title="code red safety" target="_blank">Click to view</a>
@@ -139,14 +128,14 @@
     <div class="row middle-sm">
       <div class="col-sm-4">
         <div class="portfolio--text">
-          <img class="portfolio--logos mpe-logo" src="images/mpe-logo.png" alt="mpe logo">
+          <img class="portfolio--logos mpe-logo lazy" src="images/mpe-logo.png" alt="mpe logo">
           <p>I tore down the company's old static site and redid everything in order to create an e-commerce site. I used Wordpress CMS to organize all the products and WooCommerce to set up the shop. I redid all the photography of the products and started the marketing.</p>
           <p><strong>I'm proud of:</strong> I started with nothing and the site made $280k in one month.</p> 
           <a href="http:disposable-garments.com/" title="disposable garments" target="_blank">Click to view</a>
         </div>
       </div>
       <div class="col-sm-5 col-sm-offset-1">
-        <img src="images/port-mpe.png">
+        <img src="images/port-mpe.png" class="lazy">
       </div>
     </div>
   </div>
@@ -159,8 +148,6 @@
 <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script defer src="js/app.min.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <script src="js/app.min.js"></script>
 </body>
 
 </html>
