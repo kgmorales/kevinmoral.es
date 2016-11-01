@@ -948,7 +948,8 @@ img.emoji {
         font-size: 1.125em; } }
 
 .wrapper-text {
-  margin: 0 auto; }
+  margin: 0 auto;
+  text-align: center; }
 
 .social {
   padding-top: 1em;
