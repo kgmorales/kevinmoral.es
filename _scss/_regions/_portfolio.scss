@@ -4,7 +4,9 @@
   width: 100%;
   .row {
     justify-content: center;
-    padding: 3em 0;
+    padding: 3em;
+    margin-left:-15px;
+    margin-right:-15px;
     .portfolio--left {
       display: flex;
     }
@@ -13,11 +15,22 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
       flex-wrap: wrap;
       width: 100%;
+      text-align:left;
+      @include bp(xs){
+      	text-align:center;
+      }
     }
   }
+}
+
+.col-sm-4{
+	@include bp (xs){
+      	order:-1;
+      	padding-bottom:2em;
+      	margin:0 auto;
+      }
 }
 
 .portfolio--container:nth-child(even) {
