@@ -1,4 +1,9 @@
 $(function() {
+
+  var fonts = "https://fonts.googleapis.com/css?family=Open+Sans:400,700";
+    if (document.createStyleSheet) document.createStyleSheet(fonts);
+    else $("head").append($("<link rel='stylesheet' href='"+ fonts +"' type='text/css' media='screen' />"));
+
   $("button").click(function() {
     $(".hamburger").toggleClass("focus");
     $(".content").toggleClass("show");

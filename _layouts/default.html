@@ -3,11 +3,20 @@
 {% include head.html %}
 
 <body>
- <!--  {% include header.html %} -->
   {% include main.html %}
   {% include portfolio.html %}
   {% include footer.html %}
-  <link rel="stylesheet" href="css/main.min.css">
+  <script>
+      var cb = function() {
+        var l = document.createElement('link'); l.rel = 'stylesheet';
+        l.href = 'css/main.min.css';
+        var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(cb);
+      else window.addEventListener('load', cb);
+</script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="js/app.min.js"></script>
 </body>
