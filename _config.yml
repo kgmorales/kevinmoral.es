@@ -17,6 +17,7 @@ gems: [jekyll-paginate]
 paginate: 5
 future: true
 permalink: pretty
+include: ['.htaccess']
 #default settings
 defaults:
   -
