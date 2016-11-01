@@ -13,6 +13,7 @@ var gulp = require('gulp'),
   imagemin = require('gulp-imagemin'),
   prefix = require('gulp-autoprefixer'),
   browserSync = require('browser-sync'),
+  uncss = require('gulp-uncss'),
   jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll',
   messages = { jekyllBuild: '<span style="color: white">Running:</span> jekyll build' };
 
@@ -67,6 +68,9 @@ gulp.task('scss', function() {
     .pipe(prefix(['last 15 versions', '> 1%'], { cascade: true }))
     .pipe(size({ gzip: false, showFiles: true }))
     .pipe(gulp.dest('css'))
+    .pipe(uncss({
+            html: ['_site/index.html']
+        }))
     .pipe(nano())
     .pipe(rename('main.min.css'))
     .pipe(size({ gzip: true, showFiles: true }))
@@ -99,8 +103,8 @@ gulp.task('deploy', ['jekyll-build'], function() {
 //Watch scss files for changes & recompile
 //Watch html/md files, run jekyll & reload BrowserSync
 gulp.task('watch', ['scss'], function() {
-  gulp.watch('_scss/**/*.scss', ['scss', 'jekyll-rebuild']);
   gulp.watch(['*.html', '_layouts/*.html', '_posts/*.html', '_includes/*.html'], ['jekyll-rebuild']);
+  gulp.watch('_scss/**/*.scss', ['scss', 'jekyll-rebuild']);
   gulp.watch('js/*.js', ['js', 'jekyll-rebuild']);
   gulp.watch('images/*', ['images', 'jekyll-rebuild']);
 });
