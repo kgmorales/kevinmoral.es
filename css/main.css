@@ -74,6 +74,18 @@ ul {
   margin-right: -.5rem;
   margin-left: -.5rem; }
 
+.col-xs-12 {
+  box-sizing: border-box;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: .5rem;
+  padding-left: .5rem; }
+
+.col-xs-12 {
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  max-width: 100%; }
+
 @media only screen and (min-width: 48em) {
   .col-sm-4, .col-sm-5, .col-sm-offset-1 {
     box-sizing: border-box;
@@ -166,7 +178,7 @@ a {
     margin-top: -1px; }
   .icon > svg {
     display: inline-block;
-    width: 100%;
+    width: 64px;
     height: 64px;
     vertical-align: middle; }
     .icon > svg path {
@@ -180,7 +192,7 @@ a {
   max-width: 80%;
   border: 2px solid #fff;
   margin: 0 auto 2rem; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     .avatar {
       max-width: 20%; } }
 
@@ -248,12 +260,15 @@ a {
         .portfolio .row .portfolio--text {
           text-align: center; } }
 
-@media (max-width: 767px) {
-  .col-sm-4 {
-    -ms-flex-order: -1;
-        order: -1;
-    padding-bottom: 2em;
-    margin: 0 auto; } }
+.work {
+  -ms-flex-order: -1;
+      order: -1;
+  padding-bottom: 2em; }
+  @media (min-width: 768px) {
+    .work {
+      -ms-flex-order: 0;
+          order: 0;
+      padding-bottom: 3em; } }
 
 .portfolio--container:nth-child(even) {
   background: #F2F2F2; }
