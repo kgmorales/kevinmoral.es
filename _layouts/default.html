@@ -7,5 +7,12 @@
   {% include portfolio.html %}
   {% include footer.html %}
 </body>
-
+<script>
+    document.body.onload = function() {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href='https://fonts.googleapis.com/css?family=Open+Sans';
+      document.head.appendChild(link);
+    }
+  </script>
 </html>
