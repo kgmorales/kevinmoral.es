@@ -176,6 +176,9 @@ a {
     .icon > svg path {
       fill: #fff; }
 
+.lazy {
+  display: none; }
+
 .avatar {
   border-radius: 50%;
   max-width: 80%;
