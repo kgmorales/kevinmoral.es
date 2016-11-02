@@ -3,7 +3,7 @@
 	max-width:80%;
 	border:2px solid #fff;
 	margin:0 auto 2rem;
-	@include bp(sm){
+	@include bp(md){
 		max-width:20%;
 	}
 }
