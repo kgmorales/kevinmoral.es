@@ -3,6 +3,10 @@
    background-repeat: no-repeat;
    background-size: cover;
    margin: 0 auto;
+   text-align:center;
+   @include bp(md){
+    background-size:100%;
+   }
  }
  
  .wrapper {
