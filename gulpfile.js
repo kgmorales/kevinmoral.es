@@ -24,7 +24,8 @@ gulp.task('clean', function() {
     'css/*.css',
     '_site/js/*.js',
     'js/*.js',
-    '_site/images'
+    '_site/images',
+    '_includes/main.min.css'
   ]);
 });
 
