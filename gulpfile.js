@@ -96,6 +96,7 @@ gulp.task('images', function() {
     .pipe(gulp.dest('_site/images'));
 });
 
+//deploy to github pages
 gulp.task('deploy', ['jekyll-build'], function() {
   return gulp.src("./_site/**/*")
     .pipe(deploy());
