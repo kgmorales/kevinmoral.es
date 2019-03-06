@@ -3,39 +3,43 @@
    background-repeat: no-repeat;
    background-size: cover;
    margin: 0 auto;
-   text-align:center;
-   @include bp(md){
-    background-size:100%;
+   text-align: center;
+
+   @include bp(md) {
+     background-size: 100%;
    }
  }
- 
+
  .wrapper {
    margin: 0 auto;
    padding: 4em 3em;
    color: #fff;
    text-align: center;
+
    h1 {
      font-size: 1.5em;
+
      @include bp(sm) {
        font-size: 2em;
      }
    }
+
    p {
      font-size: 1em;
-     @include bp(sm){
-      font-size:1.125em;
+
+     @include bp(sm) {
+       font-size: 1.125em;
      }
    }
  }
- 
+
  .wrapper-text {
    margin: 0 auto;
-   text-align:center;
+   text-align: center;
  }
- 
+
  .social {
    padding-top: 1em;
    display: flex;
    justify-content: center;
  }
-
