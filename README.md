@@ -1,1 +1,1 @@
-[kevinmoral.es](http://kevinmoral.es):pizza:
+[kevinmoral.es](http://kevinmoral.es):computer:
