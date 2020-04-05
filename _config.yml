@@ -1,15 +1,15 @@
-
 name: Kevin Morales
 title: kevin morales
 description: Front End Developer | Chicago, IL
 url: http://kevinmoral.es
 markdown: redcarpet
 highlighter: pygments # or rouge or null
-exclude: ["node_modules", "gulpfile.js", "package.json"]
+exclude: ['node_modules', 'gulpfile.js', 'package.json']
 redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+  extensions:
+    ['no_intra_emphasis', 'fenced_code_blocks', 'autolink', 'strikethrough', 'superscript']
 twitter_username: gnarfugh
-github_username:  gnarfugh
+github_username: kgmorales
 linkedin_username: kevingmorales
 codepen_username: gnarfugh
 email: kmorales076@gmail.com
@@ -19,17 +19,15 @@ future: true
 permalink: pretty
 #default settings
 defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
+  - scope:
+      path: ''
+      type: 'posts'
     values:
       author: Kevin Morales
-      layout: "post"
-      category: "blog"
-  -
-    scope:
-      path: ""
-      type: "pages"
+      layout: 'post'
+      category: 'blog'
+  - scope:
+      path: ''
+      type: 'pages'
     values:
-      layout: "page"
+      layout: 'page'
