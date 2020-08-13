@@ -271,17 +271,17 @@ a {
       padding-bottom: 3em; } }
 
 .portfolio--container:nth-child(even) {
-  background: #F2F2F2; }
+  background: #f2f2f2; }
 
 .portfolio--container:nth-child(odd) {
-  background: #D3D3D3; }
+  background: #d3d3d3; }
 
 .portfolio img {
   display: block;
   height: auto; }
 
 .portfolio--logos {
-  width: 40%;
+  width: 30%;
   padding-bottom: 1em; }
 
 .crc-logo {
