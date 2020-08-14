@@ -184,6 +184,10 @@ a {
     .icon > svg path {
       fill: #fff; }
 
+.icon--email svg {
+  width: 46px;
+  vertical-align: bottom; }
+
 .lazy {
   display: none; }
 
