@@ -18,25 +18,23 @@ dd,
 ol,
 ul,
 figure {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
-
 
 /**
  * Basic styling
  */
 
 body {
-  padding: 0;
-  margin: 0;
-  background-color:#e5e5e5;
-  -webkit-font-smoothing: antialiased;
-  font-family: $open;
-  font-size:100%; 
-  line-height:1.5;
+	padding: 0;
+	margin: 0;
+	background-color: #e5e5e5;
+	-webkit-font-smoothing: antialiased;
+	font-family: $open;
+	font-size: 100%;
+	line-height: 1.5;
 }
-
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -56,32 +54,29 @@ ol,
 dl,
 figure,
 %vertical-rhythm {
-  margin-bottom: $spacing-unit / 2;
+	margin-bottom: $spacing-unit / 2;
 }
-
 
 /**
  * Images
  */
 
 img {
-  max-width: 100%;
-  vertical-align: middle;
+	max-width: 100%;
+	vertical-align: middle;
 }
-
 
 /**
  * Figures
  */
 
 figure > img {
-  display: block;
+	display: block;
 }
 
 figcaption {
-  font-size: $small-font-size;
+	font-size: $small-font-size;
 }
-
 
 /**
  * Headings
@@ -93,50 +88,51 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: $base-font-weight;
+	font-weight: $base-font-weight;
 }
-
 
 /**
  * Links
  */
 
 a {
-  color: $brand-color;
-  text-decoration: none;
-  &:visited {
-    color: darken($brand-color, 15%);
-  }
-  &:hover {
-    color: $text-color;
-    text-decoration: underline;
-  }
+	color: $brand-color;
+	text-decoration: none;
+	&:visited {
+		color: darken($brand-color, 15%);
+	}
+	&:hover {
+		color: $text-color;
+		text-decoration: underline;
+	}
 }
-
 
 /**
  * Icons
  */
 
 .icon {
-  cursor: pointer;
-  transition: margin-top 300ms ease;
-  transform: translateZ(0);
-  &:hover {
-    margin-top: -1px;
-  }
-  > svg {
-    display: inline-block;
-    width: 64px;
-    height: 64px;
-    vertical-align: middle;
-    path {
-      fill: #fff;
-    }
-  }
+	cursor: pointer;
+	transition: margin-top 300ms ease;
+	transform: translateZ(0);
+	&:hover {
+		margin-top: -1px;
+	}
+	> svg {
+		display: inline-block;
+		width: 64px;
+		height: 64px;
+		vertical-align: middle;
+		path {
+			fill: #fff;
+		}
+	}
+}
+.icon--email svg {
+	width: 46px;
+	vertical-align: bottom;
 }
 
 .lazy {
-    display: none;
+	display: none;
 }
-
