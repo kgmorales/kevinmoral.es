@@ -6,17 +6,10 @@ markdown: redcarpet
 highlighter: pygments # or rouge or null
 exclude: ['node_modules', 'gulpfile.js', 'package.json']
 redcarpet:
-  extensions:
-    [
-      'no_intra_emphasis',
-      'fenced_code_blocks',
-      'autolink',
-      'strikethrough',
-      'superscript',
-    ]
+  extensions: ['no_intra_emphasis', 'fenced_code_blocks', 'autolink', 'strikethrough', 'superscript']
 github_username: kgmorales
 linkedin_username: kevingmorales
-codepen_username: kgmorales
+codepen_username: kevinmoral_es
 email_address: hello@kevinmoral.es
 plugins: [jekyll-paginate]
 paginate: 5
