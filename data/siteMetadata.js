@@ -1,7 +1,7 @@
 const siteMetadata = {
   title: 'cwarcup - Curtis Warcup',
-  author: 'Curtis Warcup',
-  headerTitle: 'Curtis Warcup - Web Developer',
+  author: 'Kevin Morales',
+  headerTitle: 'Kevin Morales - Full Stack Engineer',
   description:
     'Personal blog and web development notes created by Curtis Warcup. Also contains projects and personal interests.',
   language: 'en-us',
