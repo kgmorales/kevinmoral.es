@@ -41,6 +41,9 @@ module.exports = {
       letterSpacing: {
         tightest: '-.075em',
       },
+      boxShadow: {
+        neon: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff',
+      },
       fontSize: {
         '8.5xl': '7rem',
       },
@@ -50,7 +53,7 @@ module.exports = {
       colors: {
         primary: colors.sky,
         gray: colors.neutral,
-        cardBg: '#0F141A',
+        cardBg: '#181A18',
         logoColor: '#46CDCF',
         darkSecondary: '#25282A',
       },

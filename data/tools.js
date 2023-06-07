@@ -40,12 +40,12 @@ const Tools = [
     description: `Prevents overcooking of your battery!`,
   },
   {
-    id: `responsivelyApp`,
+    id: `todoist`,
     category: [`mac`],
-    link: `https://responsively.app/`,
-    labels: [`Dev Tools`],
-    name: `Responsively App`,
-    description: `Aids in responsive web development.`,
+    link: `https://todoist.com/`,
+    labels: [`Organization`],
+    name: `Todoist`,
+    description: `Organizes my life`,
   },
   {
     id: `postman`,

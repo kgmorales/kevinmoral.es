@@ -19,7 +19,7 @@ export default function Tools() {
           </div>
           <p className="flex pb-3">
             Some tools that I find useful
-            <HeartIcon className="ml-2 -mr-1 h-5 w-5 text-logoColor" aria-hidden="true" />
+            <HeartIcon className="-mr-1 ml-2 h-5 w-5 text-logoColor" aria-hidden="true" />
           </p>
           <Tab.Group defaultIndex={0}>
             <Tab.List className="flex flex-wrap content-center justify-around gap-12">
