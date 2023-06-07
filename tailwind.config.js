@@ -53,7 +53,7 @@ module.exports = {
       colors: {
         primary: colors.sky,
         gray: colors.neutral,
-        cardBg: '#181A18',
+        cardBg: 'transparent',
         logoColor: '#46CDCF',
         darkSecondary: '#25282A',
       },

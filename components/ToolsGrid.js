@@ -4,7 +4,7 @@ import ToolsCard from './ToolsCard'
 const ToolGrid = ({ filter }) => {
   return (
     <div className="container mx-4">
-      <div className="grid auto-rows-fr grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid auto-rows-fr grid-cols-1 gap-3 md:grid-cols-3">
         {tools
           .filter((x) => x.category.includes(filter))
           .sort((a, b) => {

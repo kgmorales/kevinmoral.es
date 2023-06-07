@@ -64,7 +64,7 @@ export default function Hero() {
             icon={IoLogoGithub}
           />
           <SocialLink
-            href="https://www.linkedin.com/in/kgmorales/"
+            href="https://www.linkedin.com/in/kevingmorales/"
             aria-label="Connect with me on LinkedIn"
             icon={IoLogoLinkedin}
           />

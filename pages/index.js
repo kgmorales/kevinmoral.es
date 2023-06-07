@@ -46,7 +46,7 @@ export default function Home({ posts }) {
                     <p className="text-sm text-gray-500">
                       <time dateTime={date}>{formatDate(date)}</time>
                     </p>
-                    <h1 className="mt-2 mb-2 block font-bold text-gray-100">{title}</h1>
+                    <h1 className="mb-2 mt-2 block font-bold text-gray-100">{title}</h1>
 
                     <p className="mt-3 h-auto text-sm text-gray-300">{summary}</p>
                   </div>
@@ -57,7 +57,7 @@ export default function Home({ posts }) {
         </div>
         {posts.length > MAX_DISPLAY && (
           <div className="mt-5 flex justify-end text-base font-medium leading-6">
-            <Link href="/posts" className="mt-5 hover:text-primary-400" aria-label="all posts">
+            <Link href="/blog" className="mt-5 hover:text-primary-400" aria-label="all posts">
               All Posts &rarr;
             </Link>
           </div>

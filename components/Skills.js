@@ -12,7 +12,7 @@ const Skills = () => {
         whileInView="visible"
         variants={FadeContainer}
         viewport={{ once: true }}
-        className="my-10 grid grid-cols-4 gap-4"
+        className="my-10 grid grid-cols-4 gap-4 "
       >
         {skills.map((skill, index) => {
           return (

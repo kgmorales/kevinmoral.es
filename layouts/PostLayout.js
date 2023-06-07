@@ -84,22 +84,22 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             className="divide-y divide-gray-700 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
             style={{ gridTemplateRows: 'auto 1fr' }}
           >
-            <dl className="pt-6 pb-10 xl:border-b xl:border-gray-700 xl:pt-11">
+            <dl className="pb-10 pt-6 xl:border-b xl:border-gray-700 xl:pt-11">
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
                   {authorDetails.map((author) => (
-                    <li className="flex items-center space-x-2" key={author.name}>
+                    <li className="flex flex-col items-center gap-3 space-x-2" key={author.name}>
                       {author.avatar && (
                         <Image
                           src={author.avatar}
-                          width="38px"
-                          height="38px"
+                          width="200px"
+                          height="200px"
                           alt="avatar"
                           className="h-10 w-10 rounded-full"
                         />
                       )}
-                      <dl className="whitespace-nowrap text-sm font-medium leading-5">
+                      <dl className="whitespace-nowrap text-lg font-medium leading-5">
                         <dt className="sr-only">Name</dt>
                         <dd className="text-gray-100">{author.name}</dd>
                         <dt className="sr-only">Twitter</dt>
@@ -120,7 +120,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               </dd>
             </dl>
             <div className="divide-y divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
+              <div className="prose max-w-none pb-8 pt-10 dark:prose-dark">{children}</div>
             </div>
             <footer>
               <div className="divide-gray-700 text-sm font-medium leading-5 xl:col-start-1 xl:row-start-2 xl:divide-y">
@@ -211,7 +211,7 @@ function TocComponent({ toc }) {
           </p>
         </Link>
         {isActive(e) && e.children.length > 0 && (
-          <div className="mt-1 ml-4 space-y-1">
+          <div className="ml-4 mt-1 space-y-1">
             <RenderToc item={e.children} activeId={activeId} />
           </div>
         )}
