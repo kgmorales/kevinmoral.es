@@ -1,5 +1,5 @@
 const siteMetadata = {
-  title: 'kevinmoral.es',
+  title: 'Kevin Morales | Full Stack Engineer',
   author: 'Kevin Morales',
   headerTitle: 'Kevin Morales - Full Stack Engineer',
   description: 'Kevin Morales | Full Stack Engineer | Chicago,IL',
