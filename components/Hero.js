@@ -40,19 +40,21 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
 
 export default function Hero() {
   return (
-    <div className="w-lg mx-auto my-10 flex flex-row gap-10">
-      <Image
-        src={portraitImage}
-        alt="portrait of Kevin Morales"
-        className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-      />
-      <div className="flex flex-col gap-6">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
+    <div className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch">
+      <div className="flex justify-center md:w-1/2">
+        <Image
+          src={portraitImage}
+          alt="portrait of Kevin Morales"
+          className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+        />
+      </div>
+      <div className="flex flex-col justify-between gap-6 self-stretch md:w-1/2">
+        <h1 className="font-serif text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
           Kevin Morales
         </h1>
         <p className="text-base text-gray-600 dark:text-gray-400">
-          I am a Front End Engineer with a background in Design and User Experience. My attention to
-          detail and pattern recognition allows me to optimize complex code into maintainable,
+          I am a Full Stack Engineer with a background in Design and User Experience. My attention
+          to detail and pattern recognition allows me to optimize complex code into maintainable,
           scalable, and reusable architecture. I have successfully completed projects from
           brainstorm to production in teams of all sizes ensuring all stakeholder and user needs
           have been met.

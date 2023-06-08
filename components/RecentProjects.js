@@ -1,4 +1,4 @@
-import projectsData from '@/data/projects'
+import projectsData from '@/data/projectsData'
 
 import ProjectCard from '@/components/ProjectCard'
 import AnimatedDiv from '@/components/framer-motion/AnimatedDiv'

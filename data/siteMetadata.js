@@ -1,5 +1,5 @@
 const siteMetadata = {
-  title: 'kevinmoral.es - Kevin Morales Full Stack Engineer',
+  title: 'kevinmoral.es',
   author: 'Kevin Morales',
   headerTitle: 'Kevin Morales - Full Stack Engineer',
   description: 'Kevin Morales | Full Stack Engineer | Chicago,IL',
@@ -9,7 +9,8 @@ const siteMetadata = {
   siteRepo: 'https://github.com/Cwarcup/personal-blog',
   siteLogo: '/static/images/logo.svg',
   image: '/static/images/avatar.jpg',
-  socialBanner: '/static/images/twitter-card.png',
+  blogImage: '/static/images/work.jpg',
+  // socialBanner: '/static/images/twitter-card.png',
   codepen: 'https://codepen.io/kevinmoral_es',
   email: 'hello@kevinmoral.es',
   github: 'https://github.com/kgmorales',

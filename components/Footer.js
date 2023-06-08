@@ -13,11 +13,11 @@ export default function Footer() {
           <SocialIcon kind="codepen" href={siteMetadata.codepen} />
           <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} />
         </div>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-400">
+        <div className="mb-2 flex flex-col items-center space-x-2 text-sm text-gray-400 md:flex-row md:space-x-2">
           <div>{siteMetadata.author}</div>
-          <div>{` • `}</div>
+          <div className="hidden md:inline">{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
+          <div className="hidden md:inline">{` • `}</div>
           <Link href="/">{siteMetadata.title}</Link>
         </div>
       </div>

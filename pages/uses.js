@@ -2,7 +2,6 @@ import { useState } from 'react'
 import ToolsGrid from '/components/ToolsGrid'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '/data/siteMetadata'
-import { HeartIcon } from '@heroicons/react/solid'
 import { AiFillApple, AiOutlineMacCommand, AiOutlineDesktop } from 'react-icons/ai'
 import { Analytics } from '@vercel/analytics/react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -20,7 +19,7 @@ export default function Tools() {
               Tools I Use
             </h1>
           </div>
-          <div className="flex flex-wrap content-center justify-around gap-12">
+          <div className="flex cursor-pointer flex-wrap content-center justify-around gap-12">
             <div
               onClick={() => setCurrentTab(0)}
               className={
