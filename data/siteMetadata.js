@@ -6,7 +6,7 @@ const siteMetadata = {
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://kevinmoral.es',
-  siteRepo: 'https://github.com/Cwarcup/personal-blog',
+  siteRepo: 'https://github.com/kgmorales/kevinmoral.es',
   siteLogo: '/static/images/logo.svg',
   image: '/static/images/avatar.jpg',
   blogImage: '/static/images/work.jpg',
@@ -81,4 +81,4 @@ const siteMetadata = {
   },
 }
 
-export default siteMetadata
+module.exports = siteMetadata
