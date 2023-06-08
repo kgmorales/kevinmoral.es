@@ -1,12 +1,16 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { IoLogoGithub, IoLogoLinkedin, IoMail, IoCall } from 'react-icons/io5'
+import { IoLogoGithub, IoLogoLinkedin, IoMail, IoLogoCodepen, IoLogoTwitter } from 'react-icons/io5'
 import Notification from './Notification'
+import Image from 'next/image'
+import portraitImage from '../public/static/images/avatar.jpg'
 
-function SocialLink({ icon: Icon, ...props }) {
+function SocialLink({ icon: Icon, href, ariaLabel }) {
   return (
-    <Link className="-m-1 p-1 " {...props}>
-      <Icon className="h-6 w-6 cursor-pointer fill-gray-500 transition hover:fill-gray-200" />
+    <Link href={href}>
+      <a className="-m-1 p-1 " aria-label={ariaLabel}>
+        <Icon className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200" />
+      </a>
     </Link>
   )
 }
@@ -26,7 +30,7 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
   return (
     <div className="-m-1 p-1 " {...props}>
       <Icon
-        className="h-6 w-6 cursor-pointer fill-gray-500 transition hover:fill-gray-200"
+        className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200"
         onClick={handleClick}
       />
       <Notification show={show} setShow={setShow} text={text} />
@@ -36,55 +40,53 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
 
 export default function Hero() {
   return (
-    <div className="mb-5 max-w-2xl">
-      <h1 className="text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
-        Web developer, tech enthusiast, and fitness junkie
-      </h1>
-      <p className="mt-6 text-base text-gray-600 dark:text-gray-400">
-        I'm Curtis, a web developer based in Vancouver BC. As a Lead at Apple, I keep the store
-        running smoothly on a daily basis. I've coordinated product launches, repair programs, and
-        store openings. I enjoy working with a team to solve problems and build solutions.
-      </p>
-      <div className="mt-6 flex gap-6">
-        <SocialLink
-          href="https://github.com/Cwarcup"
-          aria-label="Check out my Github"
-          icon={IoLogoGithub}
+    <div className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch">
+      <div className="flex justify-center md:w-1/2">
+        <Image
+          src={portraitImage}
+          alt="portrait of Kevin Morales"
+          className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
         />
-        <SocialLink
-          href="https://www.linkedin.com/in/curtiswarcup/"
-          aria-label="Connect with me on LinkedIn"
-          icon={IoLogoLinkedin}
-        />
-        <CopyToClipboard
-          text={{ contact: 'curtis.gwarcup@gmail.com', type: 'Email' }}
-          aria-label="Send me an email"
-          icon={IoMail}
-        />
-        <CopyToClipboard
-          text={{ contact: '+1 (604) 374-4652', type: 'Phone number' }}
-          aria-label="Give me a call"
-          icon={IoCall}
-        />
+      </div>
+      <div className="flex flex-col justify-between gap-6 self-stretch md:w-1/2">
+        <h1 className="font-serif text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
+          Kevin Morales
+        </h1>
+        <p className="text-base text-gray-600 dark:text-gray-400">
+          I am a Full Stack Engineer with a background in Design and User Experience. My attention
+          to detail and pattern recognition allows me to optimize complex code into maintainable,
+          scalable, and reusable architecture. I have successfully completed projects from
+          brainstorm to production in teams of all sizes ensuring all stakeholder and user needs
+          have been met.
+        </p>
+        <div className="flex justify-between gap-6">
+          <SocialLink
+            href="https://github.com/kgmorales"
+            aria-label="Check out my Github"
+            icon={IoLogoGithub}
+          />
+          <SocialLink
+            href="https://www.linkedin.com/in/kevingmorales/"
+            aria-label="Connect with me on LinkedIn"
+            icon={IoLogoLinkedin}
+          />
+          <SocialLink
+            href="https://twitter.com/kevinmoral_es"
+            aria-label="Check out my Twitter"
+            icon={IoLogoTwitter}
+          />
+          <SocialLink
+            href="https://codepen.io/kevinmoral_es/"
+            aria-label="Check out my codepen"
+            icon={IoLogoCodepen}
+          />
+          <CopyToClipboard
+            text={{ contact: 'hello@kevinmoral.es', type: 'Email' }}
+            aria-label="Send me an email"
+            icon={IoMail}
+          />
+        </div>
       </div>
     </div>
   )
 }
-// <div className="flex flex-col w-full">
-//   <div className="pb-4 space-y-2 text-center md:space-y-5 md:text-left">
-//     <PageTitle>Web Developer, Tech Enthusiast, and Fitness Junkie</PageTitle>
-//     <p className="pb-4 text-lg leading-7 prose text-gray-400 max-w-none">
-//       Technology enthusiast experienced in consumer electronics industry. I believe the optimal
-//       code is achieved when the user and development experience is frictionless and intuitive.{' '}
-//       <Link href={`mailto:${siteMetadata.email}`}>
-//         <a
-//           className="font-medium leading-6 "
-//           aria-label={`Email to ${siteMetadata.email}`}
-//           title={`Email to ${siteMetadata.email}`}
-//         >
-//           Get in touch &rarr;
-//         </a>
-//       </Link>
-//     </p>
-//   </div>
-// </div>

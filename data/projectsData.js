@@ -1,106 +1,73 @@
 const projectsData = [
   {
-    title: 'Netflix Clone',
-    description:
-      'This project is a Netflix clone that was built using cutting-edge technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more.',
-    imgSrc: '/static/images/projectCards/netflix-clone.png',
-    href: 'https://github.com/Cwarcup/netflix-clone',
-    deployed: 'https://netflix-clone-cwarcup.vercel.app/',
-    tools: ['TypeScript', 'Next.js', 'GraphQL', 'Supabase', 'Magic', 'Hasura'],
+    title: 'Recipeek',
+    description: `My family cooks a lot. We look up recipes almost daily. A lot of times though, those recipe sites are filled with ads that take up the entire screen. It becomes frustrating trying find something without constantly losing your place with page jumps from slow loads and pop ups. I decided to create an app to quick search recipes through an API that also searches YouTube's API for the corresponding video. I taught myself React & React Hooks and implemented this to be hosted using netlify.`,
+    imgSrc: '/static/images/projectCards/port-recipeek.png',
+    href: 'https://github.com/kgmorales/recipeek.io',
+    deployed: 'https://recipeek.io',
+    tools: [],
   },
   {
-    title: 'Coffee Shops - Discover and Favourite Coffee Shops near you!',
-    description:
-      'This project served as a learning tool for me to get more familiar with the advanced features of Next.js and to learn more about the use of Airtable as a database. I also wanted to learn more about the use of SWR to handle data fetching and caching. I wanted to learn about creating API routes and using Airtable to store data.',
-    imgSrc: '/static/images/projectCards/Coffee.png',
-    href: 'https://github.com/Cwarcup/coffee-shops',
-    deployed: 'https://coffee-shops-cwarcup.vercel.app',
-    tools: ['TypeScript', 'Next.js', 'SWR', 'Airtable', 'Foursquare API'],
+    title: 'Code Red Safety',
+    description: `This site was created because the company did not have any online
+						presence. I was involved in everything. From conception to live push
+						to maintenance. I travelled throughout the country with a co-worker
+						to shoot all photos,video,interviews, etc. I created an online
+						social presence while also creating content and maintaining
+						marketing. During the time I made the company an extra $300k in
+						sales in four months.`,
+    imgSrc: '/static/images/projectCards/port-codered.png',
+    href: '',
+    deployed: 'https://coderedsafety.com',
+    tools: [],
   },
   {
-    title: 'Nextjs Tailwind Template',
-    description:
-      "This is a Next.js, Tailwind CSS starter template intended to be used as a portfolio or personal website. It comes out of the box configured with the latest technologies, tools, and best practices. It's built to be easily configured, customized and extended. It's also fully responsive and mobile friendly.",
-    imgSrc: '/static/images/projectCards/nextjstailwind.jpg',
-    href: 'https://github.com/Cwarcup/nextjs-tailwind-portfolio',
-    deployed: 'https://nextjs-tailwind-portfolio-cwarcup.vercel.app/',
-    tools: ['React', 'Nextjs', 'Tailwind CSS', 'Framer Motion'],
+    title: 'PetAg',
+    description: `PetAg was made with the intention to inform the public about their
+						products. A lot of research and process went into the design and UX
+						of their main key target groups. While creating this I learned a
+						alot about the cms we used, CRAFT CMS. I got more familiar with twig
+						as I developed each page. It was also the first site I used using
+						Foundation 6, which was new at the time and really learned the inner
+						workings of the framework.`,
+    imgSrc: '/static/images/projectCards/port-petag.png',
+    href: '',
+    deployed: 'https://petag.com',
+    tools: [],
   },
   {
-    title: 'E-commerce Website with TypeScript, React, Redux and Firebase',
-    description: `This is a project that I built while learning React and Redux. It is a fully functional e-commerce website that allows users to sign in with their Google account, add items to their cart, and make payments with Stripe. It is built with TypeScript, React, Redux, Firebase, Stripe, and Tailwind.`,
-    imgSrc: '/static/images/projectCards/twitter-card.jpg',
-    href: 'https://github.com/Cwarcup/ecom-firebase',
-    deployed: 'https://firebase-store-cwarcup.netlify.app/',
-    tools: ['React', 'Redux', 'Firebase', 'Stripe', 'Tailwind CSS'],
+    title: 'Combustion Research Center',
+    description: `Creating this micro-site was fun and really allowed me to explore
+						with different types of UX/UI functionality. This was a smaller site
+						in general but was required to use Foundation 5 Framework.`,
+    imgSrc: '/static/images/projectCards/port-crc.png',
+    href: '',
+    deployed: 'https://combustionresearchcenter.com/',
+    tools: [],
   },
   {
-    title: 'Is this a banana?',
-    description: `Is this a banana? No. Maybe? I don't know. Use this app to find out. I wanted to learn more about machine learning and how to use TensorFlow.js. I explored the TensorFlow.js website and found a pre-trained image classification model called MobileNet. I used this model to classify images of bananas and other objects.`,
-    imgSrc: '/static/images/projectCards/banana.jpg',
-    href: 'https://github.com/Cwarcup/wtf_is_this',
-    deployed: 'https://is-it-a-banana.vercel.app/',
-    tools: ['React', 'TensorFlow.js'],
+    title: 'Morales Wedding',
+    description: `For my wedding, instead of paying for RSVP cards, mailing costs,
+						last minute questions, and confusing scheduling of hotels for my
+						wedding, I decided to make a website instead. This allowed me save
+						money and provide a much more accessible hub of important
+						information to my invited guests.`,
+    imgSrc: '/static/images/projectCards/port-morales-wedding.png',
+    href: 'https://github.com/kgmorales/morales-wedding',
+    deployed: 'https://morales-wedding.com',
+    tools: [],
   },
   {
-    title: 'Supa Snacks',
-    description: `Supa Snacks is a mini-project to learn Supabase and introduce myself to React-Query. It's a simple app that allows you to add snacks to a list, edit and delete from. Users can also change the order of the snacks in the list. It is built using TypeScript, React, React-Query, Supabase and React Router Dom.`,
-    imgSrc: '/static/images/projectCards/supa-snacks.jpg',
-    href: 'https://github.com/Cwarcup/supa-snacks',
-    tools: ['React', 'Supabase', 'React-Query', 'React Router Dom'],
-  },
-  {
-    title: 'PayByFonie',
-    description: `PayByFonie is a play on the app PayByPhone, a parking app that allows you to pay for parking via your phone. PayByFonie is a similar app, but allows you to search a destination and view parking meter data near that location. Users can search a location using the MapBox API, view the price and time limit of parking meters near that location, and obtain the PayByPhone meter number to pay for that meter.`,
-    imgSrc: '/static/images/projectCards/paybyfonie.jpg',
-    href: 'https://github.com/Cwarcup/free-parking-mapper',
-    deployed: 'https://paybyfonie.vercel.app/',
-    tools: ['MapBox', 'React', 'Axios', 'Tailwind CSS'],
-  },
-  {
-    title: 'Cthulhu Teaches Typing',
-    description: `TCthulhu Teaches Typing is a typing game for learning to type. Our goal was to target the keyboard enthusiast market with a minimal, yet customizable application to track and compare typing statistics. We also wanted to create a fun and engaging typing game that would help users learn to type faster and more accurately.`,
-    imgSrc: '/static/images/projectCards/CTT.jpg',
-    href: 'https://github.com/Cwarcup/ctt-front-end',
-    deployed: 'https://www.cthulhuteachestyping.com/',
-    tools: ['React', 'Tailwind CSS', 'Socket.io', 'Node.js', 'PostgreSQL', 'Ruby on Rails'],
-  },
-  {
-    title: 'Jungle - E-Commerce Application',
-    description: `A mini e-commerce application built with Rails 6.1. This project was completed as part of the Lighthouse Labs Web Development Bootcamp. Jungle allows visitors to browse products, add them to their cart, and purchase them using Stripe. Admins can add and remove products and categories, and view sales data.`,
-    imgSrc: '/static/images/projectCards/jungle.jpg',
-    href: 'https://github.com/Cwarcup/jungle-rails',
-    tools: ['Ruby on Rails', 'PostgreSQL', 'Stripe', 'Bootstrap', 'Cypress', 'RSpec'],
-  },
-  {
-    title: 'On Your Mental Podcast',
-    description: `Website for the On Your Mental Podcast. On Your Mental focuses on mental health and wellness. The website was built using Next.js and Tailwind CSS. The website is hosted on Vercel. Content is updated automatically when new episodes are published using the RSS feed and Youtube API.`,
-    imgSrc: '/static/images/projectCards/OnYourMental.jpg',
-    href: 'https://github.com/Cwarcup/on-your-mental',
-    deployed: 'www.onyourmental.com',
-    tools: ['React', 'Next.js', 'Tailwind CSS', 'Vercel', 'RSS Feed', 'Youtube API'],
-  },
-  {
-    title: 'TinyApp',
-    description: `TinyApp is a full stack web application built with Node and Express that allows users to shorten long URLs (à la bit.ly). Includes features such as authentication, analytics dashboard, hashed passwords, encrypted cookies. Built with Express and EJS.`,
-    imgSrc: '/static/images/projectCards/tinyApp.jpg',
-    href: 'https://github.com/Cwarcup/tinyapp',
-    tools: ['Node.js', 'Express', 'EJS', 'bcrypt', 'cookie-session'],
-  },
-  {
-    title: 'lotide',
-    description: `A library similar to lodash for JavaScript. This project was created and published by me as part of my learnings at Lighthouse Labs. The library provides utilities that are not built into native JavaScript such as 'flatten()' to convert nested arrays into a single array.`,
-    imgSrc: '/static/images/projectCards/lotide.jpg',
-    href: 'https://github.com/Cwarcup/lotide#readme',
-    deployed: 'https://www.npmjs.com/package/@cwarcup/lotide',
-    tools: ['JavaScript', 'Node.js', 'Mocha', 'Chai'],
-  },
-  {
-    title: 'jsBooks - Interactive Notes and Code Cells',
-    description: `This is an interactive coding environment. You can write Javascript, see it executed, and write comprehensive documentation using markdown.`,
-    imgSrc: '/static/images/projectCards/jsBooks.jpg',
-    href: 'https://github.com/Cwarcup/jbook',
-    tools: ['React', 'TypeScript', 'Babel', 'Webpack', 'Monaco Editor', 'NPM', 'Lerna'],
+    title: 'Sikich',
+    description: `A site designed and developed around the concept of organizing a lot
+						of content. The old site needed to be stripped and completely
+						redone. With this in mind, the use of Wordpress CMS was used in
+						order to keep track of all pages and posts. It needed to be easy for
+						the internal team to maintain once it was pushed live.`,
+    imgSrc: '/static/images/projectCards/port-sikich.png',
+    href: '',
+    deployed: '',
+    tools: [],
   },
 ]
 

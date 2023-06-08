@@ -1,28 +1,27 @@
 const siteMetadata = {
-  title: 'cwarcup - Curtis Warcup',
+  title: 'kevinmoral.es',
   author: 'Kevin Morales',
   headerTitle: 'Kevin Morales - Full Stack Engineer',
-  description:
-    'Personal blog and web development notes created by Curtis Warcup. Also contains projects and personal interests.',
+  description: 'Kevin Morales | Full Stack Engineer | Chicago,IL',
   language: 'en-us',
   theme: 'dark', // system, dark or light
-  siteUrl: 'https://cwarcup.com',
-  siteRepo: 'https://github.com/Cwarcup/personal-blog',
-  siteLogo: '/static/images/logo.png',
+  siteUrl: 'https://kevinmoral.es',
+  siteRepo: 'https://github.com/kgmorales/kevinmoral.es',
+  siteLogo: '/static/images/logo.svg',
   image: '/static/images/avatar.jpg',
-  socialBanner: '/static/images/twitter-card.png',
-  email: 'curtis.gwarcup@gmail.com',
-  github: 'https://github.com/Cwarcup',
-  twitter: 'https://twitter.com/curtiswarcup',
-  facebook: 'https://www.facebook.com/curtis.wwwwww',
-  youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com/in/curtiswarcup/',
+  blogImage: '/static/images/work.jpg',
+  // socialBanner: '/static/images/twitter-card.png',
+  codepen: 'https://codepen.io/kevinmoral_es',
+  email: 'hello@kevinmoral.es',
+  github: 'https://github.com/kgmorales',
+  twitter: 'https://twitter.com/kevinmoral_es',
+  linkedin: 'https://www.linkedin.com/in/kevingmorales/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
     // supports plausible, simpleAnalytics, umami or googleAnalytics
-    plausibleDataDomain: 'https://cwarcup.com/', // e.g. tailwind-nextjs-starter-blog.vercel.app
+    plausibleDataDomain: 'https://kevinmoral.es', // e.g. tailwind-nextjs-starter-blog.vercel.app
     simpleAnalytics: false, // true or false
     umamiWebsiteId: '', // e.g. 123e4567-e89b-12d3-a456-426614174000
     googleAnalyticsId: process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID, // e.g. UA-000000-2 or G-XXXXXXX

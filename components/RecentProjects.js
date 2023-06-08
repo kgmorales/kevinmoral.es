@@ -12,7 +12,7 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
     <>
       <div className="divide-y divide-gray-700">
         <div className="my-4">
-          <span className="font-poppins title-font text-3xl font-bold">Recent Projects</span>
+          <span className="font-poppins title-font text-3xl font-bold">Projects</span>
         </div>
         <div className="py-5">
           <AnimatedDiv

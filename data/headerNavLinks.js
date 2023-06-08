@@ -1,16 +1,7 @@
 const headerNavLinks = [
   { href: '/', title: 'Home' },
-  { href: '/about', title: 'About' },
-  { href: '/posts', title: 'Posts' },
-  { href: '/projects', title: 'Projects' },
-  {
-    type: 'dropdown',
-    title: 'Other',
-    links: [
-      { href: '/tags', title: 'Tags' },
-      { href: '/tools', title: 'Tools' },
-    ],
-  },
+  { href: '/blog', title: 'Blog' },
+  { href: '/uses', title: 'Uses' },
 ]
 
 export default headerNavLinks
