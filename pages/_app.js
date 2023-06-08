@@ -2,6 +2,7 @@ import '@/css/tailwind.css'
 import '@/css/prism.css'
 import 'katex/dist/katex.css'
 
+import { AnimatePresence } from 'framer-motion'
 import '@fontsource/inter/variable-full.css'
 
 import { ThemeProvider } from 'next-themes'
@@ -23,8 +24,11 @@ export default function App({ Component, pageProps }) {
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
+
       <LayoutWrapper>
-        <Component {...pageProps} />
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} />
+        </AnimatePresence>
       </LayoutWrapper>
     </ThemeProvider>
   )

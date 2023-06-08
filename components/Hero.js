@@ -40,7 +40,7 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
 
 export default function Hero() {
   return (
-    <div className="w-md mx-auto my-10 flex flex-row gap-6">
+    <div className="w-lg mx-auto my-10 flex flex-row gap-10">
       <Image
         src={portraitImage}
         alt="portrait of Kevin Morales"

@@ -1,12 +1,15 @@
+import { useState } from 'react'
 import ToolsGrid from '/components/ToolsGrid'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '/data/siteMetadata'
 import { HeartIcon } from '@heroicons/react/solid'
 import { AiFillApple, AiOutlineMacCommand, AiOutlineDesktop } from 'react-icons/ai'
-import { Tab } from '@headlessui/react'
 import { Analytics } from '@vercel/analytics/react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Tools() {
+  const [currentTab, setCurrentTab] = useState(0)
+
   return (
     <>
       <PageSEO title={`Tools - ${siteMetadata.author}`} description={siteMetadata.description} />
@@ -17,67 +20,85 @@ export default function Tools() {
               Tools I Use
             </h1>
           </div>
-          <p className="flex pb-3">
-            Some tools that I find useful
-            <HeartIcon className="-mr-1 ml-2 h-5 w-5 text-white" aria-hidden="true" />
-          </p>
-          <Tab.Group defaultIndex={0}>
-            <Tab.List className="flex flex-wrap content-center justify-around gap-12">
-              <Tab
-                className={({ selected }) =>
-                  selected
-                    ? 'flex items-center rounded-md bg-logoColor p-2'
-                    : 'bg-grey-100 flex items-center rounded-md p-2'
-                }
+          <div className="flex flex-wrap content-center justify-around gap-12">
+            <div
+              onClick={() => setCurrentTab(0)}
+              className={
+                currentTab === 0
+                  ? 'flex items-center rounded-md border p-2'
+                  : 'bg-grey-100 flex items-center rounded-md p-2'
+              }
+            >
+              <AiFillApple />
+              <span>iOS</span>
+            </div>
+            <div
+              onClick={() => setCurrentTab(1)}
+              className={
+                currentTab === 1
+                  ? 'flex items-center rounded-md border p-2'
+                  : 'bg-grey-100 flex items-center rounded-md p-2'
+              }
+            >
+              <AiOutlineMacCommand />
+              <span>macOS</span>
+            </div>
+            <div
+              onClick={() => setCurrentTab(2)}
+              className={
+                currentTab === 2
+                  ? 'flex items-center rounded-md border p-2'
+                  : 'bg-grey-100 flex items-center rounded-md p-2'
+              }
+            >
+              <AiOutlineDesktop />
+              <span>Web</span>
+            </div>
+          </div>
+          <AnimatePresence exitBeforeEnter>
+            {currentTab === 0 && (
+              <motion.div
+                key="ios"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                <AiFillApple />
-                <span>iOS</span>
-              </Tab>
-              <Tab
-                className={({ selected }) =>
-                  selected
-                    ? 'flex items-center rounded-md bg-logoColor p-2'
-                    : 'bg-grey-100 flex items-center rounded-md p-2'
-                }
-              >
-                <AiOutlineMacCommand />
-                <span className="">macOS</span>
-              </Tab>
-              <Tab
-                className={({ selected }) =>
-                  selected
-                    ? 'flex items-center rounded-md bg-logoColor p-2'
-                    : 'bg-grey-100 flex items-center rounded-md p-2'
-                }
-              >
-                <AiOutlineDesktop />
-                <span className="">Web</span>
-              </Tab>
-            </Tab.List>
-            <Tab.Panels>
-              <Tab.Panel>
                 <div className="container py-12">
                   <div className="-m-4 flex flex-wrap justify-center">
                     <ToolsGrid filter="ios" />
                   </div>
                 </div>
-              </Tab.Panel>
-              <Tab.Panel>
+              </motion.div>
+            )}
+            {currentTab === 1 && (
+              <motion.div
+                key="mac"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
                 <div className="container py-12">
                   <div className="-m-4 flex flex-wrap justify-center">
                     <ToolsGrid filter="mac" />
                   </div>
                 </div>
-              </Tab.Panel>
-              <Tab.Panel>
+              </motion.div>
+            )}
+            {currentTab === 2 && (
+              <motion.div
+                key="web"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
                 <div className="container py-12">
                   <div className="-m-4 flex flex-wrap justify-center">
                     <ToolsGrid filter="web" />
                   </div>
                 </div>
-              </Tab.Panel>
-            </Tab.Panels>
-          </Tab.Group>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
       <Analytics />

@@ -14,14 +14,13 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed }) => (
         height={800}
         layout="responsive"
         objectFit="cover"
-        blurDataURL={imgSrc}
         quality={100}
-        className="backdrop-blur-xl transition-all duration-300 lg:group-hover:scale-110"
+        className="transition-all duration-300 lg:group-hover:scale-110"
       />
     </div>
 
     <div className="flex flex-col justify-start gap-3">
-      <h1 className="font-bold capitalize text-neutral-200">{title}</h1>
+      <h1 className="text-xl font-bold capitalize text-neutral-200">{title}</h1>
       <p className="truncate-2 text-sm text-neutral-400">{description}</p>
 
       <div className="flex flex-wrap items-center gap-1">

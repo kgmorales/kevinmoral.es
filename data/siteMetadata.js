@@ -2,7 +2,7 @@ const siteMetadata = {
   title: 'kevinmoral.es - Kevin Morales Full Stack Engineer',
   author: 'Kevin Morales',
   headerTitle: 'Kevin Morales - Full Stack Engineer',
-  description: 'Kevin Morales dev site',
+  description: 'Kevin Morales | Full Stack Engineer | Chicago,IL',
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://kevinmoral.es',
@@ -10,6 +10,7 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.svg',
   image: '/static/images/avatar.jpg',
   socialBanner: '/static/images/twitter-card.png',
+  codepen: 'https://codepen.io/kevinmoral_es',
   email: 'hello@kevinmoral.es',
   github: 'https://github.com/kgmorales',
   twitter: 'https://twitter.com/kevinmoral_es',

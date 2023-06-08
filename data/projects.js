@@ -5,7 +5,7 @@ const projectsData = [
     imgSrc: '/static/images/projectCards/port-recipeek.png',
     href: 'https://github.com/kgmorales/recipeek.io',
     deployed: 'https://recipeek.io',
-    tools: ['React'],
+    tools: [],
   },
   {
     title: 'Code Red Safety',
@@ -19,7 +19,7 @@ const projectsData = [
     imgSrc: '/static/images/projectCards/port-codered.png',
     href: '',
     deployed: 'https://coderedsafety.com',
-    tools: ['Wordpress', 'Woocommerce', 'JavaScript'],
+    tools: [],
   },
   {
     title: 'PetAg',
@@ -33,7 +33,7 @@ const projectsData = [
     imgSrc: '/static/images/projectCards/port-petag.png',
     href: '',
     deployed: 'https://petag.com',
-    tools: ['JavaScript', 'CRAFT CMS', 'Foundation'],
+    tools: [],
   },
   {
     title: 'Combustion Research Center',
@@ -43,7 +43,7 @@ const projectsData = [
     imgSrc: '/static/images/projectCards/port-crc.png',
     href: '',
     deployed: 'https://combustionresearchcenter.com/',
-    tools: ['React'],
+    tools: [],
   },
   {
     title: 'Morales Wedding',
@@ -55,7 +55,7 @@ const projectsData = [
     imgSrc: '/static/images/projectCards/port-morales-wedding.png',
     href: 'https://github.com/kgmorales/morales-wedding',
     deployed: 'https://morales-wedding.com',
-    tools: ['JavaScript'],
+    tools: [],
   },
   {
     title: 'Sikich',

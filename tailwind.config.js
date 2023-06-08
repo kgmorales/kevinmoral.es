@@ -56,6 +56,7 @@ module.exports = {
         cardBg: 'transparent',
         logoColor: '#46CDCF',
         darkSecondary: '#25282A',
+        customDark: '#181A18',
       },
       typography: (theme) => ({
         DEFAULT: {
