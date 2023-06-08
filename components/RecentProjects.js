@@ -33,7 +33,7 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
           </AnimatedDiv>
         </div>
         <div className="mt-5 flex justify-end text-base font-medium leading-6">
-          <Link href="/projects" className="mt-5 hover:text-primary-400" aria-label="all posts">
+          <Link href="/projects" className="mt-5 hover:text-primary-400" aria-label="all projects">
             All Projects &rarr;
           </Link>
         </div>
