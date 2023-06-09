@@ -29,6 +29,7 @@ module.exports = {
       },
     },
     extend: {
+      aspectRatio: ['responsive'], // Add this line
       spacing: {
         '9/16': '56.25%',
       },
@@ -195,5 +196,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwind-scrollbar-hide'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }

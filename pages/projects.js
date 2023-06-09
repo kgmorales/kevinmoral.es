@@ -21,6 +21,8 @@ export default function Projects() {
                 key={d.title}
                 title={d.title}
                 description={d.description}
+                logoSrc={d.logoSrc}
+                embedId={d.embedId}
                 imgSrc={d.imgSrc}
                 href={d.href}
                 tools={d.tools}

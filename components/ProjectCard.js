@@ -1,26 +1,47 @@
-import Image from './Image'
-import Link from './Link'
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { BsGithub } from 'react-icons/bs'
 import { MdOutlineLink } from 'react-icons/md'
+import YoutubeEmbed from './YoutubeEmbed'
 
-const ProjectCard = ({ title, description, imgSrc, href, tools, deployed }) => (
+const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedId, logoSrc }) => (
   <div className="card">
-    <div className="relative -mt-[35%] w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:absolute before:inset-0 before:z-10 sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:w-8/12">
-      <Image
-        title={title}
-        alt={title}
-        src={imgSrc}
-        width={1200}
-        height={800}
-        layout="responsive"
-        objectFit="cover"
-        quality={100}
-        className="transition-all duration-300 lg:group-hover:scale-110"
-      />
-    </div>
+    {embedId ? (
+      <div className="relative -mt-[35%] w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:inset-0 before:z-10 sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:w-8/12">
+        <YoutubeEmbed embedId={embedId} />
+      </div>
+    ) : (
+      imgSrc && (
+        <div className="relative -mt-[35%] w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:absolute before:inset-0 before:z-10 sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:w-8/12">
+          <Image
+            title={title}
+            alt={title}
+            src={imgSrc}
+            width={1200}
+            height={800}
+            layout="responsive"
+            objectFit="cover"
+            quality={100}
+            className="transition-all duration-300 lg:group-hover:scale-110"
+          />
+        </div>
+      )
+    )}
 
-    <div className="flex flex-col justify-start gap-3">
-      <h1 className="text-xl font-bold capitalize text-neutral-200">{title}</h1>
+    <div className="flex flex-col justify-center gap-3">
+      {logoSrc ? (
+        <Image
+          className="w-64"
+          src={logoSrc}
+          alt={title}
+          width={100} // Adjust according to your needs
+          height={100} // Adjust according to your needs
+          objectFit="fit"
+        />
+      ) : (
+        <h1 className="text-center text-xl font-bold capitalize text-neutral-200">{title}</h1>
+      )}
       <p className="truncate-2 text-sm text-neutral-400">{description}</p>
 
       <div className="flex flex-wrap items-center gap-1">
