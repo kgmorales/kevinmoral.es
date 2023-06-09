@@ -32,7 +32,6 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedI
     <div className="flex flex-col justify-center gap-3">
       {logoSrc ? (
         <Image
-          className="w-64"
           src={logoSrc}
           alt={title}
           width={100} // Adjust according to your needs
