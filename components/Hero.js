@@ -53,11 +53,11 @@ export default function Hero() {
           Kevin Morales
         </h1>
         <p className="text-base text-gray-600 dark:text-gray-400">
-          I am a Full Stack Engineer with a background in Design and User Experience. My attention
-          to detail and pattern recognition allows me to optimize complex code into maintainable,
-          scalable, and reusable architecture. I have successfully completed projects from
-          brainstorm to production in teams of all sizes ensuring all stakeholder and user needs
-          have been met.
+          As a Full Stack Engineer with a foundation in Design and User Experience, I specialize in
+          refining and optimizing code for maintainability, scalability, and reusability. My knack
+          for detail and pattern recognition enhances the efficiency of the solutions I develop.
+          I've taken projects from conception to deployment, collaborating with teams of varying
+          sizes and ensuring that the requirements of all stakeholders and users are addressed.
         </p>
         <div className="flex justify-between gap-6">
           <SocialLink
