@@ -1,7 +1,7 @@
 const projectsData = [
   {
     title: 'Surepayroll',
-    description: `This software was created for employees of small businesses to access their employee dashboard for records and paystubs. I was able to take lead on architecture & mobile design/UX. Utilized Angular 13 & Node Express.`,
+    description: `Catering to the unique needs of small business employees, this software offers a dedicated dashboard for accessing employment records and paystubs. I had the privilege of leading its architectural and mobile UX design phases, employing advanced technologies such as Angular 13 and Node Express.`,
     logoSrc: '/static/images/projectCards/logos/logo-surepayroll.svg',
     href: '',
     deployed: 'https://www.surepayroll.com/',
@@ -10,7 +10,7 @@ const projectsData = [
   },
   {
     title: 'Recipeek',
-    description: `My family cooks a lot. We look up recipes almost daily. A lot of times though, those recipe sites are filled with ads that take up the entire screen. It becomes frustrating trying find something without constantly losing your place with page jumps from slow loads and pop ups. I decided to create an app to quick search recipes through an API that also searches YouTube's API for the corresponding video. I taught myself React & React Hooks and implemented this to be hosted using netlify.`,
+    description: `Recognizing the challenges many face with intrusive advertisements on recipe websites, I developed an application that streamlines the search process for recipes. This app integrates both a recipe API and YouTube's API to provide users with not only the recipe content but also corresponding video tutorials. I personally undertook the initiative to learn and utilize React & React Hooks for its development and subsequently hosted it on Netlify for seamless access.`,
     logoSrc: '/static/images/projectCards/logos/logo-recipeek.svg',
     imgSrc: '/static/images/projectCards/port-recipeek.png',
     href: 'https://github.com/kgmorales/recipeek.io',
@@ -19,13 +19,7 @@ const projectsData = [
   },
   {
     title: 'Code Red Safety',
-    description: `This site was created because the company did not have any online
-						presence. I was involved in everything. From conception to live push
-						to maintenance. I travelled throughout the country with a co-worker
-						to shoot all photos,video,interviews, etc. I created an online
-						social presence while also creating content and maintaining
-						marketing. During the time I made the company an extra $300k in
-						sales in four months.`,
+    description: `The company recognized their lack of an online footprint, and I took the reins. From the inception to the live deployment and ongoing tweaks, I was at the helm. I journeyed across the country with a colleague, capturing photos, videos, and conducting interviews. Concurrently, I established our online social presence, curated content, and managed our marketing efforts. This hands-on approach translated into a commendable increase of $300k in sales within a span of four months.`,
     logoSrc: '/static/images/projectCards/logos/codered-logo.svg',
     imgSrc: '/static/images/projectCards/port-codered.png',
     href: '',
@@ -34,13 +28,7 @@ const projectsData = [
   },
   {
     title: 'PetAg',
-    description: `PetAg was made with the intention to inform the public about their
-						products. A lot of research and process went into the design and UX
-						of their main key target groups. While creating this I learned a
-						alot about the cms we used, CRAFT CMS. I got more familiar with twig
-						as I developed each page. It was also the first site I used using
-						Foundation 6, which was new at the time and really learned the inner
-						workings of the framework.`,
+    description: `PetAg's website was developed to showcase and inform users about its products. Extensive research was conducted to ensure the design and UX catered to key target groups. In the process, I expanded my technical skills with CRAFT CMS and the 'twig' templating engine. This project also marked my first experience with Foundation 6, allowing me to delve into the nuances of the framework and master its features.`,
     logoSrc: '/static/images/projectCards/logos/logo-petag.svg',
     imgSrc: '/static/images/projectCards/port-petag.png',
     href: '',
@@ -49,9 +37,7 @@ const projectsData = [
   },
   {
     title: 'Combustion Research Center',
-    description: `Creating this micro-site was fun and really allowed me to explore
-						with different types of UX/UI functionality. This was a smaller site
-						in general but was required to use Foundation 5 Framework.`,
+    description: `Developing this micro-site was both enjoyable and a great learning experience. While it was a relatively compact site, it provided ample opportunity to experiment with various UX/UI functionalities. The project specifications required the use of the Foundation 5 Framework.`,
     logoSrc: '/static/images/projectCards/logos/logo-crc.svg',
     imgSrc: '/static/images/projectCards/port-crc.png',
     href: '',
@@ -60,11 +46,7 @@ const projectsData = [
   },
   {
     title: 'Sikich',
-    description: `A site designed and developed around the concept of organizing a lot
-						of content. The old site needed to be stripped and completely
-						redone. With this in mind, the use of Wordpress CMS was used in
-						order to keep track of all pages and posts. It needed to be easy for
-						the internal team to maintain once it was pushed live.`,
+    description: `The primary goal for this site was to effectively organize a vast amount of content. The previous site was outdated and required a complete overhaul. Considering the need for easy content management and future maintenance by the internal team, Wordpress CMS was chosen as the platform for its development and deployment.`,
     logoSrc: '/static/images/projectCards/logos/logo-sikich.svg',
     imgSrc: '/static/images/projectCards/port-sikich.png',
     href: '',
@@ -73,12 +55,7 @@ const projectsData = [
   },
   {
     title: 'MOL',
-    description: `This was a quick turn around site that I was hit with a very tight
-						deadline. The project was to be front end only and to be handed off
-						to another development firm to be implemented within a custom CMS. I
-						had to create instructions on how to function throughout the code
-						for them. I was able to complete all functionality they requested
-						and some last minute requests as well.`,
+    description: `Faced with a stringent deadline, I was tasked with developing a front-end-only site that was subsequently handed off to another development firm for integration into a custom CMS. To facilitate their work, I provided detailed documentation outlining the code's functionality. Despite the tight timeframe, I successfully delivered on all project requirements, including accommodating last-minute changes.`,
     logoSrc: '/static/images/projectCards/logos/logo-mol.svg',
     imgSrc: '/static/images/projectCards/port-mol.png',
     href: '',
@@ -87,7 +64,7 @@ const projectsData = [
   },
   {
     title: 'ChatApp',
-    description: `In this self-made chat application, React.js was utilized for the frontend, while Node.js and Express.js took care of the backend. Socket.IO was implemented to facilitate real-time communication, allowing for instant transmission of messages, thereby cementing your understanding of socket connections.`,
+    description: `For this chat application I developed, I employed React.js for the frontend interface. On the backend, Node.js and Express.js were instrumental. The real-time communication feature was made possible using Socket.IO, enabling instantaneous message exchanges and deepening my grasp on socket connections.`,
     imgSrc: '/static/images/projectCards/socket.jpg',
     href: 'https://github.com/kgmorales/chat/tree/master',
     deployed: 'https://loving-ardinghelli-edf78b.netlify.app/',
@@ -95,11 +72,7 @@ const projectsData = [
   },
   {
     title: 'Morales Wedding',
-    description: `For my wedding, instead of paying for RSVP cards, mailing costs,
-						last minute questions, and confusing scheduling of hotels for my
-						wedding, I decided to make a website instead. This allowed me save
-						money and provide a much more accessible hub of important
-						information to my invited guests.`,
+    description: `For my wedding, I opted for a more modern and efficient approach. Instead of incurring costs on RSVP cards, mailings, and managing hotel schedules, I designed a website. This not only resulted in cost savings but also provided a centralized and accessible platform for guests to access all pertinent information.`,
     imgSrc: '/static/images/projectCards/port-morales-wedding.png',
     href: 'https://github.com/kgmorales/morales-wedding',
     deployed: 'https://morales-wedding.com',
