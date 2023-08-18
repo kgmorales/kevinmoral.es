@@ -1,6 +1,6 @@
 ---
 title: NestJS for the Angular Developer
-date: '2023-06-07'
+date: '2023-08-18'
 tags: ['NestJS', 'Angular', 'JavaScript']
 draft: False
 summary: Step into the backend world with your Angular knowledge
