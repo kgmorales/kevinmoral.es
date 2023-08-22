@@ -19,7 +19,7 @@ const projectsData = [
   },
   {
     title: 'Code Red Safety',
-    description: `The company recognized their lack of an online footprint, and I took the reins. From the inception to the live deployment and ongoing tweaks, I was at the helm. I journeyed across the country with a colleague, capturing photos, videos, and conducting interviews. Concurrently, I established our online social presence, curated content, and managed our marketing efforts. This hands-on approach translated into a commendable increase of $300k in sales within a span of four months.`,
+    description: `The company acknowledged the absence in its online presence, and I assumed the lead role. From the initial design phase to the final rollout and subsequent optimizations. I traveled the country with a colleague, capturing photos, videos, and conducting interviews. In parallel, I architected our digital social platforms, streamlined content delivery, and spearheaded our digital marketing campaigns. This systematic and technical approach resulted in a notable surge of $300k in sales within four months.`,
     logoSrc: '/static/images/projectCards/logos/codered-logo.svg',
     imgSrc: '/static/images/projectCards/port-codered.png',
     href: '',
