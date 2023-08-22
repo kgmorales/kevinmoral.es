@@ -3,7 +3,7 @@ import Link from './Link'
 
 const Card = ({ title, description, imgSrc, href }) => (
   <div className="group relative p-1 md:w-1/2" style={{ maxWidth: '544px' }}>
-    <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
+    <div className="animate-tilt -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
     <div
       className={`${
         imgSrc && 'h-full'

@@ -8,7 +8,7 @@ import YoutubeEmbed from './YoutubeEmbed'
 const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedId, logoSrc }) => (
   <div className="card">
     {embedId ? (
-      <div className="medium relative hidden w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:inset-0 before:z-10  sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:block md:w-8/12 md:before:absolute">
+      <div className="medium relative hidden w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:inset-0 before:z-10  sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:block md:w-8/12">
         <YoutubeEmbed embedId={embedId} />
       </div>
     ) : (
@@ -42,7 +42,7 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedI
         <h1 className="text-center text-xl font-bold capitalize text-neutral-200">{title}</h1>
       )}
       {embedId ? (
-        <div className="relative w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:inset-0 before:z-10 sm:-mt-0 sm:block sm:w-1/2 md:-ml-[35%] md:hidden md:w-8/12 md:before:absolute">
+        <div className="relative w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:inset-0 before:z-10 sm:-mt-0 sm:block sm:w-1/2 md:-ml-[35%] md:hidden md:w-8/12">
           <YoutubeEmbed embedId={embedId} />
         </div>
       ) : (
@@ -63,7 +63,7 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedI
         )
       )}
 
-      <p className="truncate-2 text-sm text-neutral-400">{description}</p>
+      <p className="truncate-2 text-md text-neutral-400">{description}</p>
 
       <div className="flex flex-wrap items-center gap-1">
         {tools.map((tool, index) => (
