@@ -1,4 +1,6 @@
 {
+  "scss.lint.unknownAtRules": "ignore",
+  "css.customData": [".vscode/tailwind.json"],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#0c284c",
     "activityBar.background": "#0c284c",
