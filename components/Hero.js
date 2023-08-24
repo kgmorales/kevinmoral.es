@@ -56,9 +56,9 @@ export default function Hero() {
           As a Full Stack Engineer with a foundation in Design and User Experience, I specialize in
           refining and optimizing code for maintainability, scalability, and reusability. My
           attention for detail and pattern recognition enhances the efficiency of the solutions I
-          design and develop. I've taken projects from conception to deployment, collaborating with
-          teams of varying sizes. Ensuring the requirements of all stakeholders and users are
-          addressed.
+          design and develop. I've taken projects from conception to deployment to maintenance,
+          collaborating with teams of varying sizes. Ensuring the requirements of all Users and
+          stakeholders are addressed.
         </p>
         <div className="flex justify-between gap-6">
           <SocialLink
