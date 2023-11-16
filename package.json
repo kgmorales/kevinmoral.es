@@ -46,7 +46,7 @@
     "remark-footnotes": "^4.0.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "sharp": "^0.32.1",
+    "sharp": "^0.32.6",
     "smoothscroll-polyfill": "^0.4.4",
     "superagent": "^7.1.1",
     "tailwind-scrollbar-hide": "^1.1.7",
