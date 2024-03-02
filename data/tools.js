@@ -93,7 +93,7 @@ const Tools = [
     link: `https://www.sourcetree.com/`,
     labels: [`Version Control`],
     name: `SouceTree`,
-    description: `A tool for testing APIs.`,
+    description: `Visual display for version control. (git)`,
   },
   {
     id: `stackoverflow`,

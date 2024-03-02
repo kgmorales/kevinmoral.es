@@ -73,7 +73,7 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedI
         ))}
       </div>
 
-      <div className="sm:flex-items-end mt-auto flex w-fit gap-4 p-2 md:items-center">
+      <div className="sm:flex-items-end m-auto flex w-fit gap-4 p-2 md:items-center">
         {href && (
           <Link href={href}>
             <a
@@ -83,7 +83,7 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedI
               href={href}
               className="text-gray-500 hover:text-white"
             >
-              <BsGithub className="h-6 w-6 transition-all hover:scale-110 active:scale-90" />
+              <BsGithub className="h-12 w-12 transition-all hover:scale-110 active:scale-90" />
             </a>
           </Link>
         )}
@@ -97,7 +97,7 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedI
               href={deployed}
               className="text-gray-500 hover:text-white"
             >
-              <MdOutlineLink className="h-6 w-6 transition-all hover:scale-110 active:scale-90" />
+              <MdOutlineLink className="h-12 w-12 transition-all hover:scale-110 active:scale-90" />
             </a>
           </Link>
         )}

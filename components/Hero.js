@@ -53,7 +53,7 @@ export default function Hero() {
           Kevin Morales
         </h1>
         <p className="text-base text-gray-600 dark:text-gray-400">
-          As a Full Stack Engineer with a foundation in Design and User Experience, I specialize in
+          I am Full Stack Engineer with a foundation in Design and User Experience, I specialize in
           refining and optimizing code for maintainability, scalability, and reusability. My
           attention for detail and pattern recognition enhances the efficiency of the solutions I
           design and develop. I've taken projects from conception to deployment to maintenance,
