@@ -5,7 +5,6 @@ import {
   SiSass,
   SiJavascript,
   SiReact,
-  SiTailwindcss,
   SiNextdotjs,
   SiPostgresql,
   SiGit,
@@ -15,9 +14,30 @@ import {
   SiMongodb,
   SiExpress,
   SiAdobeillustrator,
+  SiReactivex,
+  SiNodedotjs,
+  SiMysql,
+  SiFigma,
+  SiPrisma,
 } from 'react-icons/si'
 
 const skills = [
+  {
+    name: 'Photoshop',
+    logo: SiAdobephotoshop,
+  },
+  {
+    name: 'Illustrator',
+    logo: SiAdobeillustrator,
+  },
+  {
+    name: 'Figma',
+    logo: SiFigma,
+  },
+  {
+    name: 'Git',
+    logo: SiGit,
+  },
   {
     name: 'HTML',
     logo: SiHtml5,
@@ -31,16 +51,17 @@ const skills = [
     logo: SiSass,
   },
   {
-    name: 'Tailwind',
-    logo: SiTailwindcss,
-  },
-  {
     name: 'JavaScript',
     logo: SiJavascript,
   },
+
   {
     name: 'TypeScript',
     logo: SiTypescript,
+  },
+  {
+    name: 'RxJS',
+    logo: SiReactivex,
   },
   {
     name: 'React',
@@ -51,19 +72,27 @@ const skills = [
     logo: SiAngular,
   },
   {
+    name: 'Next.js',
+    logo: SiNextdotjs,
+  },
+  {
+    name: 'Node',
+    logo: SiNodedotjs,
+  },
+  {
     name: 'Express',
     logo: SiExpress,
   },
   {
-    name: 'Nextjs',
-    logo: SiNextdotjs,
-  },
-  {
-    name: 'Nestjs',
+    name: 'NestJS',
     logo: SiNestjs,
   },
   {
-    name: 'MongoDb',
+    name: 'Prisma',
+    logo: SiPrisma,
+  },
+  {
+    name: 'MongoDB',
     logo: SiMongodb,
   },
   {
@@ -71,16 +100,8 @@ const skills = [
     logo: SiPostgresql,
   },
   {
-    name: 'Git',
-    logo: SiGit,
-  },
-  {
-    name: 'Photoshop',
-    logo: SiAdobephotoshop,
-  },
-  {
-    name: 'Illustrator',
-    logo: SiAdobeillustrator,
+    name: 'MySQL',
+    logo: SiMysql,
   },
 ]
 
