@@ -1,13 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FadeContainer, popUp } from '../lib/FramerMotionVariants'
 import skills from '@/data/skills'
 
 const Skills = () => {
-  // State to handle which skill's tooltip is active
   const [activeSkill, setActiveSkill] = useState(null)
 
-  // Function to show tooltip
+  // Function to show tooltip for the clicked skill
   const handleTooltip = (skillName) => {
     setActiveSkill(skillName)
   }
@@ -16,6 +15,23 @@ const Skills = () => {
   const hideTooltip = () => {
     setActiveSkill(null)
   }
+
+  // Effect to add an event listener to the document to detect clicks outside the skill elements
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // If the clicked element is not a skill element, hide the tooltip
+      if (!event.target.closest('.skill-element')) {
+        hideTooltip()
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
 
   return (
     <>
@@ -27,16 +43,13 @@ const Skills = () => {
         viewport={{ once: true }}
         className="my-10 grid grid-cols-4 gap-4"
       >
-        {skills.map((skill, index) => (
+        {skills.map((skill) => (
           <motion.div
             title={skill.name}
             variants={popUp}
             key={skill.name}
-            onMouseEnter={() => handleTooltip(skill.name)}
-            onMouseLeave={hideTooltip}
-            onTouchStart={() => handleTooltip(skill.name)}
-            onTouchEnd={hideTooltip}
-            className="dark:bg-darkPrimary group relative flex origin-center transform items-center justify-center gap-4 rounded-lg border border-gray-300 p-4 dark:border-neutral-700 hover:dark:bg-darkSecondary sm:justify-start md:origin-top"
+            onClick={() => handleTooltip(skill.name)} // Handle tap on mobile
+            className="skill-element dark:bg-darkPrimary group relative flex origin-center transform items-center justify-center gap-4 rounded-lg border border-gray-300 p-4 dark:border-neutral-700 hover:dark:bg-darkSecondary sm:justify-start md:origin-top"
           >
             <div className="pointer-events-none relative select-none transition group-hover:scale-110 sm:group-hover:scale-100">
               <skill.logo className="h-8 w-8" />
