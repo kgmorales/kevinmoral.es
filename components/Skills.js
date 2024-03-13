@@ -6,28 +6,22 @@ import skills from '@/data/skills'
 const Skills = () => {
   const [activeSkill, setActiveSkill] = useState(null)
 
-  // Function to show tooltip for the clicked skill
   const handleTooltip = (skillName) => {
     setActiveSkill(skillName)
   }
 
-  // Function to hide tooltip
   const hideTooltip = () => {
     setActiveSkill(null)
   }
 
-  // Effect to add an event listener to the document to detect clicks outside the skill elements
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // If the clicked element is not a skill element, hide the tooltip
       if (!event.target.closest('.skill-element')) {
         hideTooltip()
       }
     }
 
     document.addEventListener('click', handleClickOutside)
-
-    // Cleanup the event listener on component unmount
     return () => {
       document.removeEventListener('click', handleClickOutside)
     }
@@ -48,17 +42,17 @@ const Skills = () => {
             title={skill.name}
             variants={popUp}
             key={skill.name}
-            onClick={() => handleTooltip(skill.name)} // Handle tap on mobile
+            onClick={() => handleTooltip(skill.name)}
             className="skill-element dark:bg-darkPrimary group relative flex origin-center transform items-center justify-center gap-4 rounded-lg border border-gray-300 p-4 dark:border-neutral-700 hover:dark:bg-darkSecondary sm:justify-start md:origin-top"
           >
-            <div className="pointer-events-none relative select-none transition group-hover:scale-110 sm:group-hover:scale-100">
+            <div className="pointer-events-none select-none transition group-hover:scale-110 sm:group-hover:scale-100">
               <skill.logo className="h-8 w-8" />
-              {activeSkill === skill.name && (
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 transform rounded-md bg-black px-2 py-1 text-xs text-white">
-                  {skill.name}
-                </div>
-              )}
             </div>
+            {activeSkill === skill.name && (
+              <div className="tooltip absolute -top-12 left-1/2 -translate-x-1/2 transform rounded-md bg-black px-2 py-1 text-xs text-white">
+                {skill.name}
+              </div>
+            )}
             <p className="pointer-events-none hidden select-none text-sm font-semibold sm:inline-flex md:text-base">
               {skill.name}
             </p>

@@ -24,6 +24,14 @@ const Tools = [
     description: `Daily browser`,
   },
   {
+    id: `firewalla`,
+    category: [`ios`, `web`],
+    link: `https://firewalla.com`,
+    labels: [`Firewall`],
+    name: `Firewalla`,
+    description: `Network Protection`,
+  },
+  {
     id: `1password`,
     category: [`ios`, `mac`, `web`],
     link: `https://1password.com/`,
