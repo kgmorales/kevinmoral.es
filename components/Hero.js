@@ -45,7 +45,7 @@ export default function Hero() {
         <Image
           src={portraitImage}
           alt="portrait of Kevin Morales"
-          className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+          className="aspect-square rounded-lg bg-zinc-100 object-cover dark:bg-zinc-800"
         />
       </div>
       <div className="flex flex-col justify-between gap-6 self-stretch md:w-1/2">

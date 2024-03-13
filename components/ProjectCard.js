@@ -8,12 +8,12 @@ import YoutubeEmbed from './YoutubeEmbed'
 const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedId, logoSrc }) => (
   <div className="card">
     {embedId ? (
-      <div className="medium relative hidden w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:inset-0 before:z-10  sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:block md:w-8/12">
+      <div className="medium relative hidden w-full shrink-0 overflow-hidden rounded-lg shadow-2xl before:inset-0 before:z-10  sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:block md:w-8/12">
         <YoutubeEmbed embedId={embedId} />
       </div>
     ) : (
       imgSrc && (
-        <div className="medium relative hidden w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:absolute before:inset-0 before:z-10 sm:-mt-[10%] sm:w-1/2 md:-ml-[35%] md:block md:w-8/12">
+        <div className="medium relative hidden w-full shrink-0 overflow-hidden rounded-lg shadow-2xl before:absolute before:inset-0 before:z-10 sm:-mt-[10%] sm:w-1/2 md:-ml-[35%] md:block md:w-8/12">
           <Image
             title={title}
             alt={title}
@@ -42,12 +42,12 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedI
         <h1 className="text-center text-xl font-bold capitalize text-neutral-200">{title}</h1>
       )}
       {embedId ? (
-        <div className="relative w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:inset-0 before:z-10 sm:-mt-0 sm:block sm:w-1/2 md:-ml-[35%] md:hidden md:w-8/12">
+        <div className="relative w-full shrink-0 overflow-hidden rounded-lg shadow-2xl before:inset-0 before:z-10 sm:-mt-0 sm:block sm:w-1/2 md:-ml-[35%] md:hidden md:w-8/12">
           <YoutubeEmbed embedId={embedId} />
         </div>
       ) : (
         imgSrc && (
-          <div className="relative w-full shrink-0 overflow-hidden rounded-xl shadow-2xl before:absolute before:inset-0 before:z-10 sm:-mt-[10%] sm:block sm:w-1/2 md:-ml-[35%] md:hidden md:w-8/12">
+          <div className="relative w-full shrink-0 overflow-hidden rounded-lg shadow-2xl before:absolute before:inset-0 before:z-10 sm:-mt-[10%] sm:block sm:w-1/2 md:-ml-[35%] md:hidden md:w-8/12">
             <Image
               title={title}
               alt={title}

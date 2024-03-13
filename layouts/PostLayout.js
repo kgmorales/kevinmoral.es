@@ -96,7 +96,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                           width="150px"
                           height="150px"
                           alt="avatar"
-                          className="aspect-square rounded-2xl"
+                          className="aspect-square rounded-lg"
                         />
                       )}
                       <dl className="whitespace-nowrap text-lg font-medium leading-5">

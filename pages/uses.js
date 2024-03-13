@@ -24,8 +24,8 @@ export default function Tools() {
               onClick={() => setCurrentTab(0)}
               className={
                 currentTab === 0
-                  ? 'flex items-center rounded-md border p-2'
-                  : 'bg-grey-100 flex items-center rounded-md p-2'
+                  ? 'flex items-center rounded-lg border p-2'
+                  : 'bg-grey-100 flex items-center rounded-lg p-2'
               }
             >
               <AiFillApple />
