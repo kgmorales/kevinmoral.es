@@ -1,5 +1,14 @@
 const projectsData = [
   {
+    title: 'lamora',
+    description: `A full stack application that syncs data from paprika ios app to store and pull family recipes for a blog.`,
+    logoSrc: `/static/images/projectCards/logos/logo-lamora.svg`,
+    imgSrc: `/static/images/projectCards/port-lamora.png`,
+    href: 'https://github.com/kgmorales/lamora',
+    deployed: ``,
+    tools: [],
+  },
+  {
     title: 'Surepayroll',
     description: `Catering to the unique needs of small business employees, this software offers a dedicated dashboard for accessing employment records and paystubs. I had the privilege of leading its architectural and mobile UX design phases, employing advanced technologies such as Angular 13 and Node Express.`,
     logoSrc: '/static/images/projectCards/logos/logo-surepayroll.svg',
