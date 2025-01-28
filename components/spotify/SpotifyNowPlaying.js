@@ -1,60 +1,69 @@
+// components/spotify/SpotifyNowPlaying.js
 import React from 'react'
 import Image from 'next/image'
 import styles from './SpotifyNowPlaying.module.css'
 import SpotifyLogo from '@/data/spotify.svg'
 import Link from 'next/link'
 
-const SpotifyNowPlaying = ({ spotify }) => {
-  const nowPlaying = spotify
-  const albumArt = spotify?.spotify?.album?.image?.href
+export default function SpotifyNowPlaying({ spotify }) {
+  // If there's no data (e.g., error, rate-limit, or no last played)
+  if (!spotify) {
+    return null // or some fallback JSX
+  }
+
+  // Now your top-level data is in `spotify`
+  const albumArt = spotify?.album?.image?.href
+  const href = spotify.href
+  const isPlaying = spotify.isPlaying
+  const title = spotify.title
+  const artists = spotify.artists
+  // etc.
 
   return (
-    <div className={`${styles.musicContainer}`}>
+    <div className={styles.musicContainer}>
       <div className={styles.song}>
         <SpotifyLogo />
-        <Link passHref legacyBehavior href={spotify.spotify.href}>
+        {href ? (
+          <Link passHref legacyBehavior href={href}>
+            <div className={styles.musicInfoContainer}>
+              <div className={styles.albumArt}>
+                {albumArt && (
+                  <Image src={albumArt} alt="spotify album art" width={60} height={60} />
+                )}
+              </div>
+            </div>
+          </Link>
+        ) : (
           <div className={styles.musicInfoContainer}>
             <div className={styles.albumArt}>
-              {albumArt && (
-                <Image
-                  src={spotify.spotify.album.image.href}
-                  alt="spotify album art"
-                  width={60}
-                  height={60}
-                />
-              )}
+              {albumArt && <Image src={albumArt} alt="spotify album art" width={60} height={60} />}
             </div>
           </div>
-        </Link>
+        )}
 
-        {/* If isPlaying = true, show the track info */}
-        <div className={`${styles.musicinfo}`}>
-          <p className={`${styles.title}`}>{spotify.spotify.title}</p>
-          <p className={`${styles.artist}`}>
-            {spotify.spotify.artists && spotify.spotify.artists[0]
-              ? spotify.spotify.artists[0].name
-              : ''}
-          </p>
+        <div className={styles.musicinfo}>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.artist}>{artists?.[0]?.name || ''}</p>
         </div>
       </div>
 
-      {spotify.spotify?.isPlaying ? (
+      {isPlaying ? (
         <div className={styles.nowPlayingContainer}>
           <div className={styles.soundwaveContainer}>
-            <div className={`${styles.bar}`}></div>
-            <div className={`${styles.bar}`}></div>
-            <div className={`${styles.bar}`}></div>
-            <div className={`${styles.bar}`}></div>
+            <div className={styles.bar}></div>
+            <div className={styles.bar}></div>
+            <div className={styles.bar}></div>
+            <div className={styles.bar}></div>
           </div>
           <p className="text-xs">bangers on</p>
         </div>
       ) : (
         <div className={styles.nowPlayingContainer}>
           <div className={styles.soundwaveContainer}>
-            <div className={`${styles.deadBar}`}></div>
-            <div className={`${styles.deadBar}`}></div>
-            <div className={`${styles.deadBar}`}></div>
-            <div className={`${styles.deadBar}`}></div>
+            <div className={styles.deadBar}></div>
+            <div className={styles.deadBar}></div>
+            <div className={styles.deadBar}></div>
+            <div className={styles.deadBar}></div>
           </div>
           <p className="text-xs">bangers off</p>
         </div>
@@ -62,5 +71,3 @@ const SpotifyNowPlaying = ({ spotify }) => {
     </div>
   )
 }
-
-export default SpotifyNowPlaying

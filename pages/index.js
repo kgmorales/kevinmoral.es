@@ -10,21 +10,17 @@ import { Analytics } from '@vercel/analytics/react'
 
 export async function getServerSideProps() {
   try {
-    // 1) Get Spotify track data
     const track = await getNowPlaying()
-
-    // 2) Also fetch blog posts
     const posts = await getAllFilesFrontMatter('blog')
 
     return {
       props: {
-        spotify: track || null, // might be null if no last track found
+        spotify: track || null,
         posts,
       },
     }
   } catch (err) {
     console.error('SSR error in getServerSideProps:', err)
-    // Return something safe to render
     return {
       props: {
         spotify: null,
@@ -48,6 +44,7 @@ export default function Home({ spotify, posts, error }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
+      {/* Pass spotify directly to Hero */}
       <Hero spotify={spotify} />
       <Skills />
       <RecentProjects MAX_PROJECTS="4" />

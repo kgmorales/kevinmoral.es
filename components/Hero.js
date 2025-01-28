@@ -1,3 +1,4 @@
+// components/Hero.js
 import Link from 'next/link'
 import { useState } from 'react'
 import { IoLogoGithub, IoLogoLinkedin, IoMail, IoLogoCodepen, IoLogoTwitter } from 'react-icons/io5'
@@ -9,7 +10,7 @@ import SpotifyNowPlaying from './spotify/SpotifyNowPlaying'
 function SocialLink({ icon: Icon, href, ariaLabel }) {
   return (
     <Link href={href}>
-      <a className="-m-1 p-1 " aria-label={ariaLabel}>
+      <a className="-m-1 p-1" aria-label={ariaLabel}>
         <Icon className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200" />
       </a>
     </Link>
@@ -21,15 +22,12 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
 
   const handleClick = () => {
     navigator.clipboard.writeText(text.contact)
-    setShow(!show)
-
-    setTimeout(() => {
-      setShow(false)
-    }, 3000)
+    setShow(true)
+    setTimeout(() => setShow(false), 3000)
   }
 
   return (
-    <div className="-m-1 p-1 " {...props}>
+    <div className="-m-1 p-1" {...props}>
       <Icon
         className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200"
         onClick={handleClick}
@@ -39,7 +37,8 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
   )
 }
 
-export default function Hero(spotify) {
+// 1) Destructure { spotify } from props
+export default function Hero({ spotify }) {
   return (
     <div className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch">
       <div className="flex justify-center md:w-1/2">
@@ -54,13 +53,9 @@ export default function Hero(spotify) {
           Kevin Morales
         </h1>
         <p className="text-base text-gray-600 dark:text-gray-400">
-          I am a Full Stack Engineer with a foundation in Design and User Experience, I specialize
-          in refining and optimizing code for maintainability, scalability, and reusability. My
-          attention to detail and pattern recognition enhances the efficiency of the solutions I
-          design and develop. I've taken projects from conception to deployment to maintenance,
-          collaborating with teams of varying sizes. Ensuring that the requirements of all Users and
-          stakeholders are addressed.
+          I am a Full Stack Engineer with a foundation in Design and User Experience, ...
         </p>
+        {/* 2) Pass the same object to SpotifyNowPlaying */}
         <SpotifyNowPlaying spotify={spotify} />
         <div className="flex justify-between gap-6">
           <SocialLink
