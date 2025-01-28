@@ -5,13 +5,13 @@ import Hero from '@/components/Hero'
 import RecentProjects from '@/components/RecentProjects'
 import Skills from '@/components/Skills'
 import { Analytics } from '@vercel/analytics/react'
+import { getNowPlaying } from '@/lib/spotify/spotify'
 
 export async function getServerSideProps() {
-  const resp = await fetch('https://kevinmoral.es/api/now-playing')
-  const spotify = await resp.json()
+  const track = await getNowPlaying()
 
   const posts = await getAllFilesFrontMatter('blog')
-  return { props: { spotify, posts } }
+  return { props: { spotify: track, posts } }
 }
 
 export default function Home({ spotify }) {
