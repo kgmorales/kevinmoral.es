@@ -4,6 +4,7 @@ import { IoLogoGithub, IoLogoLinkedin, IoMail, IoLogoCodepen, IoLogoTwitter } fr
 import Notification from './Notification'
 import Image from 'next/image'
 import portraitImage from '../public/static/images/avatar.jpg'
+import SpotifyNowPlaying from './spotify/SpotifyNowPlaying'
 
 function SocialLink({ icon: Icon, href, ariaLabel }) {
   return (
@@ -38,7 +39,7 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
   )
 }
 
-export default function Hero() {
+export default function Hero(spotify) {
   return (
     <div className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch">
       <div className="flex justify-center md:w-1/2">
@@ -60,6 +61,7 @@ export default function Hero() {
           collaborating with teams of varying sizes. Ensuring that the requirements of all Users and
           stakeholders are addressed.
         </p>
+        <SpotifyNowPlaying spotify={spotify} />
         <div className="flex justify-between gap-6">
           <SocialLink
             href="https://github.com/kgmorales"
