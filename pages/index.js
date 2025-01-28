@@ -18,8 +18,7 @@ export default function Home({ spotify }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      {/* <SpotifyMarquee /> */}
-      <Hero spotify={spotify} />
+      {/* <Hero spotify={spotify} /> */}
       <Skills />
       <RecentProjects MAX_PROJECTS="4" />
       <Analytics />
