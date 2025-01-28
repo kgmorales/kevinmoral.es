@@ -8,13 +8,11 @@ const SpotifyNowPlaying = ({ spotify }) => {
   const nowPlaying = spotify
   const albumArt = spotify?.spotify?.album?.image?.href
 
-  console.log(nowPlaying)
-
   return (
     <div className={`${styles.musicContainer}`}>
       <div className={styles.song}>
         <SpotifyLogo />
-        <Link href={spotify.spotify.href}>
+        <Link passHref legacyBehavior href={spotify.spotify.href}>
           <div className={styles.musicInfoContainer}>
             <div className={styles.albumArt}>
               {albumArt && (
