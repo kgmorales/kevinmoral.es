@@ -7,15 +7,13 @@ import Link from 'next/link'
 
 export default function SpotifyNowPlaying({ spotify }) {
   // If there's no data (e.g., error, rate-limit, or no last played)
-  if (!spotify) {
-    return null // or some fallback JSX
-  }
+  if (!spotify) return null
 
-  // Now your top-level data is in `spotify`
   const albumArt = spotify?.album?.image?.href
   const href = spotify.href
   const isPlaying = spotify.isPlaying
-  const title = spotify.title
+  //Remove anything in parentheses or [] so the title isn't super long
+  const title = spotify.title.replace(/\s*(\([^)]*\)|\[[^\]]*\])\s*/g, '').trim()
   const artists = spotify.artists
   // etc.
 
