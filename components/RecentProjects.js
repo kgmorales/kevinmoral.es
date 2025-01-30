@@ -2,7 +2,7 @@ import projectsData from '@/data/projectsData'
 
 import ProjectCard from '@/components/ProjectCard'
 import AnimatedDiv from '@/components/framer-motion/AnimatedDiv'
-import { FadeContainer } from '../lib/FramerMotionVariants'
+import { FadeContainer } from '@/lib/animation/FramerMotionVariants'
 import Link from '@/components/Link'
 
 const RecentProjects = ({ MAX_PROJECTS }) => {

@@ -1,7 +1,7 @@
 // pages/index.js
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
+import { getAllFilesFrontMatter } from '@/lib/mdx/mdx'
 import { getNowPlaying } from '@/lib/spotify/spotify'
 import Hero from '@/components/Hero'
 import Skills from '@/components/Skills'

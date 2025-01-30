@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FadeContainer, popUp } from '../lib/FramerMotionVariants'
+import { FadeContainer, popUp } from '@/lib/animation/FramerMotionVariants'
 import skills from '@/data/skills'
 
 const Skills = () => {
