@@ -67,7 +67,7 @@ export default function Hero({ heroData }) {
         </p>
 
         {/* Spotify & Purdue side by side */}
-        <div className="flex content-center items-center justify-between gap-6">
+        <div className="flex content-center items-center justify-between gap-2">
           <SpotifyNowPlaying spotify={spotify} />
           <Purdue purdue={purdue} />
         </div>
