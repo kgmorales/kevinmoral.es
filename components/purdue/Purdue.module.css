@@ -26,13 +26,14 @@
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
-  right: 55px;
+  left: 80px;
 }
 
 @media only screen and (max-width: 600px) {
   .scoreBoardContainer {
     bottom: 95px;
-    right: 15px;
+    left: -375px;
+    /* right: 15px; */
     min-width: 440px;
   }
 }
