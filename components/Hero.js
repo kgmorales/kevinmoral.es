@@ -1,4 +1,3 @@
-// components/Hero.js
 import Link from 'next/link'
 import { useState } from 'react'
 import { IoLogoGithub, IoLogoLinkedin, IoMail, IoLogoCodepen, IoLogoTwitter } from 'react-icons/io5'
@@ -6,10 +5,11 @@ import Notification from './Notification'
 import Image from 'next/image'
 import portraitImage from '../public/static/images/avatar.jpg'
 import SpotifyNowPlaying from './spotify/SpotifyNowPlaying'
+import Purdue from './purdue/Purdue'
 
 function SocialLink({ icon: Icon, href, ariaLabel }) {
   return (
-    <Link href={href}>
+    <Link href={href} legacyBehavior>
       <a className="-m-1 p-1" aria-label={ariaLabel}>
         <Icon className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200" />
       </a>
@@ -37,10 +37,13 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
   )
 }
 
-// 1) Destructure { spotify } from props
-export default function Hero({ spotify }) {
+export default function Hero({ heroData }) {
+  // Destructure what we need from heroData
+  const { spotify, purdue } = heroData
+
   return (
     <div className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch">
+      {/* Left side: portrait */}
       <div className="flex justify-center md:w-1/2">
         <Image
           src={portraitImage}
@@ -48,6 +51,8 @@ export default function Hero({ spotify }) {
           className="aspect-square rounded-lg bg-zinc-100 object-cover dark:bg-zinc-800"
         />
       </div>
+
+      {/* Right side: text + sub-components */}
       <div className="flex flex-col justify-between gap-6 self-stretch md:w-1/2">
         <h1 className="font-serif text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
           Kevin Morales
@@ -60,8 +65,14 @@ export default function Hero({ spotify }) {
           collaborating with teams of varying sizes. Ensuring that the requirements of all Users and
           stakeholders are addressed.
         </p>
-        {/* 2) Pass the same object to SpotifyNowPlaying */}
-        <SpotifyNowPlaying spotify={spotify} />
+
+        {/* Spotify & Purdue side by side */}
+        <div className="flex content-center items-center justify-between gap-6">
+          <SpotifyNowPlaying spotify={spotify} />
+          <Purdue purdue={purdue} />
+        </div>
+
+        {/* Social & Email links */}
         <div className="flex justify-between gap-6">
           <SocialLink
             href="https://github.com/kgmorales"

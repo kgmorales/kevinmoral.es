@@ -1,0 +1,36 @@
+.action {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.activeButton {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  transition: 0.3s ease-in-out;
+}
+
+.scoreBoardContainer {
+  position: absolute;
+  bottom: 55px;
+  background: #fff;
+  min-width: 350px;
+  border-radius: 16px;
+  /* border: 1px solid rgb(64 64 64); */
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  right: 55px;
+}
+
+.active div {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.3s;
+}

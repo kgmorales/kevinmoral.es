@@ -67,7 +67,7 @@ module.exports = withBundleAnalyzer({
     ]
   },
   images: {
-    domains: ['i.scdn.co'],
+    domains: ['i.scdn.co', 'a.espncdn.com'],
   },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({

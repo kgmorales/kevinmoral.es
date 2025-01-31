@@ -3,19 +3,24 @@ import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx/mdx'
 import { getNowPlaying } from '@/lib/spotify/spotify'
+import { Analytics } from '@vercel/analytics/react'
 import Hero from '@/components/Hero'
 import Skills from '@/components/Skills'
 import RecentProjects from '@/components/RecentProjects'
-import { Analytics } from '@vercel/analytics/react'
+import { getPurdue } from '@/lib/purdue'
 
 export async function getServerSideProps() {
   try {
     const track = await getNowPlaying()
+    const purdue = await getPurdue()
     const posts = await getAllFilesFrontMatter('blog')
 
     return {
       props: {
-        spotify: track || null,
+        heroData: {
+          spotify: track || null,
+          purdue: purdue || null,
+        },
         posts,
       },
     }
@@ -23,7 +28,10 @@ export async function getServerSideProps() {
     console.error('SSR error in getServerSideProps:', err)
     return {
       props: {
-        spotify: null,
+        heroData: {
+          spotify: null,
+          purdue: null,
+        },
         posts: [],
         error: err.message,
       },
@@ -31,11 +39,11 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ spotify, posts, error }) {
+export default function Home({ heroData, posts, error }) {
   if (error) {
     return (
       <div>
-        <h1>Error Loading Spotify Data</h1>
+        <h1>Error Loading Data</h1>
         <p>{error}</p>
       </div>
     )
@@ -44,8 +52,7 @@ export default function Home({ spotify, posts, error }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      {/* Pass spotify directly to Hero */}
-      <Hero spotify={spotify} />
+      <Hero heroData={heroData} />
       <Skills />
       <RecentProjects MAX_PROJECTS="4" />
       <Analytics />
