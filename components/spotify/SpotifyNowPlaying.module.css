@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+.fakeText {
+  padding-left: 2rem;
+}
+
 .soundwaveContainer {
   height: 40px;
   width: auto;
@@ -75,7 +79,6 @@
 .song {
   display: flex;
   align-items: center;
-  -webkit-line-clamp: 3;
 }
 .albumArt {
   margin-left: 1rem;

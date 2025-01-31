@@ -7,14 +7,14 @@ import Link from 'next/link'
 
 export default function SpotifyNowPlaying({ spotify }) {
   // If there's no data (e.g., error, rate-limit, or no last played)
-  if (!spotify) return null
+  // if (!spotify) return null
 
   const albumArt = spotify?.album?.image?.href
-  const href = spotify.href
-  const isPlaying = spotify.isPlaying
+  const href = spotify?.href
+  const isPlaying = spotify?.isPlaying
   //Remove anything in parentheses or [] so the title isn't super long
-  const title = spotify.title.replace(/\s*(\([^)]*\)|\[[^\]]*\])\s*/g, '').trim()
-  const artists = spotify.artists
+  const title = spotify?.title.replace(/\s*(\([^)]*\)|\[[^\]]*\])\s*/g, '').trim()
+  const artists = spotify?.artists
   // etc.
 
   return (
@@ -32,11 +32,7 @@ export default function SpotifyNowPlaying({ spotify }) {
             </div>
           </Link>
         ) : (
-          <div className={styles.musicInfoContainer}>
-            <div className={styles.albumArt}>
-              {albumArt && <Image src={albumArt} alt="spotify album art" width={60} height={60} />}
-            </div>
-          </div>
+          <p className={styles.fakeText}>Currently chasing toddlers</p>
         )}
 
         <div className={styles.musicinfo}>
