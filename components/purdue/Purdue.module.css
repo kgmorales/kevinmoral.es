@@ -29,6 +29,14 @@
   right: 55px;
 }
 
+@media only screen and (max-width: 600px) {
+  .scoreBoardContainer {
+    bottom: 95px;
+    right: 15px;
+    min-width: 440px;
+  }
+}
+
 .active div {
   opacity: 1;
   visibility: visible;
