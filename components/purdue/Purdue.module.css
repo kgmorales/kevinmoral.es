@@ -34,8 +34,9 @@
 
 @media screen and (max-width: 700px) {
   .scoreBoardContainer {
-    width: 29rem;
-    left: -390px;
+    width: 23rem;
+    left: -282px;
+    bottom: 110px;
   }
 }
 
