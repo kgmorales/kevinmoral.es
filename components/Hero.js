@@ -34,7 +34,7 @@ export default function Hero({ heroData }) {
           Kevin Morales
         </h1>
 
-        <div className="flex min-h-[240px]">
+        <div className="flex min-h-[280px]">
           {/* Conditionally render either the bio or the Purdue scoreboard */}
           {showScoreboard ? (
             // Render the scoreboard (you can wrap it with any container and style as needed)
