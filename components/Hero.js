@@ -1,19 +1,15 @@
 // components/Hero.js
-import Link from 'next/link'
-import { useState } from 'react'
-import { IoLogoGithub, IoLogoLinkedin, IoMail, IoLogoCodepen, IoLogoTwitter } from 'react-icons/io5'
-import Notification from './Notification'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import portraitImage from '../public/static/images/avatar.jpg'
 import SpotifyNowPlaying from './spotify/SpotifyNowPlaying'
-// Import the scoreboard if you want to render it directly in Hero
 import Scoreboard from './purdue/scoreboard/Scoreboard'
 import Purdue from './purdue/Purdue'
 
 export default function Hero({ heroData }) {
   const { spotify, purdue } = heroData
 
-  // New state to decide if the scoreboard should be shown instead of the bio
+  // Only toggle based on the Purdue component click
   const [showScoreboard, setShowScoreboard] = useState(false)
   const toggleScoreboard = () => setShowScoreboard((prev) => !prev)
 
@@ -35,11 +31,11 @@ export default function Hero({ heroData }) {
         </h1>
 
         <div className="flex min-h-[280px]">
-          {/* Conditionally render either the bio or the Purdue scoreboard */}
           {showScoreboard ? (
-            // Render the scoreboard (you can wrap it with any container and style as needed)
+            // When toggled, render the Scoreboard component.
             <Scoreboard purdue={purdue} />
           ) : (
+            // Otherwise, show your bio.
             <p className="text-base text-gray-600 dark:text-gray-400">
               I am a Full Stack Engineer with a foundation in Design and User Experience, I
               specialize in refining and optimizing code for maintainability, scalability, and
@@ -50,73 +46,12 @@ export default function Hero({ heroData }) {
             </p>
           )}
         </div>
-        {/* Spotify & Purdue side by side */}
         <div className="flex content-center items-center justify-between gap-2">
           <SpotifyNowPlaying spotify={spotify} />
-          {/* Pass the toggle function and current active state as props to Purdue */}
+          {/* The Purdue component will toggle the view when clicked */}
           <Purdue purdue={purdue} isActive={showScoreboard} onToggle={toggleScoreboard} />
         </div>
-
-        {/* Social & Email links */}
-        <div className="flex justify-between gap-6">
-          <SocialLink
-            href="https://github.com/kgmorales"
-            aria-label="Check out my Github"
-            icon={IoLogoGithub}
-          />
-          <SocialLink
-            href="https://www.linkedin.com/in/kevingmorales/"
-            aria-label="Connect with me on LinkedIn"
-            icon={IoLogoLinkedin}
-          />
-          <SocialLink
-            href="https://twitter.com/kevinmoral_es"
-            aria-label="Check out my Twitter"
-            icon={IoLogoTwitter}
-          />
-          <SocialLink
-            href="https://codepen.io/kevinmoral_es/"
-            aria-label="Check out my codepen"
-            icon={IoLogoCodepen}
-          />
-          <CopyToClipboard
-            text={{ contact: 'hello@kevinmoral.es', type: 'Email' }}
-            aria-label="Send me an email"
-            icon={IoMail}
-          />
-        </div>
       </div>
-    </div>
-  )
-}
-
-// The SocialLink and CopyToClipboard components remain unchanged...
-function SocialLink({ icon: Icon, href, ariaLabel }) {
-  return (
-    <Link href={href} legacyBehavior>
-      <a className="-m-1 p-1" aria-label={ariaLabel}>
-        <Icon className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200" />
-      </a>
-    </Link>
-  )
-}
-
-function CopyToClipboard({ icon: Icon, text, ...props }) {
-  const [show, setShow] = useState(false)
-
-  const handleClick = () => {
-    navigator.clipboard.writeText(text.contact)
-    setShow(true)
-    setTimeout(() => setShow(false), 3000)
-  }
-
-  return (
-    <div className="-m-1 p-1" {...props}>
-      <Icon
-        className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200"
-        onClick={handleClick}
-      />
-      <Notification show={show} setShow={setShow} text={text} />
     </div>
   )
 }

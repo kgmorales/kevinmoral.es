@@ -1,0 +1,44 @@
+.circle {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+
+.liveIndicatorHolder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.liveIndicatorHolder .indicator {
+  font-family: sans-serif;
+  background: #ea2429;
+  color: #fff;
+  padding: 6px 7px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  position: absolute;
+  bottom: 103px;
+  /* left:-40px; */
+}
+
+.liveIndicatorHolder .indicator .blink {
+  animation: blinker 1.2s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+}
+
+@keyframes blinker {
+  from {
+    opacity: 0.9;
+  }
+
+  to {
+    opacity: 0.1;
+  }
+}

@@ -1,57 +1,108 @@
-import React from 'react'
+// components/purdue/Scoreboard.js
+import React, { useState, useEffect } from 'react'
 import styles from './Scoreboard.module.css'
 import Image from 'next/image'
-import MapIcon from '@heroicons/react/solid/MapIcon'
+import GameTable from './GameTable'
+import { extractPurdueGame } from '@/lib/scores/scores'
+import Live from './live/Live'
 
 export default function Scoreboard({ purdue }) {
-  const gameInfo = purdue?.team?.nextEvent[0]?.competitions[0].competitors
+  // Determine if the game is live (status.type.state === 'in')
+  const isGameLive = purdue?.team?.nextEvent?.[0]?.status?.type?.state === 'in'
+  // const isGameLive = true
+  // For static display (when game isn’t live), extract game information:
+  const game = purdue?.team?.nextEvent?.[0]?.competitions?.[0]
+  const gameInformation = {
+    date: game?.status?.type?.shortDetail,
+    location: game?.venue?.fullName,
+    address: `${game?.venue?.address?.city}, ${game?.venue?.address?.state}`,
+    watch: game?.broadcasts?.[0]?.media?.shortName,
+  }
 
-  const purdueTeam = gameInfo[0]
-  const awayTeam = gameInfo[1]
+  // Team info for display above the game table / static info.
+  const competitors = game?.competitors || []
+  const purdueTeam = competitors[0]
+  const awayTeam = competitors[1]
 
   const purdueInfo = {
-    name: purdueTeam?.team.nickname,
+    name: purdueTeam?.team?.nickname,
     rank: purdueTeam?.curatedRank?.current,
-    logo: purdueTeam?.team.logos[0].href,
+    logo: purdueTeam?.team?.logos?.[0]?.href,
   }
   const awayInfo = {
-    name: awayTeam?.team.nickname,
+    name: awayTeam?.team?.nickname,
     rank: awayTeam?.curatedRank?.current,
-    logo: awayTeam?.team.logos[0].href,
+    logo: awayTeam?.team?.logos?.[0]?.href,
   }
 
-  const game = purdue?.team?.nextEvent[0]?.competitions[0]
+  // Local state to hold the live game data
+  const [liveGameData, setLiveGameData] = useState(null)
 
-  const gameInformation = {
-    date: game.status.type.shortDetail,
-    location: game.venue.fullName,
-    address: `${game.venue.address.city}, ${game.venue.address.state}`,
-    watch: `${game.broadcasts[0].media.shortName}`,
-  }
+  // If the game is live, fetch updated game data every 5 seconds.
+  useEffect(() => {
+    let intervalId
+
+    async function fetchLiveData() {
+      try {
+        const newGameData = await extractPurdueGame()
+        if (newGameData) {
+          setLiveGameData(newGameData)
+        }
+      } catch (error) {
+        console.error('Error fetching live game data:', error)
+      }
+    }
+
+    if (isGameLive) {
+      // Fetch immediately on mount
+      fetchLiveData()
+      // Set up a 5-second interval to refresh the data
+      intervalId = setInterval(fetchLiveData, 5000)
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId)
+    }
+  }, [isGameLive])
+
+  const homeScoreData = liveGameData?.competitions[0]?.competitors[0]?.score
+  const awayScoreData = liveGameData?.competitions[0]?.competitors[1]?.score
 
   return (
     <div className={styles.scoreboard}>
+      {isGameLive && <Live />}
       <div className={styles.teamContainer}>
         <div className={styles.team}>
           {purdueInfo.logo && (
-            <Image src={purdueInfo.logo} alt="purdue logo" width={60} height={60} />
+            <Image src={purdueInfo.logo} alt="Purdue logo" width={60} height={60} />
           )}
-          <div className={styles.name}>{purdueInfo?.name}</div>
-          <span className={`${styles.rank}`}>
+          <div className={styles.name}>{purdueInfo.name}</div>
+          <span className={styles.rank}>
             {Number(purdueInfo.rank) <= 25 ? `#${purdueInfo.rank}` : ''}
           </span>
+          <h6 className="ml-auto p-4">{homeScoreData}</h6>
         </div>
         <div className={styles.divider}>
           <p>VS</p>
         </div>
         <div className={styles.team}>
-          {awayInfo.logo && <Image src={awayInfo.logo} alt="purdue logo" width={60} height={60} />}
+          {awayInfo.logo && (
+            <Image src={awayInfo.logo} alt="Away team logo" width={60} height={60} />
+          )}
           <div className={styles.name}>{awayInfo.name}</div>
-          <span className={`${styles.rank}`}>
+          <span className={styles.rank}>
             {Number(awayInfo.rank) <= 25 ? `${awayInfo.rank}` : ''}
           </span>
+          <h6 className="ml-auto p-4">{awayScoreData}</h6>
         </div>
       </div>
+      {/* {isGameLive ? (
+        // When live, render the live-updating GameTable with the live game data.
+        // Note: The GameTable component should be updated to accept a `gameData` prop.
+        <div className={styles.gameContainer}>
+          <GameTable gameData={liveGameData} />
+        </div>
+      ) : ( */}
       <div className={styles.gameContainer}>
         <div className={styles.gameAddress}>
           <svg
@@ -98,6 +149,7 @@ export default function Scoreboard({ purdue }) {
           </p>
         </div>
       </div>
+      {/* )} */}
     </div>
   )
 }
