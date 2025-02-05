@@ -15,6 +15,10 @@
   transform: translate(-50%, -50%);
 }
 
+.liveIndicatorHolder p {
+  color: white;
+}
+
 .liveIndicatorHolder .indicator {
   font-family: sans-serif;
   background: #ea2429;
