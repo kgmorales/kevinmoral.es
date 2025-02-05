@@ -8,10 +8,12 @@ import Live from './live/Live'
 
 export default function Scoreboard({ purdue }) {
   // Determine if the game is live (status.type.state === 'in')
-  const isGameLive = purdue?.team?.nextEvent?.[0]?.status?.type?.state === 'in'
   // const isGameLive = true
   // For static display (when game isn’t live), extract game information:
   const game = purdue?.team?.nextEvent?.[0]?.competitions?.[0]
+
+  const isGameLive = game?.status?.type?.state === 'in'
+
   const gameInformation = {
     date: game?.status?.type?.shortDetail,
     location: game?.venue?.fullName,
