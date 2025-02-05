@@ -1,54 +1,81 @@
 // components/purdue/Scoreboard.js
 import React, { useState, useEffect } from 'react'
-import styles from './Scoreboard.module.css'
 import Image from 'next/image'
-import GameTable from './GameTable'
+import styles from './Scoreboard.module.css'
 import { extractPurdueGame } from '@/lib/scores/scores'
 import Live from './live/Live'
 
-export default function Scoreboard({ purdue }) {
-  // Determine if the game is live (status.type.state === 'in')
-  // const isGameLive = true
-  // For static display (when game isn’t live), extract game information:
-  const game = purdue?.team?.nextEvent?.[0]?.competitions?.[0]
-
-  const isGameLive = game?.status?.type?.state === 'in'
-
+// Helper function to compute the static selectors from competition
+const getStaticSelectors = (competition) => {
   const gameInformation = {
-    date: game?.status?.type?.shortDetail,
-    location: game?.venue?.fullName,
-    address: `${game?.venue?.address?.city}, ${game?.venue?.address?.state}`,
-    watch: game?.broadcasts?.[0]?.media?.shortName,
+    date: competition?.status?.type?.shortDetail,
+    location: competition?.venue?.fullName,
+    address: `${competition?.venue?.address?.city}, ${competition?.venue?.address?.state}`,
+    watch: competition?.broadcasts?.[0]?.media?.shortName,
   }
 
-  // Team info for display above the game table / static info.
-  const competitors = game?.competitors || []
-  const purdueTeam = competitors[0]
-  const awayTeam = competitors[1]
+  const competitors = competition?.competitors || []
+  const purdueTeam = competitors[0] || {}
+  const awayTeam = competitors[1] || {}
 
   const purdueInfo = {
     name: purdueTeam?.team?.nickname,
     rank: purdueTeam?.curatedRank?.current,
     logo: purdueTeam?.team?.logos?.[0]?.href,
   }
+
   const awayInfo = {
     name: awayTeam?.team?.nickname,
     rank: awayTeam?.curatedRank?.current,
     logo: awayTeam?.team?.logos?.[0]?.href,
   }
 
-  // Local state to hold the live game data
-  const [liveGameData, setLiveGameData] = useState(null)
+  return { gameInformation, purdueInfo, awayInfo }
+}
 
-  // If the game is live, fetch updated game data every 5 seconds.
+// Helper function to compute the live selectors from live game data
+const getLiveSelectors = (liveGameData) => {
+  const liveCompetition = liveGameData?.competitions?.[0]
+  return {
+    homeScore: liveCompetition?.competitors?.[0]?.score,
+    awayScore: liveCompetition?.competitors?.[1]?.score,
+    time: liveCompetition?.status?.type?.shortDetail,
+  }
+}
+
+const Scoreboard = ({ purdue }) => {
+  // Extract the competition from the purdue prop.
+  const initialCompetition = purdue?.team?.nextEvent?.[0]?.competitions?.[0] || {}
+
+  // Build initial selectors from the competition data.
+  const { gameInformation, purdueInfo, awayInfo } = getStaticSelectors(initialCompetition)
+
+  // hold selectors
+  const [scoreboardData, setScoreboardData] = useState({
+    competition: initialCompetition,
+    gameInformation,
+    purdueInfo,
+    awayInfo,
+    // live will hold { homeScore, awayScore, time } when available.
+    live: null,
+  })
+
+  // Determine if the game is live based on the competition status.
+  const isGameLive = scoreboardData.competition?.status?.type?.state === 'in'
+
+  // Fetch live data every 5 seconds if the game is live.
   useEffect(() => {
     let intervalId
 
-    async function fetchLiveData() {
+    const fetchLiveData = async () => {
       try {
         const newGameData = await extractPurdueGame()
         if (newGameData) {
-          setLiveGameData(newGameData)
+          const live = getLiveSelectors(newGameData)
+          setScoreboardData((prev) => ({
+            ...prev,
+            live,
+          }))
         }
       } catch (error) {
         console.error('Error fetching live game data:', error)
@@ -56,9 +83,7 @@ export default function Scoreboard({ purdue }) {
     }
 
     if (isGameLive) {
-      // Fetch immediately on mount
-      fetchLiveData()
-      // Set up a 5-second interval to refresh the data
+      fetchLiveData() // Initial fetch on mount.
       intervalId = setInterval(fetchLiveData, 5000)
     }
 
@@ -67,46 +92,40 @@ export default function Scoreboard({ purdue }) {
     }
   }, [isGameLive])
 
-  const homeScoreData = liveGameData?.competitions[0]?.competitors[0]?.score
-  const awayScoreData = liveGameData?.competitions[0]?.competitors[1]?.score
-
-  const time = liveGameData?.competitions[0]?.status?.type?.shortDetail
-
   return (
     <div className={styles.scoreboard}>
-      {isGameLive && <Live time={time} />}
+      {isGameLive && scoreboardData.live && <Live time={scoreboardData.live.time} />}
       <div className={styles.teamContainer}>
         <div className={styles.team}>
-          {purdueInfo.logo && (
-            <Image src={purdueInfo.logo} alt="Purdue logo" width={60} height={60} />
+          {scoreboardData.purdueInfo.logo && (
+            <Image src={scoreboardData.purdueInfo.logo} alt="Purdue logo" width={60} height={60} />
           )}
-          <div className={styles.name}>{purdueInfo.name}</div>
+          <div className={styles.name}>{scoreboardData.purdueInfo.name}</div>
           <span className={styles.rank}>
-            {Number(purdueInfo.rank) <= 25 ? `#${purdueInfo.rank}` : ''}
+            {Number(scoreboardData.purdueInfo.rank) <= 25
+              ? `#${scoreboardData.purdueInfo.rank}`
+              : ''}
           </span>
-          <h6 className="ml-auto p-4">{homeScoreData}</h6>
+          <h6 className="ml-auto p-4">
+            {scoreboardData.live ? scoreboardData.live.homeScore : null}
+          </h6>
         </div>
         <div className={styles.divider}>
           <p>VS</p>
         </div>
         <div className={styles.team}>
-          {awayInfo.logo && (
-            <Image src={awayInfo.logo} alt="Away team logo" width={60} height={60} />
+          {scoreboardData.awayInfo.logo && (
+            <Image src={scoreboardData.awayInfo.logo} alt="Away team logo" width={60} height={60} />
           )}
-          <div className={styles.name}>{awayInfo.name}</div>
+          <div className={styles.name}>{scoreboardData.awayInfo.name}</div>
           <span className={styles.rank}>
-            {Number(awayInfo.rank) <= 25 ? `${awayInfo.rank}` : ''}
+            {Number(scoreboardData.awayInfo.rank) <= 25 ? scoreboardData.awayInfo.rank : ''}
           </span>
-          <h6 className="ml-auto p-4">{awayScoreData}</h6>
+          <h6 className="ml-auto p-4">
+            {scoreboardData.live ? scoreboardData.live.awayScore : null}
+          </h6>
         </div>
       </div>
-      {/* {isGameLive ? (
-        // When live, render the live-updating GameTable with the live game data.
-        // Note: The GameTable component should be updated to accept a `gameData` prop.
-        <div className={styles.gameContainer}>
-          <GameTable gameData={liveGameData} />
-        </div>
-      ) : ( */}
       <div className={styles.gameContainer}>
         <div className={styles.gameAddress}>
           <svg
@@ -121,7 +140,7 @@ export default function Scoreboard({ purdue }) {
               clipRule="evenodd"
             />
           </svg>
-          <p>{gameInformation.address}</p>
+          <p>{scoreboardData.gameInformation.address}</p>
         </div>
         <div className={styles.gameInfo}>
           <p className={styles.gameInfoLine}>
@@ -133,7 +152,7 @@ export default function Scoreboard({ purdue }) {
             >
               <path d="M4.5 4.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h8.25a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3H4.5ZM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06Z" />
             </svg>
-            : {gameInformation.watch}
+            : {scoreboardData.gameInformation.watch}
           </p>
           {!isGameLive && (
             <p className={styles.gameInfoLine}>
@@ -150,10 +169,10 @@ export default function Scoreboard({ purdue }) {
                   clipRule="evenodd"
                 />
               </svg>
-              : {gameInformation.date}
+              : {scoreboardData.gameInformation.date}
             </p>
           )}
-          {isGameLive && (
+          {isGameLive && scoreboardData.live && (
             <p className={styles.gameInfoLine}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -169,12 +188,13 @@ export default function Scoreboard({ purdue }) {
                   d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                 />
               </svg>
-              : {time}
+              : {scoreboardData.live.time}
             </p>
           )}
         </div>
       </div>
-      {/* )} */}
     </div>
   )
 }
+
+export default Scoreboard
