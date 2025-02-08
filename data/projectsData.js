@@ -1,7 +1,7 @@
 const projectsData = [
   {
     title: 'lamora',
-    description: `A full stack application that syncs data from paprika ios app to store and pull family recipes for a blog.`,
+    description: `laMora is full stack app based off my last name, Morales. It's meaning is of Spanish decent, given to someone who lived near a blackberry bush, from mora, meaning "blackberry". This app was built to pull data from the ios app (Paprika) which holds Morales family recipes. Using PostgresDB CRON job syncing with Paprika, I'm able to save all of our data coming from the app. Using NestJS node framework, I've created a backend that serves family data to the NEXTJS frontend. This data is used to display full recipes, blog data, and family images. This serves as a lifelong project to hopefully pass down to our children when they become of age and hopefully, continue the tradition and importance of food.`,
     logoSrc: `/static/images/projectCards/logos/logo-lamora.svg`,
     imgSrc: `/static/images/projectCards/port-lamora.png`,
     href: 'https://github.com/kgmorales/lamora',
