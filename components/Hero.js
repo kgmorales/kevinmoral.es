@@ -72,7 +72,7 @@ export default function Hero({ heroData }) {
   return (
     <div className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch">
       {/* Left side: portrait */}
-      <div className="flex justify-center md:w-1/2">
+      <div className="flex justify-center md:w-1/2 lg:w-3/4">
         <Image
           src={portraitImage}
           alt="portrait of Kevin Morales"
