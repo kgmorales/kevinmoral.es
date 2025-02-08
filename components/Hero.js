@@ -76,7 +76,7 @@ export default function Hero({ heroData }) {
         <Image
           src={portraitImage}
           alt="portrait of Kevin Morales"
-          className="aspect-square rounded-lg bg-zinc-100 object-cover dark:bg-zinc-800"
+          className="aspect-square rounded-lg bg-zinc-100 object-cover"
         />
       </div>
 
@@ -105,9 +105,9 @@ export default function Hero({ heroData }) {
           )}
         </div>
         <div className="flex content-center items-center justify-between gap-2">
+          <Purdue isActive={showScoreboard} onToggle={toggleScoreboard} />
           <SpotifyNowPlaying spotify={spotify} />
           {/* The Purdue component will toggle the view when clicked */}
-          <Purdue purdue={purdue} isActive={showScoreboard} onToggle={toggleScoreboard} />
         </div>
         <div className="flex justify-between gap-6 pt-5">
           {socialLinksData.map((link, index) => (
