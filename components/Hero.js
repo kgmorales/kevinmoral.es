@@ -76,7 +76,7 @@ export default function Hero({ heroData }) {
         <Image
           src={portraitImage}
           alt="portrait of Kevin Morales"
-          className="aspect-square rounded-lg bg-zinc-100 object-cover"
+          className="aspect-square rounded-2xl bg-zinc-100 object-cover"
         />
       </div>
 
