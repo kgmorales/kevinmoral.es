@@ -66,34 +66,55 @@
   transform: translateY(-50%) scale(0.9);
 }
 
-/* The album details container */
 .albumDetails {
   display: flex;
   align-items: center;
+  /* ensure the album art won't shrink */
   gap: 0.5rem;
+  /* optional: a max width if you want to limit the entire row */
+  /* max-width: 200px; */
 }
 
 .albumArt {
+  flex-shrink: 0;
+  /* album won't shrink */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .textInfo {
-  display: flex;
-  flex-direction: column;
+  /* The text can expand/overflow if there's space, 
+     but we truncate if it’s too long */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* optionally set a fixed width or let the parent define 
+     how wide this can grow */
+  max-width: 140px;
+  /* adjust as needed */
 }
+
+/* The .title and .artist can either be separate blocks or inline them. 
+   If they each can get truncated, you'd do the ellipsis on both. */
 
 .title {
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 2px 0;
+  /* If you also want an ellipsis on the title alone, do: */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 .artist {
   color: rgb(125, 115, 115);
   font-size: 0.8rem;
   margin: 2px 0;
+  /* If you want the artist also truncated, do the same:
+     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; */
 }
 
 .toddlers {
