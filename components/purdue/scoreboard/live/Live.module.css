@@ -29,8 +29,8 @@
   font-weight: bold;
   display: flex;
   position: absolute;
-  bottom: 103px;
-  /* left:-40px; */
+  bottom: 89px;
+  left: 40px;
 }
 
 .liveIndicatorHolder .indicator .blink {

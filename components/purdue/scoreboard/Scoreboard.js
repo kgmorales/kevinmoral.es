@@ -5,70 +5,35 @@ import styles from './Scoreboard.module.css'
 import { extractPurdueGame } from '@/lib/scores/scores'
 import Live from './live/Live'
 import { Icons } from './consts/icons.constants'
-
-// --- Helper Functions for Selectors and Sorting ---
-
-const getAbbr = (team) => team?.abbreviation === 'PUR'
-
-const sortForPurdueFirst = (arr) => arr.sort((a, b) => getAbbr(b?.team) - getAbbr(a?.team))
-
-const getStaticSelectors = (competition) => {
-  const gameInformation = {
-    date: competition?.status?.type?.shortDetail,
-    location: competition?.venue?.fullName,
-    address: `${competition?.venue?.address?.city}, ${competition?.venue?.address?.state}`,
-    watch: competition?.broadcasts?.[0]?.media?.shortName,
-  }
-
-  const competitors = competition?.competitors || []
-  const sortedTeams = sortForPurdueFirst([...competitors])
-  const teamInfo = sortedTeams.map((team) => ({
-    name: team.team.nickname,
-    rank: team.curatedRank.current,
-    logo: team.team.logos[0].href,
-  }))
-
-  return { gameInformation, teamInfo }
-}
-
-const getLiveSelectors = (liveGameData) => {
-  const liveCompetition = liveGameData?.competitions?.[0]
-  const competitors = liveCompetition?.competitors || []
-  const sortedCompetitors = sortForPurdueFirst([...competitors])
-  return {
-    scores: sortedCompetitors.map((comp) => comp.score),
-    time: liveCompetition?.status?.type?.shortDetail,
-  }
-}
+import * as utils from './utils/scoreboard.utils'
+import { fakeMidGame } from './consts/fakeMidGame.constants'
 
 // --- Main Component ---
 
 const Scoreboard = ({ purdue }) => {
+  // Extract the initial competition from the prop.
   const initialCompetition = purdue?.team?.nextEvent?.[0]?.competitions?.[0] || {}
 
-  const { gameInformation, teamInfo } = getStaticSelectors(initialCompetition)
+  // Build the initial view model (vm) from the competition data.
+  const [vm, setVm] = useState(utils.getViewModel(initialCompetition))
 
-  const [scoreboardData, setScoreboardData] = useState({
-    competition: initialCompetition,
-    gameInformation,
-    teamInfo,
-    live: null,
-  })
+  // Determine if the game is live based on the competition status.
+  const isGameLive = initialCompetition?.status?.type?.state === 'in'
+  // const isGameLive = true
 
-  const isGameLive = scoreboardData.competition?.status?.type?.state === 'in'
-
+  // Fetch live data periodically if the game is live.
   useEffect(() => {
     let intervalId
 
     const fetchLiveData = async () => {
       try {
         const newGameData = await extractPurdueGame()
+        // const newGameData = utils.extractFakeData(fakeMidGame)
+
         if (newGameData) {
-          const live = getLiveSelectors(newGameData)
-          setScoreboardData((prev) => ({
-            ...prev,
-            live,
-          }))
+          const live = utils.getLiveSelectors(newGameData)
+          // Update the view model with the live data.
+          setVm((prevVm) => ({ ...prevVm, live }))
         }
       } catch (error) {
         console.error('Error fetching live game data:', error)
@@ -76,7 +41,7 @@ const Scoreboard = ({ purdue }) => {
     }
 
     if (isGameLive) {
-      fetchLiveData()
+      fetchLiveData() // Initial fetch.
       intervalId = setInterval(fetchLiveData, 20000)
     }
 
@@ -87,13 +52,17 @@ const Scoreboard = ({ purdue }) => {
 
   return (
     <div className={styles.scoreboard}>
-      {isGameLive && scoreboardData.live && <Live time={scoreboardData.live.time} />}
+      {isGameLive && <Live time={vm.live?.time} />}
 
       <div className={styles.teamContainer}>
-        {scoreboardData.teamInfo.map((team, index) => (
+        {vm.teamInfo.map((team, index) => (
           <React.Fragment key={index}>
-            {index > 0 && (
-              <div className={styles.divider}>
+            {isGameLive ? (
+              <div className={styles.dividerLive}>
+                <p>VS</p>
+              </div>
+            ) : (
+              <div className={styles.dividerPreview}>
                 <p>VS</p>
               </div>
             )}
@@ -103,9 +72,7 @@ const Scoreboard = ({ purdue }) => {
               )}
               <div className={styles.name}>{team.name}</div>
               <span className={styles.rank}>{Number(team.rank) <= 25 ? `#${team.rank}` : ''}</span>
-              <h6 className="ml-auto p-4">
-                {scoreboardData.live ? scoreboardData.live.scores[index] : null}
-              </h6>
+              {isGameLive && <h6 className="ml-auto p-4">{vm.live?.scores[index]}</h6>}
             </div>
           </React.Fragment>
         ))}
@@ -114,20 +81,20 @@ const Scoreboard = ({ purdue }) => {
       <div className={styles.gameContainer}>
         <div className={styles.gameAddress}>
           {Icons.Address}
-          <p>{scoreboardData.gameInformation.address}</p>
+          <p>{vm.gameInformation.address}</p>
         </div>
         <div className={styles.gameInfo}>
           <p className={styles.gameInfoLine}>
-            {Icons.Watch} : {scoreboardData.gameInformation.watch}
+            {Icons.Watch} : {vm.gameInformation.watch}
           </p>
           {!isGameLive && (
             <p className={styles.gameInfoLine}>
-              {Icons.Calendar} : {scoreboardData.gameInformation.date}
+              {Icons.Calendar} : {vm.gameInformation.date}
             </p>
           )}
-          {isGameLive && scoreboardData.live && (
+          {isGameLive && vm.live && (
             <p className={styles.gameInfoLine}>
-              {Icons.Time} : {scoreboardData.live.time}
+              {Icons.Time} : {vm.live.time}
             </p>
           )}
         </div>

@@ -43,13 +43,20 @@
 }
 
 /* Divider line with "FINAL" text in the middle */
-.divider {
+.dividerPreview {
   position: absolute;
   top: 65px;
   left: 115px;
   width: 100%;
   /* height: 1px;
   background-color: rgb(64 64 64); */
+}
+
+.dividerLive {
+  position: absolute;
+  top: 77px;
+  left: 115px;
+  width: 100%;
 }
 
 .gameInfo {
