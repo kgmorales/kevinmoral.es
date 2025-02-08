@@ -101,21 +101,6 @@ export default function Hero({ heroData }) {
                 deployment to maintenance, collaborating with teams of varying sizes. Ensuring that
                 the requirements of all Users and stakeholders are addressed.
               </p>
-              <div className="flex justify-between gap-6 pt-5">
-                {socialLinksData.map((link, index) => (
-                  <SocialLink
-                    key={index}
-                    href={link.href}
-                    aria-label={link.ariaLabel}
-                    icon={link.icon}
-                  />
-                ))}
-                <CopyToClipboard
-                  text={{ contact: 'hello@kevinmoral.es', type: 'Email' }}
-                  aria-label="Send me an email"
-                  icon={IoMail}
-                />
-              </div>
             </>
           )}
         </div>
@@ -123,6 +108,16 @@ export default function Hero({ heroData }) {
           <SpotifyNowPlaying spotify={spotify} />
           {/* The Purdue component will toggle the view when clicked */}
           <Purdue purdue={purdue} isActive={showScoreboard} onToggle={toggleScoreboard} />
+        </div>
+        <div className="flex justify-between gap-6 pt-5">
+          {socialLinksData.map((link, index) => (
+            <SocialLink key={index} href={link.href} aria-label={link.ariaLabel} icon={link.icon} />
+          ))}
+          <CopyToClipboard
+            text={{ contact: 'hello@kevinmoral.es', type: 'Email' }}
+            aria-label="Send me an email"
+            icon={IoMail}
+          />
         </div>
       </div>
     </div>

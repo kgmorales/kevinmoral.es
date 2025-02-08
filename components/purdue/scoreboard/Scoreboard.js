@@ -84,7 +84,7 @@ const Scoreboard = ({ purdue }) => {
 
     if (isGameLive) {
       fetchLiveData() // Initial fetch on mount.
-      intervalId = setInterval(fetchLiveData, 5000)
+      intervalId = setInterval(fetchLiveData, 20000)
     }
 
     return () => {
