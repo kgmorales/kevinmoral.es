@@ -100,7 +100,7 @@ const Tools = [
     category: [`mac`],
     link: `https://www.sourcetree.com/`,
     labels: [`Version Control`],
-    name: `SouceTree`,
+    name: `SourceTree`,
     description: `Visual display for version control. (git)`,
   },
   {
