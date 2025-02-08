@@ -119,7 +119,7 @@ const Scoreboard = ({ purdue }) => {
           )}
           <div className={styles.name}>{scoreboardData.awayInfo.name}</div>
           <span className={styles.rank}>
-            {Number(scoreboardData.awayInfo.rank) <= 25 ? scoreboardData.awayInfo.rank : ''}
+            {Number(scoreboardData.awayInfo.rank) <= 25 ? `#${scoreboardData.purdueInfo.rank}` : ''}
           </span>
           <h6 className="ml-auto p-4">
             {scoreboardData.live ? scoreboardData.live.awayScore : null}
