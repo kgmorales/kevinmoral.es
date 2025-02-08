@@ -25,27 +25,28 @@ export default function SpotifyNowPlaying({ spotify }) {
   let albumInfo = <p className={styles.toddlers}>Currently Chasing Toddlers</p>
   if (isPlaying) {
     albumInfo = (
-      <div className={styles.albumDetails}>
-        {albumArt && (
-          <div className={styles.albumArt}>
-            <Image src={albumArt} alt="album art" width={60} height={60} />
+      <Link href={href} legacyBehavior passHref>
+        <div className={styles.albumDetails}>
+          {albumArt && (
+            <div className={styles.albumArt}>
+              <Image src={albumArt} alt="album art" width={60} height={60} />
+            </div>
+          )}
+
+          <div className={styles.textInfo}>
+            <p className={styles.title}>{title}</p>
+            <p className={styles.artist}>{artistName}</p>
           </div>
-        )}
-        <div className={styles.textInfo}>
-          <p className={styles.title}>{title}</p>
-          <p className={styles.artist}>{artistName}</p>
         </div>
-      </div>
+      </Link>
     )
   }
 
   // If there's a link, wrap album info in <Link>
   const infoContent = href ? (
-    <Link href={href} legacyBehavior passHref>
-      <a onClick={(e) => e.stopPropagation()} className={styles.linkWrapper}>
-        {albumInfo}
-      </a>
-    </Link>
+    <a onClick={(e) => e.stopPropagation()} className={styles.linkWrapper}>
+      {albumInfo}
+    </a>
   ) : (
     albumInfo
   )
