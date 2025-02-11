@@ -1,5 +1,3 @@
-// --- Helper Functions for Selectors and Sorting ---
-
 const getAbbr = (team) => team?.abbreviation === 'PUR'
 
 const sortForPurdueFirst = (arr) => arr.sort((a, b) => getAbbr(b?.team) - getAbbr(a?.team))
@@ -9,7 +7,6 @@ const sortForPurdueFirst = (arr) => arr.sort((a, b) => getAbbr(b?.team) - getAbb
  * It returns an object with:
  * - gameInformation: address, date, location, and broadcast watch info.
  * - teamInfo: an array of team objects (name, rank, logo).
- * - live: optional live data (default is null).
  */
 const getViewModel = (competition, live = null) => {
   const gameInformation = {
@@ -42,7 +39,7 @@ const getLiveSelectors = (liveGameData) => {
 
 const extractFakeData = (fakeData) => {
   return fakeData.events.find((event) => {
-    // Assume the first competition in the event is the primary one.
+    // The first competition is the live one
     const competition = event.competitions && event.competitions[0]
     if (!competition || !competition.competitors) return false
     return competition.competitors.some((comp) => {
