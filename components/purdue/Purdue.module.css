@@ -3,8 +3,16 @@
   width: 80px;
   height: 80px;
   cursor: pointer;
+  border: 1px solid rgb(64, 64, 64);
+  border-radius: 16px;
+  padding: 0.5rem;
 }
 
+.action:hover {
+  border-color: #fff;
+}
+
+/* The clickable button inside .action */
 .activeButton {
   position: relative;
   width: 100%;
@@ -14,41 +22,52 @@
   align-items: center;
   font-size: 2em;
   transition: 0.3s ease-in-out;
+  z-index: 9;
 }
 
+/* The scoreboard container is absolutely positioned near .action,
+   hidden by default. */
 .scoreBoardContainer {
   position: absolute;
-  /* bottom: 55px; */
-  background: #fff;
-  /* min-width: 350px; */
-  width: 32rem;
-  border-radius: 16px;
-  /* border: 1px solid rgb(64 64 64); */
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-  /* left: 90px; */
   bottom: 100px;
   left: -420px;
+  /* Adjust as needed to position scoreboard to the left */
+  width: 32rem;
+  background: #fff;
+  border-radius: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  /* If you want a small 'slide' effect, add transform: translateY(10px); 
+     and transform in the .active rule below. */
 }
 
+/* For smaller screens (max-width: 700px), we shrink scoreboard width */
 @media screen and (max-width: 700px) {
   .scoreBoardContainer {
     width: 23rem;
-    left: -282px;
     bottom: 110px;
+    left: -282px;
   }
 }
 
-/* 
+/* If you want a special rule for min-width:1025px & max-width:1280px, 
+   you can uncomment / adjust as needed:
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
-.scoreBoardContainer {
+  .scoreBoardContainer {
     bottom: 55px;
     left: 90px;
-    /* min-width: 360px; */
+    // min-width: 360px;
+  }
+}
+*/
 
-.active div {
+/* When .action has .active, show the scoreboard */
+.action.active .scoreBoardContainer {
   opacity: 1;
   visibility: visible;
-  transition: 0.3s;
+  transition: opacity 0.3s, visibility 0.3s;
+  /* If you want a slide effect from below, do something like:
+  transform: translateY(0);
+  */
 }

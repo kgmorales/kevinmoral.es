@@ -1,79 +1,63 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import SpotifyLogo from '@/data/spotify.svg'
 import styles from './SpotifyNowPlaying.module.css'
 
 export default function SpotifyNowPlaying({ spotify }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const isPlaying = spotify?.isPlaying
-  const albumArt = spotify?.album?.image?.href || null
-
-  // Remove parentheses/brackets from the title
+  const albumArt = spotify?.album?.image?.href || ''
   const rawTitle = spotify?.title || ''
+  // Remove parentheses/brackets from the title
   const title = rawTitle.replace(/\s*(\([^)]*\)|\[[^\]]*\])\s*/g, '').trim()
   const artistName = spotify?.artists?.[0]?.name || ''
   const href = spotify?.href
 
+  // Toggle container open/collapsed
   const handleToggle = () => {
     setIsOpen(!isOpen)
   }
 
-  // If playing, show album + title + artist
-  // Else show "Currently Chasing Toddlers"
-  let albumInfo = <p className={styles.toddlers}>Currently Chasing Toddlers</p>
+  // If playing => album + title + artist
+  // Else => "Currently Chasing Toddlers"
+  let leftContent = <p className={styles.toddlers}>Currently Chasing Toddlers</p>
   if (isPlaying) {
-    albumInfo = (
-      <Link href={href} legacyBehavior passHref>
-        <div className={styles.albumDetails}>
-          {albumArt && (
-            <div className={styles.albumArt}>
-              <Image src={albumArt} alt="album art" width={60} height={60} />
-            </div>
-          )}
-
-          <div className={styles.textInfo}>
-            <p className={styles.title}>{title}</p>
-            <p className={styles.artist}>{artistName}</p>
+    leftContent = (
+      <div className={styles.albumDetails}>
+        {albumArt && (
+          <div className={styles.albumArt}>
+            <Image src={albumArt} alt="Album art" width={60} height={60} />
           </div>
+        )}
+        <div className={styles.textInfo}>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.artist}>{artistName}</p>
         </div>
-      </Link>
+      </div>
     )
   }
 
-  // If there's a link, wrap album info in <Link>
-  const infoContent = href ? (
-    <a onClick={(e) => e.stopPropagation()} className={styles.linkWrapper}>
-      {albumInfo}
-    </a>
-  ) : (
-    albumInfo
-  )
+  // If there's a link, wrap the leftContent in <Link>
+  if (href) {
+    leftContent = (
+      <Link href={href} legacyBehavior passHref>
+        <a onClick={(e) => e.stopPropagation()} className={styles.linkWrapper}>
+          {leftContent}
+        </a>
+      </Link>
+    )
+  }
 
   return (
     <div
       className={`${styles.musicContainer} ${isOpen ? styles.open : styles.collapsed}`}
       onClick={handleToggle}
     >
-      {/* 
-        Left Side: 
-          - Shows Spotify logo if collapsed
-          - Shows album info if open
-      */}
-      <div className={styles.leftSide}>
-        {/* Spotify Logo (only visible when collapsed) */}
-        <div className={`${styles.logoWrap} ${isOpen ? styles.hide : styles.show}`}>
-          <SpotifyLogo />
-        </div>
+      {/* Left side: hidden by default, revealed when open */}
+      <div className={styles.leftSide}>{leftContent}</div>
 
-        {/* Album info (only visible when open) */}
-        <div className={`${styles.infoWrap} ${isOpen ? styles.show : styles.hide}`}>
-          {infoContent}
-        </div>
-      </div>
-
-      {/* Right Side: wave + bangers */}
+      {/* Right side: wave + bangers on/off always visible */}
       <div className={styles.waveSide}>
         <div className={styles.soundwaveContainer}>
           {isPlaying ? (

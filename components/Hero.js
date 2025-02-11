@@ -104,7 +104,7 @@ export default function Hero({ heroData }) {
             </>
           )}
         </div>
-        <div className="flex content-center items-center justify-between gap-2">
+        <div className="flex content-center items-center justify-between gap-4">
           <Purdue isActive={showScoreboard} onToggle={toggleScoreboard} />
           <SpotifyNowPlaying spotify={spotify} />
           {/* The Purdue component will toggle the view when clicked */}
