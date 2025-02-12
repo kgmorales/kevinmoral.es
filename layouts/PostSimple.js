@@ -1,7 +1,7 @@
-import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
+import Link from '@/components/atoms/Link'
+import PageTitle from '@/components/atoms/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
-import { BlogSEO } from '@/components/SEO'
+import { BlogSEO } from '@/components/atoms/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import formatDate from '@/lib/utils/formatDate'
 
@@ -33,7 +33,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             style={{ gridTemplateRows: 'auto 1fr' }}
           >
             <div className="divide-y divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
+              <div className="prose max-w-none pb-8 pt-10 dark:prose-dark">{children}</div>
             </div>
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">

@@ -1,9 +1,9 @@
 import projectsData from '@/data/projectsData'
 
-import ProjectCard from '@/components/ProjectCard'
+import ProjectCard from '@/components/molecules/ProjectCard'
 import AnimatedDiv from '@/components/framer-motion/AnimatedDiv'
 import { FadeContainer } from '@/lib/animation/FramerMotionVariants'
-import Link from '@/components/Link'
+import Link from '@/components/atoms/Link'
 
 const RecentProjects = ({ MAX_PROJECTS }) => {
   const projectsList = projectsData.slice(0, MAX_PROJECTS)

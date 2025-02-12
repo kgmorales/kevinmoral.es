@@ -1,5 +1,5 @@
-import Image from './Image'
-import Link from './Link'
+import Image from './atoms/Image'
+import Link from './atoms/Link'
 
 const Card = ({ title, description, imgSrc, href }) => (
   <div className="group relative p-1 md:w-1/2" style={{ maxWidth: '544px' }}>

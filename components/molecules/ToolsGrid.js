@@ -1,5 +1,5 @@
 import tools from '/data/tools'
-import ToolsCard from './ToolsCard'
+import ToolsCard from '@/components/atoms/ToolsCard'
 
 const ToolGrid = ({ filter }) => {
   return (

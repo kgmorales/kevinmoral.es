@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Link from './Link'
+import Link from './atoms/Link'
 import headerNavLinks from '@/data/headerNavLinks'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 
@@ -51,7 +51,7 @@ const MobileNav = () => {
         )}
       </button>
       <div
-        className={`fixed top-24 right-0 z-10 -mt-6 h-[96rem] w-full transform bg-gray-800 opacity-95 duration-300 ease-in-out ${
+        className={`fixed right-0 top-24 z-10 -mt-6 h-[96rem] w-full transform bg-gray-800 opacity-95 duration-300 ease-in-out ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -75,7 +75,7 @@ const MobileNav = () => {
                   </Link>
                   <Link href={link.href}>
                     <ChevronRightIcon
-                      className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
+                      className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
                       aria-hidden="true"
                     />
                   </Link>
@@ -96,7 +96,7 @@ const MobileNav = () => {
                     </Link>
                     <Link href={item.href}>
                       <ChevronRightIcon
-                        className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
+                        className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
                         aria-hidden="true"
                       />
                     </Link>

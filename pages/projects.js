@@ -1,7 +1,7 @@
 import siteMetadata from '@/data/siteMetadata'
 import projectsData from '@/data/projectsData'
-import { PageSEO } from '@/components/SEO'
-import ProjectCard from '@/components/ProjectCard'
+import { PageSEO } from '@/components/atoms/SEO'
+import ProjectCard from '@/components/molecules/ProjectCard'
 import { Analytics } from '@vercel/analytics/react'
 
 export default function Projects() {

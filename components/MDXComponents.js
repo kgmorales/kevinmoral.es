@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
 import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
-import Image from './Image'
-import CustomLink from './Link'
-import TOCInline from './TOCInline'
-import Pre from './Pre'
+import Image from './atoms/Image'
+import CustomLink from './atoms/Link'
+import TOCInline from './atoms/TOCInline'
+import Pre from './atoms/Pre'
 
 export const MDXComponents = {
   Image,

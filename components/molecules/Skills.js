@@ -43,7 +43,7 @@ const Skills = () => {
             variants={popUp}
             key={skill.name}
             onClick={() => handleTooltip(skill.name)}
-            className="skill-element dark:bg-darkPrimary group relative flex origin-center transform items-center justify-center gap-4 rounded-lg border border-gray-300 p-4 dark:border-neutral-700 hover:dark:bg-darkSecondary sm:justify-start md:origin-top"
+            className="skill-element dark:bg-darkPrimary group relative flex origin-center transform items-center justify-center gap-4 rounded-lg border border-gray-300 p-4 shadow-[2px_3px_5px_0px_rgba(0,0,0,0.25)] dark:border-neutral-700 hover:dark:bg-darkSecondary sm:justify-start md:origin-top"
           >
             <div className="pointer-events-none select-none transition group-hover:scale-110 sm:group-hover:scale-100">
               <skill.logo className="h-8 w-8" />

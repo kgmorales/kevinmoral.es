@@ -1,13 +1,13 @@
 // components/Hero.js
 import React, { useState } from 'react'
 import Image from 'next/image'
-import portraitImage from '../public/static/images/avatar.jpg'
-import SpotifyNowPlaying from './spotify/SpotifyNowPlaying'
-import Scoreboard from './purdue/scoreboard/Scoreboard'
-import Purdue from './purdue/Purdue'
+import portraitImage from '../../public/static/images/avatar.jpg'
+import SpotifyNowPlaying from '@/components/spotify/SpotifyNowPlaying'
+import Scoreboard from '@/components/purdue/scoreboard/Scoreboard'
+import Purdue from '@/components/purdue/Purdue'
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMail } from 'react-icons/io5'
 import Link from 'next/link'
-import Notification from './Notification'
+import Notification from '@/components/atoms/Notification'
 
 const socialLinksData = [
   {
