@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Link from './atoms/Link'
+import Link from '@/components/atoms/Link'
 import headerNavLinks from '@/data/headerNavLinks'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 

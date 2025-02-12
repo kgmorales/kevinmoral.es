@@ -7,36 +7,171 @@ import styles from './live-game.module.css'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
 ModuleRegistry.registerModules([AllCommunityModule])
 
-// Dynamically import AgGridReact to avoid SSR issues in Next.js:
+// Dynamically import AgGridReact to avoid SSR issues:
 const AgGridReact = dynamic(() => import('ag-grid-react').then((mod) => mod.AgGridReact), {
   ssr: false,
 })
 
-// Import your initial live data from your constant file:
-import { liveData } from '@/data/purdue-live-data'
-// Import the live extractor function:
+// Import initial live data and the extractor function:
+import { liveData } from '@/data/live-data'
 import { extractPurdueGame } from '@/lib/scores/scores'
+import Live from '@/components/purdue/scoreboard/live/Live'
+
+// --- MUI Components for Tabs ---
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+// A11y helper for Tabs:
+function a11yProps(index) {
+  return {
+    id: `leader-tab-${index}`,
+    'aria-controls': `leader-tabpanel-${index}`,
+  }
+}
+
+// LeaderBio component – renders the athlete’s bio card in the style of your static example.
+function LeaderBio({ leader }) {
+  // leader contains: teamName, athleteName, athleteImage, stats, and (if available) athlete.position.abbreviation
+  const position = leader.athlete?.position?.abbreviation || ''
+  const playerNumber = leader.athlete?.jersey || ''
+  return (
+    <div className={styles.player}>
+      <div className={styles.playerInfo}>
+        <h2 className={styles.playerName}>{leader.athleteName}</h2>
+
+        <dl className={styles.playerStats}>
+          {Object.entries(leader.stats).map(([stat, value]) => (
+            <div key={stat}>
+              <dt className={styles.playerStat}>{stat}</dt>
+              <dd className={styles.playerStatNumber}>
+                {Array.isArray(value) ? value.join(', ') : value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div className={styles.playerImage}>
+        {playerNumber && <span className={styles.playerNumber}>#{playerNumber}</span>}
+        {position && <span className={styles.badge}>{position}</span>}
+        <img src={leader.athleteImage} alt={leader.athleteName} />
+      </div>
+    </div>
+  )
+}
+
+// LeaderTabsHorizontal renders a set of MUI Tabs – one tab per leader.
+// The tab icon is the athlete’s avatar (using MUI Avatar), and the content panel shows the LeaderBio.
+function LeaderTabsHorizontal({ leaders }) {
+  const [value, setValue] = useState(0)
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
+  if (!leaders || leaders.length === 0) {
+    return <Typography>No leaders available</Typography>
+  }
+  return (
+    <Box className={styles.leaderTabsContainer}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="Leader Tabs"
+        variant="scrollable"
+        scrollButtons="auto"
+        className={styles.tabs}
+        TabIndicatorProps={{ style: { backgroundColor: 'rgb(64, 64, 64)' } }}
+      >
+        {leaders.map((leader, index) => (
+          <Tab
+            key={index}
+            icon={
+              <Avatar
+                alt={leader.athleteName}
+                src={leader.athleteImage}
+                className={styles.tabAvatar}
+              />
+            }
+            {...a11yProps(index)}
+          />
+        ))}
+      </Tabs>
+      {leaders.map((leader, index) => (
+        <div
+          role="tabpanel"
+          hidden={value !== index}
+          id={`leader-tabpanel-${index}`}
+          aria-labelledby={`leader-tab-${index}`}
+          key={index}
+          className={styles.leaderTabPanel}
+        >
+          {value === index && (
+            <Box className={styles.bioContainer}>
+              <LeaderBio leader={leader} />
+            </Box>
+          )}
+        </div>
+      ))}
+    </Box>
+  )
+}
+
+// Helper: getLeaderCards – aggregates leader data for a competitor.
+// Filters out any category named "rating" (case-insensitive) and merges duplicate entries.
+function getLeaderCards(competitor) {
+  if (!competitor?.leaders) return []
+  const filteredCategories = competitor.leaders.filter((catObj) => {
+    const catName = catObj.displayName || catObj.name
+    return catName.toLowerCase() !== 'rating'
+  })
+  const flattened = filteredCategories.flatMap((catObj) =>
+    (catObj.leaders || []).map((ld) => ({
+      category: catObj.displayName || catObj.name,
+      athlete: ld.athlete,
+      displayValue: ld.displayValue,
+    }))
+  )
+  const leaderMap = flattened.reduce((acc, { category, athlete, displayValue }) => {
+    if (!athlete) return acc
+    const id = athlete.id
+    const prevStats = (acc[id] && acc[id].stats) || {}
+    const newValue =
+      prevStats[category] !== undefined
+        ? Array.isArray(prevStats[category])
+          ? [...prevStats[category], displayValue]
+          : [prevStats[category], displayValue]
+        : displayValue
+    return {
+      ...acc,
+      [id]: {
+        teamName: competitor.team?.displayName || 'Unknown Team',
+        athleteName: athlete.displayName || 'Unknown',
+        athleteImage: athlete.headshot || '',
+        athlete, // keep the whole athlete for additional info (like position)
+        stats: { ...prevStats, [category]: newValue },
+      },
+    }
+  }, {})
+  return Object.values(leaderMap)
+}
 
 function PurdueGame() {
-  // Initialize state from the live data constant (filtering for the Purdue game by id)
+  // State: set game data initially from the constant liveData.
   const [gameData, setGameData] = useState(
-    liveData?.events?.find((ev) => ev.id === '401721401') || {}
+    liveData?.events?.find((ev) => ev.shortName?.includes('PUR')) || {}
   )
 
-  // Derive the competition data from gameData.
-  const competition = useMemo(() => {
-    return gameData?.competitions?.[0] || {}
-  }, [gameData])
-
-  // Derive competitors (home and away) from the competition.
-  const competitors = useMemo(() => {
-    return competition?.competitors || []
-  }, [competition])
+  // Compute competition, competitors, and teams.
+  const competition = useMemo(() => gameData?.competitions?.[0] || {}, [gameData])
+  const competitors = useMemo(() => competition?.competitors || [], [competition])
   const homeTeam = competitors[0] || {}
   const awayTeam = competitors[1] || {}
 
-  // Determine if the game is live based on the competition status.
+  // Determine if the game is live.
   const isGameLive = competition?.status?.type?.state === 'in'
+
+  console.log(gameData)
 
   // Periodically fetch live data if the game is live.
   useEffect(() => {
@@ -45,7 +180,6 @@ function PurdueGame() {
       try {
         const newGameData = await extractPurdueGame()
         if (newGameData) {
-          // Update the gameData state so that all computed values (competition, etc.) update.
           setGameData(newGameData)
         }
       } catch (error) {
@@ -53,7 +187,7 @@ function PurdueGame() {
       }
     }
     if (isGameLive) {
-      fetchLiveData() // Initial fetch.
+      fetchLiveData()
       intervalId = setInterval(fetchLiveData, 20000)
     }
     return () => {
@@ -61,37 +195,11 @@ function PurdueGame() {
     }
   }, [isGameLive])
 
-  // Helper: Aggregate leader data so that each athlete appears only once with all the categories they lead.
-  function getLeaderCards(competitor) {
-    const leaderMap = {}
-    if (!competitor?.leaders) return []
-    competitor.leaders.forEach((catObj) => {
-      const categoryName = catObj.displayName || catObj.name
-      ;(catObj.leaders || []).forEach((ld) => {
-        if (!ld) return
-        const { athlete, displayValue } = ld
-        if (!athlete) return
-        const athleteId = athlete.id
-        if (!leaderMap[athleteId]) {
-          leaderMap[athleteId] = {
-            teamName: competitor.team?.displayName || 'Unknown Team',
-            athleteName: athlete.displayName || 'Unknown',
-            athleteImage: athlete.headshot || '',
-            stats: {},
-          }
-        }
-        // Save (or override) this stat category for the athlete.
-        leaderMap[athleteId].stats[categoryName] = displayValue
-      })
-    })
-    return Object.values(leaderMap)
-  }
-
-  // Compute leader cards for home and away.
+  // Compute leader cards for home and away teams.
   const homeLeaderCards = useMemo(() => getLeaderCards(homeTeam), [homeTeam])
   const awayLeaderCards = useMemo(() => getLeaderCards(awayTeam), [awayTeam])
 
-  // Build row data for AG Grid by matching statistics from home and away.
+  // Build row data for AG Grid from team statistics.
   const rowData = useMemo(() => {
     if (!homeTeam.statistics || !awayTeam.statistics) return []
     const homeMap = {}
@@ -116,8 +224,8 @@ function PurdueGame() {
   }, [homeTeam, awayTeam])
 
   // Define column definitions for AG Grid.
-  const columnDefs = useMemo(() => {
-    return [
+  const columnDefs = useMemo(
+    () => [
       { headerName: 'Statistic', field: 'statName', flex: 1 },
       {
         headerName: homeTeam.team?.shortDisplayName || 'Home',
@@ -129,10 +237,10 @@ function PurdueGame() {
         field: 'awayValue',
         flex: 1,
       },
-    ]
-  }, [homeTeam, awayTeam])
+    ],
+    [homeTeam, awayTeam]
+  )
 
-  // Fallback UI if no game or competition data is found.
   if (!gameData.id) {
     return (
       <div className={styles.container}>
@@ -150,83 +258,77 @@ function PurdueGame() {
 
   return (
     <div className={styles.container}>
-      {/* Scoreboard Header with two sides */}
-      <div className={styles.scoreboardHeader}>
-        {/* Home Side */}
-        <div className={styles.teamSide}>
-          <div className={styles.teamScore}>
-            {homeTeam.team?.logo && (
-              <img
-                src={homeTeam.team.logo}
-                alt={`${homeTeam.team.displayName} Logo`}
-                className={styles.teamLogo}
-              />
-            )}
-            <div className={styles.teamName}>{homeTeam.team?.displayName || 'Home Team'}</div>
-            <div className={styles.teamScoreValue}>{homeTeam.score || '-'}</div>
+      {/* Scoreboard / Status Table */}
+      <div className={styles.scoreboard}>
+        <div className={styles.team}>
+          <div className={styles.teamContainer}>
+            <div className={styles.logoContainer}>
+              {homeTeam.team?.logo && (
+                <>
+                  <img
+                    src={homeTeam.team.logo}
+                    alt={homeTeam.team.displayName}
+                    className={styles.teamLogo}
+                  />
+                  <p>#{homeTeam.curatedRank.current}</p>
+                </>
+              )}
+            </div>
+            <h2 className={styles.teamName}>{homeTeam.team?.displayName}</h2>
           </div>
-          <div className={styles.leaderCards}>
-            {homeLeaderCards.map((card, idx) => (
-              <div key={idx} className={styles.card}>
-                {card.athleteImage && (
-                  <img src={card.athleteImage} alt={card.athleteName} className={styles.avatar} />
-                )}
-                <div className={styles.leaderName}>{card.athleteName}</div>
-                {Object.entries(card.stats).map(([cat, value], i) => (
-                  <div key={i} className={styles.statLine}>
-                    {cat}: {value}
-                  </div>
-                ))}
-              </div>
-            ))}
+          <div className={styles.matchScore}>
+            <p className={styles.scoreNumber}>{homeTeam.score || 0}</p>
           </div>
         </div>
-
-        {/* VS Divider */}
-        <div className={styles.vs}>VS</div>
-
-        {/* Away Side */}
-        <div className={styles.teamSide}>
-          <div className={styles.teamScore}>
-            {awayTeam.team?.logo && (
-              <img
-                src={awayTeam.team.logo}
-                alt={`${awayTeam.team.displayName} Logo`}
-                className={styles.teamLogo}
-              />
-            )}
-            <div className={styles.teamName}>{awayTeam.team?.displayName || 'Away Team'}</div>
-            <div className={styles.teamScoreValue}>{awayTeam.score || '-'}</div>
+        <div className={styles.matchDetails}>
+          <Live />
+          <div className={styles.matchTime}>{competition?.status?.displayClock || '0:00'}</div>
+          <span>
+            {competition?.status?.period}
+            {competition?.status?.period === 1 ? 'st' : 'nd'} Half
+          </span>
+          <span>
+            {competition?.venue?.address?.city}, {competition?.venue?.address?.state}
+          </span>
+        </div>
+        <div className={styles.team}>
+          <div className={styles.matchScore}>
+            <p className={styles.scoreNumber}>{awayTeam.score || 0}</p>
           </div>
-          <div className={styles.leaderCards}>
-            {awayLeaderCards.map((card, idx) => (
-              <div key={idx} className={styles.card}>
-                {card.athleteImage && (
-                  <img src={card.athleteImage} alt={card.athleteName} className={styles.avatar} />
-                )}
-                <div className={styles.leaderName}>{card.athleteName}</div>
-                {Object.entries(card.stats).map(([cat, value], i) => (
-                  <div key={i} className={styles.statLine}>
-                    {cat}: {value}
-                  </div>
-                ))}
-              </div>
-            ))}
+          <div className={styles.teamContainer}>
+            <div className={styles.logoContainer}>
+              {awayTeam.team?.logo && (
+                <>
+                  <img
+                    src={awayTeam.team.logo}
+                    alt={awayTeam.team.displayName}
+                    className={styles.teamLogo}
+                  />
+                  <p>#{awayTeam.curatedRank.current}</p>
+                </>
+              )}
+            </div>
+
+            <h2 className={styles.teamName}>{awayTeam.team?.displayName}</h2>
           </div>
         </div>
       </div>
 
-      {/* AG Grid table for game statistics */}
-      <div className={styles.statisticsSection}>
-        <h3>Game Statistics</h3>
-        <div className={`ag-theme-alpine ${styles.gridWrapper}`}>
-          <AgGridReact
-            rowData={rowData}
-            columnDefs={columnDefs}
-            pagination={true}
-            paginationPageSize={10}
-          />
+      {/* Two side-by-side horizontal leader tab sections */}
+      <h2 className={styles.gameLeaders}>Game Leaders</h2>
+      <div className={styles.leaderSection}>
+        <div className={styles.leaderColumn}>
+          <LeaderTabsHorizontal leaders={homeLeaderCards} />
         </div>
+        <div className={styles.leaderColumn}>
+          <LeaderTabsHorizontal leaders={awayLeaderCards} />
+        </div>
+      </div>
+
+      {/* AG Grid Table for game statistics */}
+      <h3 className={styles.tableHeading}>Statistics Table</h3>
+      <div className={`ag-theme-alpine ${styles.gridWrapper}`}>
+        <AgGridReact rowData={rowData} columnDefs={columnDefs} pagination paginationPageSize={10} />
       </div>
     </div>
   )

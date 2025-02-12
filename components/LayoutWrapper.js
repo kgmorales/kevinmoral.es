@@ -2,8 +2,8 @@ import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.svg'
 import Link from './atoms/Link'
 import SectionContainer from './SectionContainer'
-import Footer from './Footer'
-import MobileNav from './MobileNav'
+import Footer from '@/components/Footer'
+import MobileNav from '@/components/molecules/MobileNav'
 import { useEffect, useRef, useState } from 'react'
 
 const LayoutWrapper = ({ children }) => {

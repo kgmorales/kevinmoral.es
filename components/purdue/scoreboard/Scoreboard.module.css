@@ -90,3 +90,10 @@
   flex-direction: row;
   height: 100%;
 }
+
+.liveContainer {
+  position: absolute;
+  left: 68%;
+  top: 8%;
+  transform: translate(-50%, -50%);
+}

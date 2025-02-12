@@ -18,8 +18,8 @@ const Scoreboard = ({ purdue }) => {
   const [vm, setVm] = useState(utils.getViewModel(initialCompetition))
 
   // Determine if the game is live based on the competition status.
-  const isGameLive = initialCompetition?.status?.type?.state === 'in'
-  // const isGameLive = true
+  // const isGameLive = initialCompetition?.status?.type?.state === 'in'
+  const isGameLive = true
 
   // Fetch live data periodically if the game is live.
   useEffect(() => {
@@ -52,7 +52,11 @@ const Scoreboard = ({ purdue }) => {
 
   return (
     <div className={styles.scoreboard}>
-      {isGameLive && <Live time={vm.live?.time} />}
+      {isGameLive && (
+        <div className={styles.liveContainer}>
+          <Live time={vm.live?.time} />
+        </div>
+      )}
 
       <div className={styles.teamContainer}>
         {vm.teamInfo.map((team, index) => (
