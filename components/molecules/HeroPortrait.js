@@ -7,8 +7,8 @@ export default function HeroPortrait() {
     <>
       <Image
         priority
-        width={590}
-        height={540}
+        width={600}
+        height={424}
         placeholder="blur"
         src={portraitImage}
         alt="Portrait of Kevin Morales"
