@@ -51,7 +51,7 @@ const MobileNav = () => {
         )}
       </button>
       <div
-        className={`fixed right-0 top-24 z-10 -mt-6 h-[96rem] w-full transform bg-gray-800 opacity-95 duration-300 ease-in-out ${
+        className={`fixed right-0 top-28 z-10 -mt-6 h-[96rem] w-full transform bg-themeColor opacity-95 duration-300 ease-in-out ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -61,23 +61,17 @@ const MobileNav = () => {
           className="fixed h-[16rem] w-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
         ></button>
-        <nav className="fixed mt-8 h-full">
+        <nav className="flex h-[100vh] flex-col items-center justify-evenly gap-4">
           {headerNavLinks.map((link, i) => {
             if (link.type !== 'dropdown') {
               return (
-                <div key={`${link}-${i}`} className="flex items-center px-12 py-4">
+                <div key={`${link}-${i}`} className="flex items-center justify-center px-12 py-4">
                   <Link
                     href={link.href}
-                    className="mono-type text-2xl font-bold tracking-widest text-gray-100"
+                    className="mono-type text-4xl font-bold tracking-widest text-gray-100"
                     onClick={onToggleNav}
                   >
                     {link.title}
-                  </Link>
-                  <Link href={link.href}>
-                    <ChevronRightIcon
-                      className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
-                      aria-hidden="true"
-                    />
                   </Link>
                 </div>
               )
@@ -86,19 +80,16 @@ const MobileNav = () => {
             return (
               <div key={`${link}-${i}`}>
                 {link.links.map((item, i) => (
-                  <div key={`${item.href}-${i}`} className="flex items-center px-12 py-4">
+                  <div
+                    key={`${item.href}-${i}`}
+                    className="flex items-center justify-center px-12 py-4"
+                  >
                     <Link
                       href={item.href}
                       className="mono-type text-2xl font-bold tracking-widest text-gray-100"
                       onClick={onToggleNav}
                     >
                       {item.title}
-                    </Link>
-                    <Link href={item.href}>
-                      <ChevronRightIcon
-                        className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
-                        aria-hidden="true"
-                      />
                     </Link>
                   </div>
                 ))}

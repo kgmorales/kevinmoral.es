@@ -58,6 +58,7 @@ module.exports = {
         logoColor: '#46CDCF',
         darkSecondary: '#25282A',
         customDark: '#181A18',
+        themeColor: 'rgb(64, 64, 64)',
       },
       typography: (theme) => ({
         DEFAULT: {
