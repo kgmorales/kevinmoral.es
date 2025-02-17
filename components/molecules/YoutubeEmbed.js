@@ -19,7 +19,10 @@ const YoutubeEmbed = ({ embedId }) => {
             priority
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <button className="rounded-full bg-black bg-opacity-50 p-4" alt="youtube play button">
+            <button
+              className="rounded-full bg-black bg-opacity-50 p-4"
+              aria-label="youtube plaay button"
+            >
               <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>

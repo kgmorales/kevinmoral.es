@@ -37,7 +37,10 @@ function SocialLink({ icon: Icon, href, ariaLabel }) {
   return (
     <Link href={href} legacyBehavior>
       <a className="-m-1 p-1" aria-label={ariaLabel}>
-        <Icon className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200" />
+        <Icon
+          alt={ariaLabel}
+          className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200"
+        />
       </a>
     </Link>
   )
