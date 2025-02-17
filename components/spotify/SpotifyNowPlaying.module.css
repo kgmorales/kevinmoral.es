@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   /* Start at 80px wide, only showing wave side */
-  width: 90px;
+  width: 72px;
   transition: width 0.4s ease;
   cursor: pointer;
   border: 1px solid rgb(64, 64, 64);
@@ -38,7 +38,7 @@
 
 /* The wave side is always 80px wide, pinned on the right. */
 .waveSide {
-  width: 90px;
+  width: 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
