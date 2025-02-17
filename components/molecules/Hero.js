@@ -8,6 +8,7 @@ import Purdue from '@/components/purdue/Purdue'
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMail } from 'react-icons/io5'
 import Link from 'next/link'
 import Notification from '@/components/atoms/Notification'
+import HeroPortrait from './HeroPortrait'
 
 const socialLinksData = [
   {
@@ -72,13 +73,8 @@ export default function Hero({ heroData }) {
   return (
     <div className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch">
       {/* Left side: portrait */}
-      <div className="flex justify-center md:w-1/2 lg:w-3/4">
-        <Image
-          priority={true}
-          src={portraitImage}
-          alt="portrait of Kevin Morales"
-          className="aspect-square rounded-2xl bg-zinc-100 object-cover"
-        />
+      <div className="flex justify-center sm:w-full md:w-1/2 lg:w-3/4">
+        <HeroPortrait />
       </div>
 
       {/* Right side */}

@@ -107,6 +107,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                           {author.twitter && (
                             <Link
                               href={author.twitter}
+                              alt="twitter"
                               className="text-primary-500 hover:text-primary-400"
                             >
                               {author.twitter.replace('https://twitter.com/', '@')}
@@ -160,7 +161,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 )}
               </div>
               <div className="sticky top-0 pt-4 xl:pt-8">
-                <Link href="/blog" className="text-primary-500 hover:text-primary-400">
+                <Link href="/blog" alt="blog" className="text-primary-500 hover:text-primary-400">
                   &larr; Back to blog
                 </Link>
                 <div className="hidden md:block">
