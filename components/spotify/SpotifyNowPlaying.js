@@ -76,7 +76,11 @@ export default function SpotifyNowPlaying({ spotify }) {
             </>
           )}
         </div>
-        <p className="text-xs">bangers {isPlaying ? 'on' : 'off'}</p>
+        {isPlaying ? (
+          <p className="text-xs text-white">bangers on</p>
+        ) : (
+          <p className={`text-xs ${styles.deadText} `}>bangers off</p>
+        )}
       </div>
     </div>
   )

@@ -83,15 +83,19 @@
   width: 6px;
   padding-bottom: 0.2rem;
   height: 0;
-  background: #ffffff;
+  background: rgb(125, 115, 115);
   border-radius: 2px;
   margin: 0 2px;
+}
+
+.deadText {
+  color: rgb(125, 115, 115);
 }
 
 /* If not playing => "Currently Chasing Toddlers" */
 .toddlers {
   color: #ccc;
-  font-size: 0.85rem;
+  text-align: center;
 }
 
 /* If playing => album + title + artist */
