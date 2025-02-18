@@ -1,22 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from '@/components/atoms/Link'
 import headerNavLinks from '@/data/headerNavLinks'
-import { ChevronRightIcon } from '@heroicons/react/solid'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
 
   const onToggleNav = () => {
-    setNavShow((status) => {
-      if (status) {
-        document.body.style.overflow = 'auto'
-      } else {
-        // Prevent scrolling
-        document.body.style.overflow = 'hidden'
-      }
-      return !status
-    })
+    setNavShow((prev) => !prev)
   }
+
+  // Block scrolling on both <body> and <html>
+  useEffect(() => {
+    if (navShow) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = 'auto'
+    }
+    return () => {
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = 'auto'
+    }
+  }, [navShow])
 
   return (
     <div className="sm:hidden">
@@ -51,17 +57,11 @@ const MobileNav = () => {
         )}
       </button>
       <div
-        className={`fixed right-0 top-28 z-10 -mt-6 h-[96rem] w-full transform bg-themeColor duration-300 ease-in-out ${
+        className={`fixed right-0 top-[5rem] z-10 h-[100vh] w-full transform bg-themeColor duration-300 ease-in-out ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <button
-          type="button"
-          aria-label="toggle modal"
-          className="fixed h-[16rem] w-full cursor-auto focus:outline-none"
-          onClick={onToggleNav}
-        ></button>
-        <nav className="flex h-[100vh] flex-col items-center justify-evenly gap-4">
+        <nav className="flex flex-col items-center justify-start gap-4 pt-20">
           {headerNavLinks.map((link, i) => {
             if (link.type !== 'dropdown') {
               return (
@@ -76,7 +76,6 @@ const MobileNav = () => {
                 </div>
               )
             }
-
             return (
               <div key={`${link}-${i}`}>
                 {link.links.map((item, i) => (
