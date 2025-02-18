@@ -19,18 +19,18 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
 
   return (
     <>
-      <div className="divide-y divide-gray-700">
-        <div className="space-y-2 pb-8 md:space-y-5">
+      <div className="flex w-full flex-col items-center divide-y divide-gray-700">
+        <div className="flex flex-col items-center  space-y-2 pb-8 md:space-y-5">
           <h1 className="tracking-tighttext-gray-100 text-3xl font-extrabold leading-9 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             {title}
           </h1>
-          <div className="relative max-w-lg">
+          <div className="relative flex w-full flex-col items-center justify-center">
             <input
               aria-label="Search articles"
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search articles"
-              className="block w-full rounded-lg border border-gray-900 bg-gray-800 px-4 py-2 text-gray-100 focus:border-primary-500 focus:ring-primary-500"
+              className="block w-[full] w-full rounded-lg border border-gray-900 bg-gray-800 px-4 py-2 text-gray-100 focus:border-primary-500 focus:ring-primary-500"
             />
             <svg
               className="absolute right-3 top-3 h-5 w-5 text-gray-300"

@@ -64,11 +64,11 @@ const Tools = [
     description: `All bangers, All the time`,
   },
   {
-    id: `alfred`,
+    id: `raycast`,
     category: [`mac`],
-    link: `https://www.alfredapp.com/`,
+    link: `https://www.raycast.com/`,
     labels: [`Productivity`],
-    name: `Alfred`,
+    name: `Raycast`,
     description: `Execute tasks and automation scripts`,
   },
   {
