@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Link from '@/components/atoms/Link'
 import headerNavLinks from '@/data/headerNavLinks'
+import Footer from '../Footer'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
@@ -9,7 +10,7 @@ const MobileNav = () => {
     setNavShow((prev) => !prev)
   }
 
-  // Block scrolling on both <body> and <html>
+  // Block scrolling on both <body> and <html> when the nav is open
   useEffect(() => {
     if (navShow) {
       document.body.style.overflow = 'hidden'
@@ -57,7 +58,7 @@ const MobileNav = () => {
         )}
       </button>
       <div
-        className={`fixed right-0 top-[5rem] z-10 h-[100vh] w-full transform bg-themeColor duration-300 ease-in-out ${
+        className={`fixed right-0 top-[5rem] z-10 flex h-[100vh] w-full transform flex-col bg-themeColor duration-300 ease-in-out ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -78,9 +79,9 @@ const MobileNav = () => {
             }
             return (
               <div key={`${link}-${i}`}>
-                {link.links.map((item, i) => (
+                {link.links.map((item, j) => (
                   <div
-                    key={`${item.href}-${i}`}
+                    key={`${item.href}-${j}`}
                     className="flex items-center justify-center px-12 py-4"
                   >
                     <Link
@@ -96,6 +97,9 @@ const MobileNav = () => {
             )
           })}
         </nav>
+        <div className="mt-[15rem]">
+          <Footer />
+        </div>
       </div>
     </div>
   )
