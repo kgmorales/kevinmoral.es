@@ -97,7 +97,7 @@ const MobileNav = () => {
             )
           })}
         </nav>
-        <div className="mt-[15rem]">
+        <div className="mt-[10rem]">
           <Footer />
         </div>
       </div>
