@@ -10,21 +10,6 @@ const MobileNav = () => {
     setNavShow((prev) => !prev)
   }
 
-  // Block scrolling on both <body> and <html> when the nav is open
-  useEffect(() => {
-    if (navShow) {
-      document.body.style.overflow = 'hidden'
-      document.documentElement.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'auto'
-      document.documentElement.style.overflow = 'auto'
-    }
-    return () => {
-      document.body.style.overflow = 'auto'
-      document.documentElement.style.overflow = 'auto'
-    }
-  }, [navShow])
-
   return (
     <div className="sm:hidden">
       <button
