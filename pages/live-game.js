@@ -35,14 +35,12 @@ function a11yProps(index) {
 
 // LeaderBio component – renders the athlete’s bio card in the style of your static example.
 function LeaderBio({ leader }) {
-  // leader contains: teamName, athleteName, athleteImage, stats, and (if available) athlete.position.abbreviation
   const position = leader.athlete?.position?.abbreviation || ''
   const playerNumber = leader.athlete?.jersey || ''
   return (
     <div className={styles.player}>
       <div className={styles.playerInfo}>
         <h2 className={styles.playerName}>{leader.athleteName}</h2>
-
         <dl className={styles.playerStats}>
           {Object.entries(leader.stats).map(([stat, value]) => (
             <div key={stat}>
@@ -64,7 +62,6 @@ function LeaderBio({ leader }) {
 }
 
 // LeaderTabsHorizontal renders a set of MUI Tabs – one tab per leader.
-// The tab icon is the athlete’s avatar (using MUI Avatar), and the content panel shows the LeaderBio.
 function LeaderTabsHorizontal({ leaders }) {
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
@@ -154,12 +151,11 @@ function getLeaderCards(competitor) {
       },
     }
   }, {})
-
   return Object.values(leaderMap)
 }
 
 function PurdueGame() {
-  // State: set game data initially from the constant liveData.
+  // Set game data initially from the constant liveData.
   const [gameData, setGameData] = useState(
     liveData?.events?.find((ev) => ev.shortName?.includes('PUR')) || {}
   )
@@ -167,15 +163,10 @@ function PurdueGame() {
   // Compute competition, competitors, and teams.
   const competition = useMemo(() => gameData?.competitions?.[0] || {}, [gameData])
   const competitors = useMemo(() => competition?.competitors || [], [competition])
-  const homeTeam = competitors[0] || {}
-  const awayTeam = competitors[1] || {}
-
-  // Determine if the game is live.
+  const homeTeam = useMemo(() => competitors[0] || {}, [competitors])
+  const awayTeam = useMemo(() => competitors[1] || {}, [competitors])
   const isGameLive = competition?.status?.type?.state === 'in'
 
-  console.log(gameData)
-
-  // Periodically fetch live data if the game is live.
   useEffect(() => {
     let intervalId
     const fetchLiveData = async () => {
@@ -197,11 +188,8 @@ function PurdueGame() {
     }
   }, [isGameLive])
 
-  // Compute leader cards for home and away teams.
   const homeLeaderCards = useMemo(() => getLeaderCards(homeTeam), [homeTeam])
   const awayLeaderCards = useMemo(() => getLeaderCards(awayTeam), [awayTeam])
-
-  // Build row data for AG Grid from team statistics.
   const rowData = useMemo(() => {
     if (!homeTeam.statistics || !awayTeam.statistics) return []
     const homeMap = {}
@@ -224,8 +212,6 @@ function PurdueGame() {
       awayValue: awayMap[statName] || '',
     }))
   }, [homeTeam, awayTeam])
-
-  // Define column definitions for AG Grid.
   const columnDefs = useMemo(
     () => [
       { headerName: 'Statistic', field: 'statName', flex: 1 },
@@ -267,9 +253,11 @@ function PurdueGame() {
             <div className={styles.logoContainer}>
               {homeTeam.team?.logo && (
                 <>
-                  <img
+                  <Image
                     src={homeTeam.team.logo}
                     alt={homeTeam.team.displayName}
+                    width={125}
+                    height={125}
                     className={styles.teamLogo}
                   />
                   <p>#{homeTeam.curatedRank.current}</p>
@@ -301,16 +289,17 @@ function PurdueGame() {
             <div className={styles.logoContainer}>
               {awayTeam.team?.logo && (
                 <>
-                  <img
+                  <Image
                     src={awayTeam.team.logo}
                     alt={awayTeam.team.displayName}
+                    width={125}
+                    height={125}
                     className={styles.teamLogo}
                   />
                   <p>#{awayTeam.curatedRank.current}</p>
                 </>
               )}
             </div>
-
             <h2 className={styles.teamName}>{awayTeam.team?.displayName}</h2>
           </div>
         </div>
