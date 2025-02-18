@@ -23,6 +23,7 @@ import Tab from '@mui/material/Tab'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Image from 'next/image'
 
 // A11y helper for Tabs:
 function a11yProps(index) {
@@ -56,7 +57,7 @@ function LeaderBio({ leader }) {
       <div className={styles.playerImage}>
         {playerNumber && <span className={styles.playerNumber}>#{playerNumber}</span>}
         {position && <span className={styles.badge}>{position}</span>}
-        <img src={leader.athleteImage} alt={leader.athleteName} />
+        <Image src={leader.athleteImage} alt={leader.athleteName} width={150} height={150} />
       </div>
     </div>
   )
@@ -153,6 +154,7 @@ function getLeaderCards(competitor) {
       },
     }
   }, {})
+
   return Object.values(leaderMap)
 }
 

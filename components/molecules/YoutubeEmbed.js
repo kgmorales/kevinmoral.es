@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import PropTypes from 'prop-types'
 
 const YoutubeEmbed = ({ embedId }) => {
   const [loaded, setLoaded] = useState(false)
@@ -40,10 +39,6 @@ const YoutubeEmbed = ({ embedId }) => {
       )}
     </div>
   )
-}
-
-YoutubeEmbed.propTypes = {
-  embedId: PropTypes.string.isRequired,
 }
 
 export default YoutubeEmbed

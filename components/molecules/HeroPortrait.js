@@ -13,7 +13,7 @@ export default function HeroPortrait() {
         src={portraitImage}
         alt="Portrait of Kevin Morales"
         objectFit="cover"
-        className="rounded-2xl"
+        className="rounded-[16px]"
       />
     </>
   )

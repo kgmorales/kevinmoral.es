@@ -7,6 +7,7 @@ import Live from './live/Live'
 import { Icons } from './consts/icons.constants'
 import * as utils from './utils/scoreboard.utils'
 import { fakeMidGame } from './consts/fakeMidGame.constants'
+import { motion, AnimatePresence } from 'framer-motion'
 
 // --- Main Component ---
 
@@ -51,59 +52,65 @@ const Scoreboard = ({ purdue }) => {
   }, [isGameLive])
 
   return (
-    <div className={styles.scoreboard}>
-      {isGameLive && (
-        <div className={styles.liveContainer}>
-          <Live time={vm.live?.time} />
-        </div>
-      )}
-
-      <div className={styles.teamContainer}>
-        {vm.teamInfo.map((team, index) => (
-          <React.Fragment key={index}>
-            {isGameLive ? (
-              <div className={styles.dividerLive}>
-                <p>VS</p>
-              </div>
-            ) : (
-              <div className={styles.dividerPreview}>
-                <p>VS</p>
-              </div>
-            )}
-            <div className={styles.team}>
-              {team.logo && (
-                <Image src={team.logo} alt={`${team.name} logo`} width={60} height={60} />
-              )}
-              <div className={styles.name}>{team.name}</div>
-              <span className={styles.rank}>{Number(team.rank) <= 25 ? `#${team.rank}` : ''}</span>
-              {isGameLive && <h6 className="ml-auto p-4">{vm.live?.scores[index]}</h6>}
+    <AnimatePresence exitBeforeEnter>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <div className={`${styles.scoreboard}`}>
+          {isGameLive && (
+            <div className={styles.liveContainer}>
+              <Live time={vm.live?.time} />
             </div>
-          </React.Fragment>
-        ))}
-      </div>
+          )}
 
-      <div className={styles.gameContainer}>
-        <div className={styles.gameAddress}>
-          {Icons.Address}
-          <p>{vm.gameInformation.address}</p>
+          <div className={styles.teamContainer}>
+            {vm.teamInfo.map((team, index) => (
+              <React.Fragment key={index}>
+                {isGameLive ? (
+                  <div className={styles.dividerLive}>
+                    <p>VS</p>
+                  </div>
+                ) : (
+                  <div className={styles.dividerPreview}>
+                    <p>VS</p>
+                  </div>
+                )}
+                <div className={styles.team}>
+                  {team.logo && (
+                    <Image src={team.logo} alt={`${team.name} logo`} width={60} height={60} />
+                  )}
+                  <div className={styles.name}>{team.name}</div>
+                  <span className={styles.rank}>
+                    {Number(team.rank) <= 25 ? `#${team.rank}` : ''}
+                  </span>
+                  {isGameLive && <h6 className="ml-auto p-4">{vm.live?.scores[index]}</h6>}
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className={styles.gameContainer}>
+            <div className={styles.gameAddress}>
+              {Icons.Address}
+              <p>{vm.gameInformation.address}</p>
+            </div>
+            <div className={styles.gameInfo}>
+              <p className={styles.gameInfoLine}>
+                {Icons.Watch} : {vm.gameInformation.watch}
+              </p>
+              {!isGameLive && (
+                <p className={styles.gameInfoLine}>
+                  {Icons.Calendar} : {vm.gameInformation.date}
+                </p>
+              )}
+              {isGameLive && vm.live && (
+                <p className={styles.gameInfoLine}>
+                  {Icons.Time} : {vm.live.time}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
-        <div className={styles.gameInfo}>
-          <p className={styles.gameInfoLine}>
-            {Icons.Watch} : {vm.gameInformation.watch}
-          </p>
-          {!isGameLive && (
-            <p className={styles.gameInfoLine}>
-              {Icons.Calendar} : {vm.gameInformation.date}
-            </p>
-          )}
-          {isGameLive && vm.live && (
-            <p className={styles.gameInfoLine}>
-              {Icons.Time} : {vm.live.time}
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
