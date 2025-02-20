@@ -1,0 +1,58 @@
+/* Leader Section & Tabs */
+.leaderText {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.leaderSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.leaderColumn {
+  flex: 1;
+  min-width: 320px;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+/* MUI Tabs overrides */
+.leaderTabsContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.tabs {
+  border-bottom: 1px solid rgb(64, 64, 64);
+}
+
+.leaderTabPanel {
+  padding: 1rem;
+}
+
+/* MUI Tab Avatar styling */
+.tabAvatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* Bio container inside TabPanel */
+.bioContainer {
+  text-align: center;
+}
+
+.bioName {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.bioTeam {
+  margin-bottom: 1rem;
+  color: #ccc;
+}

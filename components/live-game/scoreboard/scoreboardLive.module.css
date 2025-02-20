@@ -1,0 +1,150 @@
+/* Base Mobile-First Styles */
+
+/* Scoreboard container */
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #171717;
+  border: 1px solid rgb(64, 64, 64);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Order on mobile: first team (home), second team (away), then match details */
+.scoreboard > .team:first-child {
+  order: 2;
+  width: 100%;
+  flex-direction: row;
+}
+
+.scoreboard > .team:last-child {
+  order: 3;
+  width: 100%;
+}
+
+.scoreboard > .matchDetails {
+  order: 1;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Each team row: show logo and score side by side */
+.team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  flex-direction: row-reverse;
+}
+
+/* Team container for logo (and team name) */
+.teamContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo container */
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+/* Team logo styling on mobile */
+.teamLogo {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+}
+
+/* Team name styling */
+.teamName {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Match score styling on mobile */
+.matchScore {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Score number styling */
+.scoreNumber {
+  color: #fff;
+}
+
+/* Match details styling */
+.matchDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: center;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.matchTime {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Larger Screens: Grid Layout (min-width: 769px) */
+
+/* Arrange into 5 columns: home logo | home score | game details | away score | away logo */
+@media (min-width: 769px) {
+  .scoreboard {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 2rem;
+  }
+
+  /* Away team logo (second teamContainer) */
+  .team {
+    flex-direction: row;
+    orphans: none;
+  }
+
+  /* Increase logo and font sizes on larger screens */
+  .teamLogo {
+    width: 125px;
+    height: 125px;
+  }
+
+  .teamName {
+    font-size: 1.25rem;
+  }
+
+  .matchScore {
+    font-size: 4rem;
+  }
+
+  .matchTime {
+    font-size: 2rem;
+  }
+  .matchDetails {
+    flex-direction: column;
+  }
+
+  .scoreboard > .team:first-child {
+    order: 1;
+  }
+
+  .scoreboard > .team:last-child {
+    order: 3;
+  }
+
+  .scoreboard > .matchDetails {
+    order: 2;
+  }
+}
