@@ -72,7 +72,7 @@ function LeaderTabsHorizontal({ leaders }) {
 export default function Leaders({ homeLeaderCards, awayLeaderCards }) {
   return (
     <>
-      <h2 className={styles.gameLeaders}>Game Leaders</h2>
+      <h3 className={styles.tableHeading}>Game Leaders</h3>
       <div className={styles.leaderSection}>
         <div className={styles.leaderColumn}>
           <LeaderTabsHorizontal leaders={homeLeaderCards} />

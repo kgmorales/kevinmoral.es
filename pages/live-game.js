@@ -10,8 +10,17 @@ import { extractPurdueGame } from '@/lib/scores/scores'
 import * as utils from '@/lib/utils/live-game/live-game'
 
 // Register AG Grid modules for v33+
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
+import { AllCommunityModule, ModuleRegistry, themeQuartz, colorSchemeDark } from 'ag-grid-community'
 ModuleRegistry.registerModules([AllCommunityModule])
+
+const myTheme = themeQuartz
+  .withPart(colorSchemeDark) // start with a dark color scheme
+  .withParams({
+    backgroundColor: '#171717',
+    headerBackgroundColor: '#171717',
+    headerTextColor: 'white',
+    borderColor: 'rgb(64, 64, 64)',
+  })
 
 // Dynamically import AgGridReact to avoid SSR issues.
 const AgGridReact = dynamic(() => import('ag-grid-react').then((mod) => mod.AgGridReact), {
@@ -24,7 +33,7 @@ function PurdueGame() {
     liveData?.events?.find((ev) => ev.shortName?.includes('PUR')) || {}
   )
 
-  // Extract competition and teams using our utility.
+  // Extract competition and teams
   const { competition, homeTeam, awayTeam, isGameLive } = useMemo(
     () => utils.extractTeams(gameData),
     [gameData]
@@ -82,7 +91,7 @@ function PurdueGame() {
       <Leaders homeLeaderCards={homeLeaderCards} awayLeaderCards={awayLeaderCards} />
       <h3 className={styles.tableHeading}>Statistics Table</h3>
       <div className={`ag-theme-alpine ${styles.gridWrapper}`}>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs} pagination paginationPageSize={10} />
+        <AgGridReact theme={myTheme} rowData={rowData} columnDefs={columnDefs} />
       </div>
     </div>
   )
