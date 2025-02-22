@@ -1,0 +1,106 @@
+.container {
+  background-color: #171717;
+  border-radius: 16px;
+  border: 1px solid rgb(64, 64, 64);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.spotifyContainer {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.musicContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 1rem;
+  width: 100%;
+}
+
+.albumArt {
+  flex-shrink: 0;
+}
+
+.image {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 180px;
+  overflow: hidden;
+}
+
+/* Marquee container for the track title */
+.trackTitleMarquee {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  width: 300px;
+  /* container width */
+  position: relative;
+}
+
+/* Animated marquee text */
+.marqueeText {
+  display: inline-block;
+  animation: marquee 5s linear infinite alternate;
+}
+
+/* When no marquee is needed */
+.normalText {
+  display: inline-block;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-1 * (100% - 150px)));
+  }
+}
+
+.albumName {
+  font-size: 1rem;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.artists {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.artistName {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+}
+
+.artistName:hover {
+  color: white;
+}
+
+.separator {
+  margin: 0 2px;
+}
+
+.infoText {
+  color: #ccc;
+  font-size: 1rem;
+}

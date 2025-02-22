@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import ScoreboardLive from '@/components/live-game/scoreboard/scoreboardLive'
+import ScoreboardLive from '@/components/live-game/scoreboardLive/scoreboardLive'
 import Leaders from '@/components/live-game/leader-tabs/leaders'
 import styles from './live-game.module.css'
 

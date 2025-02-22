@@ -46,6 +46,9 @@ module.exports = {
         neon: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff',
         normal: '2px 3px 5px 0px rgba(0, 0, 0, 0.25)',
       },
+      border: {
+        root: `1px solid rgb(64, 64, 64)`,
+      },
       fontSize: {
         '8.5xl': '7rem',
       },

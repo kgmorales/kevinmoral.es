@@ -30,8 +30,6 @@ function LeaderTabsHorizontal({ leaders }) {
         value={value}
         onChange={handleChange}
         aria-label="Leader Tabs"
-        variant="scrollable"
-        scrollButtons="auto"
         className={styles.tabs}
         TabIndicatorProps={{ style: { backgroundColor: 'rgb(64, 64, 64)' } }}
       >

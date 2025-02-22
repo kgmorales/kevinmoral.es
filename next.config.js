@@ -59,7 +59,15 @@ module.exports = withBundleAnalyzer({
     ]
   },
   images: {
-    domains: ['i.scdn.co', 'a.espncdn.com', 'img.youtube.com'],
+    domains: [
+      'i.scdn.co',
+      'a.espncdn.com',
+      'img.youtube.com',
+      'images-eds-ssl.xboxlive.com',
+      'image.api.playstation.com',
+      'static-resource.np.community.playstation.net',
+      'store-images.s-microsoft.com',
+    ],
   },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({

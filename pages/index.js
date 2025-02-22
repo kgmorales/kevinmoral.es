@@ -8,18 +8,24 @@ import Hero from '@/components/molecules/Hero'
 import Skills from '@/components/molecules/Skills'
 import RecentProjects from '@/components/molecules/RecentProjects'
 import { getPurdue } from '@/lib/purdue'
+import { getPlaystation } from '@/lib/playstation'
+import { getXbox } from '@/lib/xbox'
 
 export async function getServerSideProps() {
   try {
     const track = await getNowPlaying()
     const purdue = await getPurdue()
     const posts = await getAllFilesFrontMatter('blog')
+    const psn = await getPlaystation()
+    const xbox = await getXbox()
 
     return {
       props: {
         heroData: {
           spotify: track || null,
           purdue: purdue || null,
+          psn: psn || null,
+          xbox: xbox || null,
         },
         posts,
       },
@@ -31,6 +37,8 @@ export async function getServerSideProps() {
         heroData: {
           spotify: null,
           purdue: null,
+          psn: null,
+          xbox: null,
         },
         posts: [],
         error: err.message,

@@ -34,7 +34,7 @@ export default function ScoreboardLive({ homeTeam, awayTeam, competition }) {
           {competition?.status?.period}
           {competition?.status?.period === 1 ? 'st' : 'nd'} Half
         </span>
-        <span>
+        <span className={styles.location}>
           {competition?.venue?.address?.city}, {competition?.venue?.address?.state}
         </span>
       </div>

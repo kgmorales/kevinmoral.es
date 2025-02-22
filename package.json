@@ -35,6 +35,7 @@
     "next-themes": "^0.0.14",
     "postcss": "^8.4.31",
     "preact": "^10.6.2",
+    "psn-api": "^2.11.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.4.0",

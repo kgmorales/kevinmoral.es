@@ -1,0 +1,135 @@
+/* Container for the entire component */
+.container {
+  display: flex;
+  background-color: #171717;
+  color: white;
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* Tab panel styling */
+.tabPanel {
+  flex-grow: 1;
+}
+
+.tabPanelContent {
+  border: 1px solid rgb(64, 64, 64);
+  padding: 1rem;
+  border-radius: 0 16px 16px 0;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Profile content container */
+.profileContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Top row: Avatar and Gamer Tag */
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Avatar container */
+.avatarBox {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgb(64, 64, 64);
+}
+
+/* Avatar image */
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Online status indicator */
+.onlineIndicator {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  z-index: 999;
+}
+
+.online {
+  background-color: #4caf50;
+  border: 2px solid rgb(64, 64, 64);
+}
+
+.offline {
+  background-color: rgb(64, 64, 64);
+  border: 2px solid rgb(64, 64, 64);
+}
+
+/* Gamer Tag text container */
+.gamerTagBox {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gamer Score container */
+.gamerScoreBox {
+  display: flex;
+  gap: 16px;
+}
+
+/* Recently Played section */
+.recentlyPlayed {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.recentlyPlayedImgContainer {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.recentlyPlayedImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recentlyPlayedText {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Text styles */
+.label {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.value {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Logo wrapper for the tab icons */
+.logoWrapper {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

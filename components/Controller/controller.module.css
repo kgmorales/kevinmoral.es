@@ -1,0 +1,28 @@
+.action {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  border: 1px solid rgb(64, 64, 64);
+  border-radius: 16px;
+  padding: 0.5rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),
+    0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
+}
+
+.action:hover {
+  border-color: #fff;
+}
+
+/* The clickable button inside .action */
+.activeButton {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  transition: 0.3s ease-in-out;
+  z-index: 9;
+}
