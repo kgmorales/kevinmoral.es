@@ -6,23 +6,36 @@ import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import styles from './spotifyBio.module.css'
 import SpotifyLogo from '@/data/spotify.svg'
-
+const portraitImage = '/static/images/avatar.webp'
 export default function SpotifyNowPlayingBio({ spotify }) {
   const titleRef = useRef(null)
   const [isOverflowing, setIsOverflowing] = useState(false)
 
-  // Check if the title text overflows its container
   useEffect(() => {
     if (titleRef.current) {
       setIsOverflowing(titleRef.current.scrollWidth > titleRef.current.offsetWidth)
     }
   }, [spotify?.title])
 
+  // If not playing, show default image and text.
   if (!spotify || !spotify.isPlaying) {
     return (
-      <div className={styles.container}>
-        <p className={styles.infoText}>Not playing anything right now.</p>
-      </div>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <div className={styles.container}>
+            <div className={styles.defaultContent}>
+              <Image
+                src={portraitImage}
+                alt="Chasing these two"
+                width={300}
+                height={200}
+                className={styles.defaultImage}
+              />
+              <p className={styles.infoText}>Chasing these two</p>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     )
   }
 

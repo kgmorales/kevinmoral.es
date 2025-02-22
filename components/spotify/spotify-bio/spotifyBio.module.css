@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 16px;
 }
 
 .spotifyContainer {
@@ -71,7 +72,7 @@
   }
 
   to {
-    transform: translateX(calc(-1 * (100% - 150px)));
+    transform: translateX(calc(-1 * (100% - 300px)));
   }
 }
 
@@ -103,4 +104,17 @@
 .infoText {
   color: #ccc;
   font-size: 1rem;
+}
+
+/* Default content styles for not playing */
+.defaultContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.defaultImage {
+  border-radius: 8px;
+  object-fit: cover;
 }
