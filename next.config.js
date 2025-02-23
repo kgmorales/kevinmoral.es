@@ -6,7 +6,7 @@ const ContentSecurityPolicy = `
 default-src 'self';
 script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com www.google-analytics.com vitals.vercel-insights.com cdn.vercel-insights.com;
 style-src 'self' 'unsafe-inline' *.googleapis.com cdn.jsdelivr.net;
-frame-src youtube.com www.youtube.com;
+frame-src youtube.com www.youtube.com open.spotify.com;
 img-src * blob: data:;
 media-src 'self' *.buzzsprout.com;
 connect-src *;

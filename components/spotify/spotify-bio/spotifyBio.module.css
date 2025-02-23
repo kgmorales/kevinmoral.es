@@ -7,22 +7,28 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 16px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),
     0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
 .spotifyContainer {
   position: absolute;
   right: 10px;
   bottom: 10px;
+  cursor: pointer;
+  z-index: 999;
+  margin: 0 auto;
+  text-align: center;
+  background: #171717;
+  width: 40px;
+  height: 40px;
 }
 
 .musicContainer {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 1rem;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -31,7 +37,6 @@
 }
 
 .image {
-  border-radius: 8px;
   object-fit: cover;
 }
 
@@ -39,7 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-width: 180px;
+  max-width: 200px;
   overflow: hidden;
 }
 
@@ -53,17 +58,16 @@
   white-space: nowrap;
   display: block;
   width: 300px;
-  /* container width */
   position: relative;
 }
 
-/* Animated marquee text */
+/* Animated marquee text using dynamic overflow */
 .marqueeText {
   display: inline-block;
   animation: marquee 5s linear infinite alternate;
 }
 
-/* When no marquee is needed */
+/* Normal text if not overflowing */
 .normalText {
   display: inline-block;
 }
@@ -74,7 +78,7 @@
   }
 
   to {
-    transform: translateX(calc(-1 * (100% - 300px)));
+    transform: translateX(calc(-1 * var(--overflow-distance)));
   }
 }
 
@@ -117,6 +121,14 @@
 }
 
 .defaultImage {
-  border-radius: 8px;
+  border-radius: 16px;
   object-fit: cover;
+}
+
+/* Spotify player wrapper */
+.spotifyPlayerWrapper {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1rem;
+  /* No accordion height animation, simply display the iframe */
 }

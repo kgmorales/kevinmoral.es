@@ -64,17 +64,17 @@ function ProfileContent({ profile }) {
           </>
         )}
         <div className={styles.gamerTagBox}>
-          <span className={styles.label}>Gamer Tag</span>
+          <span className={styles.label}>Tag</span>
           <span className={styles.value}>{profile.gamerTag}</span>
         </div>
-      </div>
-      {/* Gamer Score */}
-      <div className={styles.gamerScoreBox}>
-        <span className={styles.label}>Gamer Score</span>
-        <div className={styles.value}>
-          {profile.gamerScore >= 1000
-            ? Math.floor(profile.gamerScore / 1000) + 'k'
-            : profile.gamerScore}
+        {/* Gamer Score */}
+        <div className={styles.gamerScoreBox}>
+          <span className={styles.label}>Score</span>
+          <div className={styles.value}>
+            {profile.gamerScore >= 1000
+              ? Math.floor(profile.gamerScore / 1000) + 'k'
+              : profile.gamerScore}
+          </div>
         </div>
       </div>
       {/* Recently Played Section */}
