@@ -10,7 +10,7 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.svg',
   image: '/static/images/logo.svg',
   blogImage: '/static/images/work.jpg',
-  socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/logo.svg',
   codepen: 'https://codepen.io/kevinmoral_es',
   email: 'hello@kevinmoral.es',
   github: 'https://github.com/kgmorales',
