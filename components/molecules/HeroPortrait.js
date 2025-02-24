@@ -6,7 +6,6 @@ export default function HeroPortrait() {
   return (
     <>
       <Image
-        priority
         width={900}
         height={500}
         placeholder="blur"
@@ -14,6 +13,7 @@ export default function HeroPortrait() {
         alt="Portrait of Kevin Morales"
         objectFit="cover"
         className="rounded-[16px]"
+        fetchpriority="high"
       />
     </>
   )
