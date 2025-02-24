@@ -7,9 +7,6 @@ import { Analytics } from '@vercel/analytics/react'
 import Hero from '@/components/molecules/Hero'
 import Skills from '@/components/molecules/Skills'
 import RecentProjects from '@/components/molecules/RecentProjects'
-import { getPurdue } from '@/lib/purdue'
-import { getPlaystation } from '@/lib/playstation'
-import { getXbox } from '@/lib/xbox'
 
 export async function getServerSideProps() {
   try {
