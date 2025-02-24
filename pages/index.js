@@ -25,7 +25,6 @@ export async function getServerSideProps() {
         heroData: {
           spotify: null,
         },
-        posts: [],
         error: err.message,
       },
     }
