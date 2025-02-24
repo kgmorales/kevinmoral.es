@@ -49,7 +49,7 @@ const securityHeaders = [
   },
 ]
 
-export default withBundleAnalyzer({
+module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   eslint: {
