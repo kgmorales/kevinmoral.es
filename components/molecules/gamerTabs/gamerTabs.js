@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Image from 'next/image'
-import Link from 'next/link'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -11,8 +10,6 @@ import XboxLogo from '@/data/xbox-logo.svg'
 import XboxLogoInactive from '@/data/xbox-logo-inactive.svg'
 import PsnLogo from '@/data/psn-logo.svg'
 import PsnLogoInactive from '@/data/psn-logo-inactive.svg'
-import { getPlaystation } from '@/lib/playstation'
-import { getXbox } from '@/lib/xbox'
 
 // Helper: TabPanel for accessible content rendering.
 function TabPanel(props) {

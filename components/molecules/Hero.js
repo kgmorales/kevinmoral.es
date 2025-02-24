@@ -108,11 +108,18 @@ export default function Hero({ heroData }) {
     setActiveView((prev) => (prev === 'spotify' ? 'bio' : 'spotify'))
   }
 
+  // Simulate delayed hydration for the bio text.
+  const [bioLoaded, setBioLoaded] = useState(false)
+  useEffect(() => {
+    // Adjust delay as needed.
+    const timer = setTimeout(() => setBioLoaded(true), 500)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div
       ref={containerRef}
       className="w-lg mx-auto my-10 flex flex-col gap-10 md:flex-row md:items-stretch"
-      // onClick here is no longer needed since we listen at document level
     >
       {/* Left side: portrait */}
       <div
@@ -145,14 +152,19 @@ export default function Hero({ heroData }) {
               <SpotifyNowPlayingBio spotify={spotify} />
             ) : (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <p className="text-base text-gray-600 dark:text-gray-400">
-                  I am a Full Stack Engineer with a foundation in Design and User Experience, I
-                  specialize in refining and optimizing code for maintainability, scalability, and
-                  reusability. My attention to detail and pattern recognition enhances the
-                  efficiency of the solutions I design and develop. I've taken projects from
-                  conception to deployment to maintenance, collaborating with teams of varying
-                  sizes. Ensuring that the requirements of all Users and stakeholders are addressed.
-                </p>
+                {bioLoaded ? (
+                  <p className="text-base text-gray-600 dark:text-gray-400">
+                    I am a Full Stack Engineer with a foundation in Design and User Experience, I
+                    specialize in refining and optimizing code for maintainability, scalability, and
+                    reusability. My attention to detail and pattern recognition enhances the
+                    efficiency of the solutions I design and develop. I've taken projects from
+                    conception to deployment to maintenance, collaborating with teams of varying
+                    sizes. Ensuring that the requirements of all Users and stakeholders are
+                    addressed.
+                  </p>
+                ) : (
+                  <div className="animate-pulse h-[264px] w-full rounded-md bg-[#2c2c2c]" />
+                )}
               </motion.div>
             )}
           </div>
