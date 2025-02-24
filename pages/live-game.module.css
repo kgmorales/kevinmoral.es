@@ -1,7 +1,6 @@
 /* Container & General Layout */
 .container {
   padding: 1rem;
-  font-family: 'Inter', sans-serif;
   background-color: #171717;
   display: flex;
   flex-direction: column;
