@@ -40,6 +40,10 @@ const Scoreboard = () => {
   // Determine if the game is live.
   const isGameLive = purdue?.team?.nextEvent?.[0]?.competitions?.[0]?.status?.type?.state === 'in'
 
+  // For mapping purposes, supply fallback values so that the layout always renders.
+  const teamInfo = loading ? [{}, {}] : vm.teamInfo
+  const gameInformation = loading ? {} : vm.gameInformation
+
   // Poll live data periodically if the game is live.
   useEffect(() => {
     if (!isGameLive || !vm) return
@@ -81,20 +85,20 @@ const Scoreboard = () => {
 
           {/* Teams */}
           <div className={styles.teamContainer}>
-            {vm?.teamInfo.map((team, index) => (
+            {teamInfo.map((team, index) => (
               <React.Fragment key={index}>
                 {isGameLive ? (
                   <div className={styles.dividerLive}>
-                    <p>VS</p>
+                    {loading ? <div className={styles.skeletonDivider}>VS</div> : <p>VS</p>}
                   </div>
                 ) : (
                   <div className={styles.dividerPreview}>
-                    <p>VS</p>
+                    {loading ? <div className={styles.skeletonDivider}>VS</div> : <p>VS</p>}
                   </div>
                 )}
                 <div className={styles.team}>
                   {/* Team Logo */}
-                  {loading ? (
+                  {loading || !team.logo ? (
                     <div className={styles.skeletonAvatar}></div>
                   ) : (
                     <Image src={team.logo} alt={`${team.name} logo`} width={60} height={60} />
@@ -130,32 +134,38 @@ const Scoreboard = () => {
           {/* Game Information */}
           <div className={styles.gameContainer}>
             <div className={styles.gameAddress}>
-              {Icons.Address}
+              {loading ? <span className={styles.skeletonIcon}></span> : Icons.Address}
               {loading ? (
-                <p className={styles.skeletonText}></p>
+                <p>
+                  <span className={styles.skeletonText}></span>
+                </p>
               ) : (
-                <p>{vm.gameInformation.address}</p>
+                <p>{gameInformation.address}</p>
               )}
             </div>
             <div className={styles.gameInfo}>
               <p className={styles.gameInfoLine}>
-                {Icons.Watch}:
-                {loading ? <p className={styles.skeletonText}></p> : ` ${vm.gameInformation.watch}`}
+                {Icons.Watch} :{' '}
+                {loading ? (
+                  <span className={styles.skeletonText}></span>
+                ) : (
+                  `${gameInformation.watch}`
+                )}
               </p>
               {!isGameLive && (
                 <p className={styles.gameInfoLine}>
-                  {Icons.Calendar}:
+                  {Icons.Calendar} :{' '}
                   {loading ? (
-                    <p className={styles.skeletonText}></p>
+                    <span className={styles.skeletonText}></span>
                   ) : (
-                    ` ${vm.gameInformation.date}`
+                    `${gameInformation.date}`
                   )}
                 </p>
               )}
               {isGameLive && vm?.live && (
                 <p className={styles.gameInfoLine}>
-                  {Icons.Time}
-                  {loading ? <div className={styles.skeletonText}></div> : ` ${vm.live.time}`}
+                  {Icons.Time} :{' '}
+                  {loading ? <span className={styles.skeletonText}></span> : `${vm.live.time}`}
                 </p>
               )}
             </div>
