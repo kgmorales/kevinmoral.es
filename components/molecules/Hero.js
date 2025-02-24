@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
+import { Roboto } from 'next/font/google'
 import { AnimatePresence, motion } from 'framer-motion'
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMail } from 'react-icons/io5'
 import Notification from '@/components/atoms/Notification'
@@ -138,7 +138,7 @@ export default function Hero({ heroData }) {
               <SpotifyNowPlayingBio spotify={spotify} />
             ) : (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <p className="text-base text-gray-600 dark:text-gray-400">
+                <p className="text-base dark:text-gray-400">
                   I am a Full Stack Engineer with a foundation in Design and User Experience, I
                   specialize in refining and optimizing code for maintainability, scalability, and
                   reusability. My attention to detail and pattern recognition enhances the

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Image from 'next/image'
+import Link from 'next/link'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { AnimatePresence, motion } from 'framer-motion'
