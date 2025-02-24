@@ -1,7 +1,5 @@
 import Script from 'next/script'
 
-import siteMetadata from '@/data/siteMetadata'
-
 const GAScript = () => {
   return (
     <>
@@ -10,7 +8,7 @@ const GAScript = () => {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${siteMetadata.analytics.googleAnalyticsId}');
+            gtag('config', '${process.env.GOOGLE_ANALYTICS_GID}');
         `}
       </Script>
     </>
