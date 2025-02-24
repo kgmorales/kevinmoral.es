@@ -1,7 +1,6 @@
 // pages/index.js
 import { PageSEO } from '@/components/atoms/SEO'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter } from '@/lib/mdx/mdx'
 import { getNowPlaying } from '@/lib/spotify/spotify'
 import { Analytics } from '@vercel/analytics/react'
 import Hero from '@/components/molecules/Hero'
@@ -11,14 +10,12 @@ import RecentProjects from '@/components/molecules/RecentProjects'
 export async function getServerSideProps() {
   try {
     const track = await getNowPlaying()
-    const posts = await getAllFilesFrontMatter('blog')
 
     return {
       props: {
         heroData: {
           spotify: track || null,
         },
-        posts,
       },
     }
   } catch (err) {
