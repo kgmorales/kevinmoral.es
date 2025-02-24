@@ -1,68 +1,87 @@
-// components/purdue/Scoreboard.js
+'use client'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
 import styles from './Scoreboard.module.css'
-import { extractPurdueGame } from '@/lib/scores/scores'
 import Live from './live/Live'
 import { Icons } from './consts/icons.constants'
 import * as utils from './utils/scoreboard.utils'
-import { fakeMidGame } from './consts/fakeMidGame.constants'
-import { motion, AnimatePresence } from 'framer-motion'
+import { extractPurdueGame } from '@/lib/scores/scores'
+import { getPurdue } from '@/lib/purdue'
 
-// --- Main Component ---
+const Scoreboard = () => {
+  // Local state for initial Purdue data.
+  const [purdue, setPurdue] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  // Local state for our view model.
+  const [vm, setVm] = useState(null)
 
-const Scoreboard = ({ purdue }) => {
-  // Extract the initial competition from the prop.
-  const initialCompetition = purdue?.team?.nextEvent?.[0]?.competitions?.[0] || {}
-
-  // Build the initial view model (vm) from the competition data.
-  const [vm, setVm] = useState(utils.getViewModel(initialCompetition))
-
-  // Determine if the game is live based on the competition status.
-  const isGameLive = initialCompetition?.status?.type?.state === 'in'
-  // const isGameLive = true
-
-  // Fetch live data periodically if the game is live.
+  // Fetch initial Purdue data on mount.
   useEffect(() => {
-    let intervalId
+    async function fetchInitialData() {
+      try {
+        const data = await getPurdue()
+        setPurdue(data)
+        // Extract the initial competition from the fetched data.
+        const initialCompetition = data?.team?.nextEvent?.[0]?.competitions?.[0] || {}
+        // Build the view model from the competition data.
+        setVm(utils.getViewModel(initialCompetition))
+        setLoading(false)
+      } catch (err) {
+        console.error('Error fetching initial Purdue data:', err)
+        setError(err.message)
+        setLoading(false)
+      }
+    }
+    fetchInitialData()
+  }, [])
 
-    const fetchLiveData = async () => {
+  // Determine if the game is live.
+  const isGameLive = purdue?.team?.nextEvent?.[0]?.competitions?.[0]?.status?.type?.state === 'in'
+
+  // Poll live data periodically if the game is live.
+  useEffect(() => {
+    if (!isGameLive || !vm) return
+    let intervalId
+    async function fetchLiveData() {
       try {
         const newGameData = await extractPurdueGame()
-        // const newGameData = utils.extractFakeData(fakeMidGame)
-
         if (newGameData) {
           const live = utils.getLiveSelectors(newGameData)
-          // Update the view model with the live data.
           setVm((prevVm) => ({ ...prevVm, live }))
         }
       } catch (error) {
         console.error('Error fetching live game data:', error)
       }
     }
+    fetchLiveData() // Initial fetch.
+    intervalId = setInterval(fetchLiveData, 20000)
+    return () => clearInterval(intervalId)
+  }, [isGameLive, vm])
 
-    if (isGameLive) {
-      fetchLiveData() // Initial fetch.
-      intervalId = setInterval(fetchLiveData, 20000)
-    }
-
-    return () => {
-      if (intervalId) clearInterval(intervalId)
-    }
-  }, [isGameLive])
+  if (error) {
+    return <p>Error: {error}</p>
+  }
 
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <div className={`${styles.scoreboard}`}>
+        <div className={styles.scoreboard}>
+          {/* Live Container */}
           {isGameLive && (
             <div className={styles.liveContainer}>
-              <Live time={vm.live?.time} />
+              {loading || !vm?.live ? (
+                <div className={styles.skeletonLive}></div>
+              ) : (
+                <Live time={vm.live.time} />
+              )}
             </div>
           )}
 
+          {/* Teams */}
           <div className={styles.teamContainer}>
-            {vm.teamInfo.map((team, index) => (
+            {vm?.teamInfo.map((team, index) => (
               <React.Fragment key={index}>
                 {isGameLive ? (
                   <div className={styles.dividerLive}>
@@ -74,36 +93,69 @@ const Scoreboard = ({ purdue }) => {
                   </div>
                 )}
                 <div className={styles.team}>
-                  {team.logo && (
+                  {/* Team Logo */}
+                  {loading ? (
+                    <div className={styles.skeletonAvatar}></div>
+                  ) : (
                     <Image src={team.logo} alt={`${team.name} logo`} width={60} height={60} />
                   )}
-                  <div className={styles.name}>{team.name}</div>
+                  {/* Team Name */}
+                  <div className={styles.name}>
+                    {loading || !team.name ? (
+                      <div className={styles.skeletonText}></div>
+                    ) : (
+                      team.name
+                    )}
+                  </div>
+                  {/* Team Rank */}
                   <span className={styles.rank}>
-                    {Number(team.rank) <= 25 ? `#${team.rank}` : ''}
+                    {loading ? (
+                      <div className={styles.skeletonRank}></div>
+                    ) : (
+                      Number(team.rank) < 25 && `#${team.rank}`
+                    )}
                   </span>
-                  {isGameLive && <h6 className="ml-auto p-4">{vm.live?.scores[index]}</h6>}
+                  {/* Live Score (if game is live) */}
+                  {isGameLive &&
+                    (loading || !vm?.live ? (
+                      <div className={styles.skeletonScore}></div>
+                    ) : (
+                      <h6 className="ml-auto p-4">{vm.live.scores[index]}</h6>
+                    ))}
                 </div>
               </React.Fragment>
             ))}
           </div>
 
+          {/* Game Information */}
           <div className={styles.gameContainer}>
             <div className={styles.gameAddress}>
               {Icons.Address}
-              <p>{vm.gameInformation.address}</p>
+              {loading ? (
+                <p className={styles.skeletonText}></p>
+              ) : (
+                <p>{vm.gameInformation.address}</p>
+              )}
             </div>
             <div className={styles.gameInfo}>
               <p className={styles.gameInfoLine}>
-                {Icons.Watch} : {vm.gameInformation.watch}
+                {Icons.Watch}:
+                {loading ? <p className={styles.skeletonText}></p> : ` ${vm.gameInformation.watch}`}
               </p>
               {!isGameLive && (
                 <p className={styles.gameInfoLine}>
-                  {Icons.Calendar} : {vm.gameInformation.date}
+                  {Icons.Calendar}:
+                  {loading ? (
+                    <p className={styles.skeletonText}></p>
+                  ) : (
+                    ` ${vm.gameInformation.date}`
+                  )}
                 </p>
               )}
-              {isGameLive && vm.live && (
+              {isGameLive && vm?.live && (
                 <p className={styles.gameInfoLine}>
-                  {Icons.Time} : {vm.live.time}
+                  {Icons.Time}
+                  {loading ? <div className={styles.skeletonText}></div> : ` ${vm.live.time}`}
                 </p>
               )}
             </div>

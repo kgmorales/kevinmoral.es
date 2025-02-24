@@ -77,7 +77,7 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
 }
 
 export default function Hero({ heroData }) {
-  const { spotify, purdue, psn, xbox } = heroData
+  const { spotify } = heroData
 
   // activeView can be "bio", "scoreboard", "gamerTabs", or "spotify"
   const [activeView, setActiveView] = useState('bio')
@@ -138,9 +138,9 @@ export default function Hero({ heroData }) {
             onClick={(e) => e.stopPropagation()}
           >
             {activeView === 'scoreboard' ? (
-              <Scoreboard purdue={purdue} />
+              <Scoreboard />
             ) : activeView === 'gamerTabs' ? (
-              <GamerTabs psn={psn} xbox={xbox} />
+              <GamerTabs />
             ) : activeView === 'spotify' ? (
               <SpotifyNowPlayingBio spotify={spotify} />
             ) : (

@@ -14,14 +14,12 @@ import { getXbox } from '@/lib/xbox'
 export async function getServerSideProps() {
   try {
     const track = await getNowPlaying()
-    const purdue = await getPurdue()
     const posts = await getAllFilesFrontMatter('blog')
 
     return {
       props: {
         heroData: {
           spotify: track || null,
-          purdue: purdue || null,
         },
         posts,
       },
