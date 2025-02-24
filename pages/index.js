@@ -27,7 +27,6 @@ export async function getServerSideProps() {
       props: {
         heroData: {
           spotify: null,
-          purdue: null,
         },
         posts: [],
         error: err.message,
@@ -36,7 +35,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ heroData, posts, error }) {
+export default function Home({ heroData, error }) {
   if (error) {
     return (
       <div>
