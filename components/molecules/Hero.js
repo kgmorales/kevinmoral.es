@@ -1,16 +1,9 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { AnimatePresence, motion } from 'framer-motion'
-import {
-  IoLogoCodepen,
-  IoLogoGithub,
-  IoLogoLinkedin,
-  IoLogoTwitter,
-  IoLogoSpotify,
-  IoMail,
-} from 'react-icons/io5'
+import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMail } from 'react-icons/io5'
 import Notification from '@/components/atoms/Notification'
 import HeroPortrait from './HeroPortrait'
 import SpotifyNowPlayingBio from '@/components/spotify/spotify-bio/spotifyBio'
@@ -42,6 +35,11 @@ const socialLinksData = [
     icon: IoLogoCodepen,
   },
 ]
+
+const BioText = dynamic(() => import('@/components/atoms/Bio'), {
+  ssr: false,
+  loading: () => <div className="animate-pulse h-24 rounded-md bg-gray-700" />,
+})
 
 function SocialLink({ icon: Icon, href, ariaLabel }) {
   return (
@@ -145,14 +143,7 @@ export default function Hero({ heroData }) {
               <SpotifyNowPlayingBio spotify={spotify} />
             ) : (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <p className="text-base text-gray-600 dark:text-gray-400">
-                  I am a Full Stack Engineer with a foundation in Design and User Experience, I
-                  specialize in refining and optimizing code for maintainability, scalability, and
-                  reusability. My attention to detail and pattern recognition enhances the
-                  efficiency of the solutions I design and develop. I've taken projects from
-                  conception to deployment to maintenance, collaborating with teams of varying
-                  sizes. Ensuring that the requirements of all Users and stakeholders are addressed.
-                </p>
+                <BioText />
               </motion.div>
             )}
           </div>
