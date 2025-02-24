@@ -16,16 +16,12 @@ export async function getServerSideProps() {
     const track = await getNowPlaying()
     const purdue = await getPurdue()
     const posts = await getAllFilesFrontMatter('blog')
-    const psn = await getPlaystation()
-    const xbox = await getXbox()
 
     return {
       props: {
         heroData: {
           spotify: track || null,
           purdue: purdue || null,
-          psn: psn || null,
-          xbox: xbox || null,
         },
         posts,
       },
@@ -37,8 +33,6 @@ export async function getServerSideProps() {
         heroData: {
           spotify: null,
           purdue: null,
-          psn: null,
-          xbox: null,
         },
         posts: [],
         error: err.message,

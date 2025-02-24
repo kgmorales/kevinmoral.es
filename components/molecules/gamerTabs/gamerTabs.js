@@ -1,15 +1,18 @@
 'use client'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import Image from 'next/image'
+import Link from 'next/link'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion'
+import styles from './gamerTabs.module.css'
 import XboxLogo from '@/data/xbox-logo.svg'
 import XboxLogoInactive from '@/data/xbox-logo-inactive.svg'
 import PsnLogo from '@/data/psn-logo.svg'
 import PsnLogoInactive from '@/data/psn-logo-inactive.svg'
-import styles from './gamerTabs.module.css'
-import { AnimatePresence, motion } from 'framer-motion'
+import { getPlaystation } from '@/lib/playstation'
+import { getXbox } from '@/lib/xbox'
 
 // Helper: TabPanel for accessible content rendering.
 function TabPanel(props) {
@@ -39,23 +42,26 @@ function a11yProps(index) {
   }
 }
 
-// Component for displaying profile info.
-function ProfileContent({ profile }) {
+// Component for displaying profile info with skeleton placeholders.
+function ProfileContent({ profile, loading }) {
   return (
     <div className={styles.profileContent}>
-      {/* Top row: Avatar (with online indicator) and Gamer Tag */}
       <div className={styles.topRow}>
-        {profile.gamerPic && (
+        {loading ? (
+          <div className={styles.skeletonAvatar} />
+        ) : (
           <>
-            <div className={styles.avatarBox}>
-              <Image
-                src={profile.gamerPic}
-                alt={profile.gamerTag}
-                width={80}
-                height={80}
-                className={styles.avatarImg}
-              />
-            </div>
+            {profile.gamerPic && (
+              <div className={styles.avatarBox}>
+                <Image
+                  src={profile.gamerPic}
+                  alt={profile.gamerTag}
+                  width={80}
+                  height={80}
+                  className={styles.avatarImg}
+                />
+              </div>
+            )}
             <div
               className={`${styles.onlineIndicator} ${
                 profile.onlineStatus ? styles.online : styles.offline
@@ -65,39 +71,50 @@ function ProfileContent({ profile }) {
         )}
         <div className={styles.gamerTagBox}>
           <span className={styles.label}>Tag</span>
-          <span className={styles.value}>{profile.gamerTag}</span>
+          {loading ? (
+            <div className={styles.skeletonText} />
+          ) : (
+            <span className={styles.value}>{profile.gamerTag}</span>
+          )}
         </div>
-        {/* Gamer Score */}
         <div className={styles.gamerScoreBox}>
           <span className={styles.label}>Score</span>
-          <div className={styles.value}>
-            {profile.gamerScore >= 1000
-              ? Math.floor(profile.gamerScore / 1000) + 'k'
-              : profile.gamerScore}
-          </div>
+          {loading ? (
+            <div className={styles.skeletonTextShort} />
+          ) : (
+            <div className={styles.value}>
+              {profile.gamerScore >= 1000
+                ? Math.floor(profile.gamerScore / 1000) + 'k'
+                : profile.gamerScore}
+            </div>
+          )}
         </div>
       </div>
-      {/* Recently Played Section */}
-      {profile.recentlyPlayed && (
-        <div className={styles.recentlyPlayed}>
-          <div className={styles.recentlyPlayedImgContainer}>
-            <Image
-              src={profile.recentlyPlayed.displayImage}
-              alt={profile.recentlyPlayed.name}
-              width={60}
-              height={60}
-              className={styles.recentlyPlayedImg}
-            />
+      {loading ? (
+        <div className={styles.skeletonRecentlyPlayed} />
+      ) : (
+        profile.recentlyPlayed && (
+          <div className={styles.recentlyPlayed}>
+            <div className={styles.recentlyPlayedImgContainer}>
+              <Image
+                src={profile.recentlyPlayed.displayImage}
+                alt={profile.recentlyPlayed.name}
+                width={60}
+                height={60}
+                className={styles.recentlyPlayedImg}
+              />
+            </div>
+            <div className={styles.recentlyPlayedText}>
+              <span className={styles.label}>Recently Played</span>
+              <span className={styles.value}>{profile.recentlyPlayed.name}</span>
+            </div>
           </div>
-          <div className={styles.recentlyPlayedText}>
-            <span className={styles.label}>Recently Played</span>
-            <span className={styles.value}>{profile.recentlyPlayed.name}</span>
-          </div>
-        </div>
+        )
       )}
     </div>
   )
 }
+
 ProfileContent.propTypes = {
   profile: PropTypes.shape({
     gamerTag: PropTypes.string,
@@ -109,14 +126,39 @@ ProfileContent.propTypes = {
       displayImage: PropTypes.string,
     }),
   }),
+  loading: PropTypes.bool,
 }
 
-export default function GamerTabs({ psn, xbox }) {
-  // Use 0 for Xbox, 1 for PSN.
-  const [value, setValue] = React.useState(0)
+export default function GamerTabs() {
+  // Local state for fetched data and loading/error states.
+  const [psn, setPsn] = useState(null)
+  const [xbox, setXbox] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  // Tab control state
+  const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch('/api/gamerData')
+        if (!res.ok) throw new Error('Failed to fetch gamer data')
+        const data = await res.json()
+        setPsn(data.psn)
+        setXbox(data.xbox)
+        setLoading(false)
+      } catch (err) {
+        setError(err.message)
+        setLoading(false)
+      }
+    }
+    fetchData()
+  }, [])
+
+  if (error) return <p>Error: {error}</p>
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -155,10 +197,10 @@ export default function GamerTabs({ psn, xbox }) {
             />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <ProfileContent profile={xbox} />
+            <ProfileContent profile={xbox} loading={loading} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <ProfileContent profile={psn} />
+            <ProfileContent profile={psn} loading={loading} />
           </TabPanel>
         </div>
       </motion.div>

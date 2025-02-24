@@ -1,0 +1,55 @@
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+.skeletonAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #2c2c2c;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonText {
+  width: 150px;
+  height: 20px;
+  background-color: #2c2c2c;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonTextShort {
+  width: 100px;
+  height: 20px;
+  background-color: #2c2c2c;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonIcons {
+  display: flex;
+  gap: 8px;
+}
+
+.skeletonIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #2c2c2c;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
