@@ -42,6 +42,11 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
+  {
+    key: 'Cache-Control',
+    // Cache static assets for one year
+    value: 'public, max-age=31536000, immutable',
+  },
 ]
 
 module.exports = withBundleAnalyzer({

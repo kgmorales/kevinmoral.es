@@ -6,6 +6,7 @@ export default async function handler(req, res) {
   try {
     const psn = await getPlaystation()
     const xbox = await getXbox()
+    res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=600')
     res.status(200).json({ psn, xbox })
   } catch (error) {
     console.error('Error in API route:', error)
