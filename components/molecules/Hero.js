@@ -1,7 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Roboto } from 'next/font/google'
 import { AnimatePresence, motion } from 'framer-motion'
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMail } from 'react-icons/io5'
 import Notification from '@/components/atoms/Notification'
