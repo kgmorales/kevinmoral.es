@@ -22,6 +22,10 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000" />
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+          <meta
+            name="google-site-verification"
+            content="e3uXjJg-dvdU4RVQ82DydrMDRGkWi6RM_FY2ZEcAHjU"
+          />
         </Head>
         <body className=" bg-gray-900 text-white antialiased">
           <Main />
