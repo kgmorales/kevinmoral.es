@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-JK3YG6KYBM`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -45,7 +45,7 @@ export default function App({ Component, pageProps }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_GID}');
+          gtag('config', 'G-JK3YG6KYBM');
         `}
       </Script>
       <LayoutWrapper>
