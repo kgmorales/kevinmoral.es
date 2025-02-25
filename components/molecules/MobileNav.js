@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+'use client'
+import React, { useState, useEffect } from 'react'
 import Link from '@/components/atoms/Link'
 import headerNavLinks from '@/data/headerNavLinks'
 import Footer from '../Footer'
@@ -9,6 +10,21 @@ const MobileNav = () => {
   const onToggleNav = () => {
     setNavShow((prev) => !prev)
   }
+
+  // Lock page scroll when navShow is true.
+  useEffect(() => {
+    if (navShow) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [navShow])
 
   return (
     <div className="sm:hidden">
