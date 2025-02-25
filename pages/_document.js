@@ -1,14 +1,9 @@
-import GAScript from '@/components/analytics/GoogleAnalytics'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-
-const isProduction = process.env.NODE_ENV === 'production'
-
 class MyDocument extends Document {
   render() {
     return (
       <Html lang="en" className="scroll-smooth">
         <Head>
-          {isProduction && <GAScript />}
           <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
           <link
             rel="icon"

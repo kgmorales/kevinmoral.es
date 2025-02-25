@@ -3,7 +3,7 @@ import Script from 'next/script'
 const GAScript = () => {
   return (
     <>
-      <Script strategy="afterInteractive" id="ga-script">
+      <Script strategy="lazyOnload" id="ga-script">
         {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
