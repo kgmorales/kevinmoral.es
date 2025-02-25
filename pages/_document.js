@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+
 class MyDocument extends Document {
   render() {
     return (
@@ -22,6 +23,18 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000" />
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-JK3YG6KYBM"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments)}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-JK3YG6KYBM');
+              `,
+            }}
+          ></script>
         </Head>
         <body className=" bg-gray-900 text-white antialiased">
           <Main />
