@@ -89,11 +89,11 @@ const Scoreboard = () => {
               <React.Fragment key={index}>
                 {isGameLive ? (
                   <div className={styles.dividerLive}>
-                    {loading ? <div className={styles.skeletonDivider}>VS</div> : <p>VS</p>}
+                    <p>VS</p>
                   </div>
                 ) : (
                   <div className={styles.dividerPreview}>
-                    {loading ? <div className={styles.skeletonDivider}>VS</div> : <p>VS</p>}
+                    <p>VS</p>
                   </div>
                 )}
                 <div className={styles.team}>
