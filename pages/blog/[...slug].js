@@ -1,6 +1,6 @@
 import fs from 'fs'
 import PageTitle from '@/components/atoms/PageTitle'
-import generateRss from '@/lib/generate-rss'
+import generateRss from '@/lib/utils/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx/mdx'
 

@@ -6,8 +6,8 @@ import Leaders from '@/components/live-game/leader-tabs/leaders'
 import styles from './live-game.module.css'
 
 import { liveData } from '@/data/live-data'
-import { extractPurdueGame } from '@/lib/scores/scores'
-import * as utils from '@/lib/utils/live-game/live-game'
+import { extractPurdueGame } from '@/lib/purdue'
+import * as utils from '@/lib/purdue/live-game'
 
 // Register AG Grid modules for v33+
 import { AllCommunityModule, ModuleRegistry, themeQuartz, colorSchemeDark } from 'ag-grid-community'

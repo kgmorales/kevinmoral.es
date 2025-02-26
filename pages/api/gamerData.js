@@ -1,6 +1,5 @@
 import redis from '@/lib/redis'
-import { getPlaystation } from '@/lib/playstation/playstation'
-import { getXbox } from '@/lib/xbox'
+import { getPlaystation, getXbox } from '@/lib/gaming'
 
 export default async function handler(req, res) {
   try {
@@ -24,7 +23,7 @@ export default async function handler(req, res) {
       await redis.setex('psn_refresh_token', 300, psn.refreshToken)
     }
 
-    // Build the aggregated gamer data.
+    // Build the gamer data.
     const gamerData = { psn, xbox }
 
     // Cache the aggregated gamer data in Redis for 5 minutes.

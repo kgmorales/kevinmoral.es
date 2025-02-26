@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import styles from './spotifyBio.module.css'
-import SpotifyLogo from '@/data/spotify.svg'
+import SpotifyLogo from '@/data/logos/spotify.svg'
 const portraitImage = '/static/images/avatar.webp'
 
 export default function SpotifyNowPlayingBio({ spotify }) {

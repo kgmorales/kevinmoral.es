@@ -1,7 +1,5 @@
 'use client'
 import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 import styles from './SpotifyNowPlaying.module.css'
 
 export default function SpotifyNowPlaying({ isActive, onToggle, spotify }) {

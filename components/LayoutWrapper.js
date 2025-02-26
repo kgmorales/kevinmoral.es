@@ -1,5 +1,5 @@
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
+import Logo from '@/data/logos/logo.svg'
 import Link from './atoms/Link'
 import SectionContainer from './SectionContainer'
 import Footer from '@/components/Footer'

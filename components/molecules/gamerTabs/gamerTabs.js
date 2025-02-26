@@ -6,10 +6,10 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { AnimatePresence, motion } from 'framer-motion'
 import styles from './gamerTabs.module.css'
-import XboxLogo from '@/data/xbox-logo.svg'
-import XboxLogoInactive from '@/data/xbox-logo-inactive.svg'
-import PsnLogo from '@/data/psn-logo.svg'
-import PsnLogoInactive from '@/data/psn-logo-inactive.svg'
+import XboxLogo from '@/data/logos/xbox-logo.svg'
+import XboxLogoInactive from '@/data/logos/xbox-logo-inactive.svg'
+import PsnLogo from '@/data/logos/psn-logo.svg'
+import PsnLogoInactive from '@/data/logos/psn-logo-inactive.svg'
 
 // Helper: TabPanel for accessible content rendering.
 function TabPanel(props) {
@@ -110,20 +110,6 @@ function ProfileContent({ profile, loading }) {
       )}
     </div>
   )
-}
-
-ProfileContent.propTypes = {
-  profile: PropTypes.shape({
-    gamerTag: PropTypes.string,
-    gamerScore: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    gamerPic: PropTypes.string,
-    onlineStatus: PropTypes.bool,
-    recentlyPlayed: PropTypes.shape({
-      name: PropTypes.string,
-      displayImage: PropTypes.string,
-    }),
-  }),
-  loading: PropTypes.bool,
 }
 
 export default function GamerTabs() {

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Purdue.module.css'
-import PurdueLogo from '@/data/logo-purdue.svg'
-import PurdueLogoWhite from '@/data/logo-purdue-white.svg'
+import PurdueLogo from '@/data/logos/logo-purdue.svg'
+import PurdueLogoWhite from '@/data/logos/logo-purdue-white.svg'
 
 export default function Purdue({ isActive, onToggle }) {
   return (

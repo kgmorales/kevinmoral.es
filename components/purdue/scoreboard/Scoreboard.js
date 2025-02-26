@@ -6,8 +6,7 @@ import styles from './Scoreboard.module.css'
 import Live from './live/Live'
 import { Icons } from './consts/icons.constants'
 import * as utils from './utils/scoreboard.utils'
-import { extractPurdueGame } from '@/lib/scores/scores'
-import { getPurdue } from '@/lib/purdue'
+import { getPurdue, extractPurdueGame } from '@/lib/purdue'
 
 const Scoreboard = () => {
   // Local state for initial Purdue data.
