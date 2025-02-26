@@ -9,7 +9,7 @@ import SpotifyNowPlayingBio from '@/components/spotify/spotify-bio/spotifyBio'
 import Scoreboard from '@/components/purdue/scoreboard/Scoreboard'
 import Purdue from '@/components/purdue/Purdue'
 import GamerTabs from '@/components/molecules/gamerTabs/gamerTabs'
-import Controller from '@/components/Controller/Controller'
+import Controller from '@/components/controller/Controller'
 import SpotifyNowPlaying from '../spotify/SpotifyNowPlaying'
 
 const socialLinksData = [
