@@ -102,7 +102,7 @@ function ProfileContent({ profile, loading }) {
               />
             </div>
             <div className={styles.recentlyPlayedText}>
-              <span className={styles.label}>Recently Played</span>
+              <span className={styles.label}>Last Played</span>
               <span className={styles.value}>{profile.recentlyPlayed.name}</span>
             </div>
           </div>
