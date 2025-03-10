@@ -39,7 +39,7 @@ function PurdueGame() {
     [gameData]
   )
 
-  // Poll for live updates if the game is in progress.
+  // Poll for live
   useEffect(() => {
     let intervalId
     const fetchLiveData = async () => {
