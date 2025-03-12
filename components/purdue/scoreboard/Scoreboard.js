@@ -18,39 +18,48 @@ const Scoreboard = () => {
 
   // Fetch initial Purdue data on mount.
   useEffect(() => {
+    let isMounted = true
     async function fetchInitialData() {
       try {
         const data = await getPurdue()
-        setPurdue(data)
-        // Extract the initial competition from the fetched data.
-        const initialCompetition = data?.team?.nextEvent?.[0]?.competitions?.[0] || {}
-        // Build the view model from the competition data.
-        setVm(utils.getViewModel(initialCompetition))
-        setLoading(false)
+        if (isMounted) {
+          setPurdue(data)
+          // Extract the initial competition from the fetched data.
+          const initialCompetition = data?.team?.nextEvent?.[0]?.competitions?.[0] || {}
+          // Build the view model from the competition data.
+          setVm(utils.getViewModel(initialCompetition))
+          setLoading(false)
+        }
       } catch (err) {
         console.error('Error fetching initial Purdue data:', err)
-        setError(err.message)
-        setLoading(false)
+        if (isMounted) {
+          setError(err.message)
+          setLoading(false)
+        }
       }
     }
     fetchInitialData()
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   // Determine if the game is live.
   const isGameLive = purdue?.team?.nextEvent?.[0]?.competitions?.[0]?.status?.type?.state === 'in'
 
   // For mapping purposes, supply fallback values so that the layout always renders.
-  const teamInfo = loading ? [{}, {}] : vm.teamInfo
-  const gameInformation = loading ? {} : vm.gameInformation
+  const teamInfo = loading ? [{}, {}] : vm?.teamInfo
+  const gameInformation = loading ? {} : vm?.gameInformation
 
   // Poll live data periodically if the game is live.
   useEffect(() => {
     if (!isGameLive || !vm) return
+    let isMounted = true
     let intervalId
     async function fetchLiveData() {
       try {
         const newGameData = await extractPurdueGame()
-        if (newGameData) {
+        if (isMounted && newGameData) {
           const live = utils.getLiveSelectors(newGameData)
           setVm((prevVm) => ({ ...prevVm, live }))
         }
@@ -60,7 +69,10 @@ const Scoreboard = () => {
     }
     fetchLiveData() // Initial fetch.
     intervalId = setInterval(fetchLiveData, 20000)
-    return () => clearInterval(intervalId)
+    return () => {
+      isMounted = false
+      clearInterval(intervalId)
+    }
   }, [isGameLive, vm])
 
   if (error) {
@@ -96,12 +108,14 @@ const Scoreboard = () => {
                   </div>
                 )}
                 <div className={styles.team}>
-                  {/* Team Logo */}
-                  {loading || !team.logo ? (
+                  {/* Team Logo or TBD text */}
+                  {loading || !team.name ? (
                     <div className={styles.skeletonAvatar}></div>
-                  ) : (
+                  ) : team.isTBD ? (
+                    <div className={styles.tbdLogo}>TBD</div>
+                  ) : team.logo ? (
                     <Image src={team.logo} alt={`${team.name} logo`} width={60} height={60} />
-                  )}
+                  ) : null}
                   {/* Team Name */}
                   <div className={styles.name}>
                     {loading || !team.name ? (

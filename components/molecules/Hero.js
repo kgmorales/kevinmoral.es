@@ -131,9 +131,9 @@ export default function Hero({ heroData }) {
           >
             {activeView === 'scoreboard' ? (
               <Scoreboard />
-            ) : activeView === 'gamerTabs' ? (
-              <GamerTabs />
-            ) : activeView === 'spotify' ? (
+            ) : // ) : activeView === 'gamerTabs' ? (
+            //   <GamerTabs />
+            activeView === 'spotify' ? (
               <SpotifyNowPlayingBio spotify={spotify} />
             ) : (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -156,7 +156,7 @@ export default function Hero({ heroData }) {
           onClick={(e) => e.stopPropagation()}
         >
           <Purdue isActive={activeView === 'scoreboard'} onToggle={togglePurdue} />
-          <Controller isActive={activeView === 'gamerTabs'} onToggle={toggleController} />
+          {/* <Controller isActive={activeView === 'gamerTabs'} onToggle={toggleController} /> */}
           <SpotifyNowPlaying
             isActive={activeView === 'spotify'}
             onToggle={toggleSpotify}
