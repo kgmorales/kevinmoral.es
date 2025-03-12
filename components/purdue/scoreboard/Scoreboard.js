@@ -147,11 +147,9 @@ const Scoreboard = () => {
           {/* Game Information */}
           <div className={styles.gameContainer}>
             <div className={styles.gameAddress}>
-              {loading ? <span className={styles.skeletonIcon}></span> : Icons.Address}
+              {Icons.Address}
               {loading ? (
-                <p>
-                  <span className={styles.skeletonText}></span>
-                </p>
+                <span className={styles.skeletonText}></span>
               ) : (
                 <p>{gameInformation.address}</p>
               )}
