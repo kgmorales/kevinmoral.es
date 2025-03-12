@@ -126,7 +126,7 @@ export default function Hero({ heroData }) {
         {/* Content area with animated transitions */}
         <AnimatePresence exitBeforeEnter>
           <div
-            className="flex min-h-[280px] flex-col transition duration-500 ease-in-out"
+            className="flex min-h-[230px] flex-col transition duration-500 ease-in-out"
             onClick={(e) => e.stopPropagation()}
           >
             {activeView === 'scoreboard' ? (
@@ -138,12 +138,11 @@ export default function Hero({ heroData }) {
             ) : (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <p className="text-base dark:text-gray-400">
-                  I am a Full Stack Engineer with a foundation in Design and User Experience, I
+                  I am a Full Stack Engineer with a foundation in Design and User Experience. I
                   specialize in refining and optimizing code for maintainability, scalability, and
-                  reusability. My attention to detail and pattern recognition enhances the
-                  efficiency of the solutions I design and develop. I've taken projects from
-                  conception to deployment to maintenance, collaborating with teams of varying
-                  sizes. Ensuring that the requirements of all Users and stakeholders are addressed.
+                  reusability. I've taken projects from conception to deployment to maintenance,
+                  collaborating with teams of varying sizes. Ensuring that the requirements of all
+                  Users and stakeholders are addressed.
                 </p>
               </motion.div>
             )}

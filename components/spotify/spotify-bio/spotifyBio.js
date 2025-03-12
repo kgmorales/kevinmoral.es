@@ -35,14 +35,16 @@ export default function SpotifyNowPlayingBio({ spotify }) {
         >
           <div className={styles.container}>
             <div className={styles.defaultContent}>
-              <Image
-                src={portraitImage}
-                alt="Chasing these two"
-                width={300}
-                height={200}
-                className={styles.defaultImage}
-              />
-              <p className={styles.infoText}>Chasing these two</p>
+              <iframe
+                style={{
+                  borderRadius: '16px',
+                }}
+                src="https://open.spotify.com/embed/playlist/0PIc8E5CiFEuIcX3KFaM4D?utm_source=generator&theme=0"
+                width="100%"
+                height="152"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
             </div>
           </div>
         </motion.div>
@@ -89,7 +91,7 @@ export default function SpotifyNowPlayingBio({ spotify }) {
                   }}
                   src="https://open.spotify.com/embed/playlist/0PIc8E5CiFEuIcX3KFaM4D?utm_source=generator&theme=0"
                   width="100%"
-                  height="352"
+                  height="300px"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
@@ -150,28 +152,4 @@ export default function SpotifyNowPlayingBio({ spotify }) {
       </motion.div>
     </AnimatePresence>
   )
-}
-
-SpotifyNowPlayingBio.propTypes = {
-  spotify: PropTypes.shape({
-    album: PropTypes.shape({
-      name: PropTypes.string,
-      href: PropTypes.string,
-      image: PropTypes.shape({
-        height: PropTypes.number,
-        href: PropTypes.string,
-        width: PropTypes.number,
-      }),
-    }),
-    artists: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        href: PropTypes.string,
-        id: PropTypes.string,
-      })
-    ),
-    href: PropTypes.string,
-    isPlaying: PropTypes.bool,
-    title: PropTypes.string,
-  }),
 }
