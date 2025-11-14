@@ -1,9 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMail } from 'react-icons/io5'
-import Notification from '@/components/atoms/Notification'
 import HeroPortrait from './HeroPortrait'
 import SpotifyNowPlayingBio from '@/components/spotify/spotify-bio/spotifyBio'
 import Scoreboard from '@/components/purdue/scoreboard/Scoreboard'
@@ -11,62 +8,7 @@ import Purdue from '@/components/purdue/Purdue'
 import GamerTabs from '@/components/molecules/gamerTabs/gamerTabs'
 import Controller from '@/components/molecules/controller/Controller'
 import SpotifyNowPlaying from '../spotify/SpotifyNowPlaying'
-
-const socialLinksData = [
-  {
-    href: 'https://github.com/kgmorales',
-    ariaLabel: 'Check out my Github',
-    icon: IoLogoGithub,
-  },
-  {
-    href: 'https://www.linkedin.com/in/kevingmorales/',
-    ariaLabel: 'Connect with me on LinkedIn',
-    icon: IoLogoLinkedin,
-  },
-  {
-    href: 'https://twitter.com/kevinmoral_es',
-    ariaLabel: 'Check out my Twitter',
-    icon: IoLogoTwitter,
-  },
-  {
-    href: 'https://codepen.io/kevinmoral_es/',
-    ariaLabel: 'Check out my codepen',
-    icon: IoLogoCodepen,
-  },
-]
-
-function SocialLink({ icon: Icon, href, ariaLabel }) {
-  return (
-    <Link href={href} legacyBehavior>
-      <a className="-m-1 p-1" aria-label={ariaLabel}>
-        <Icon
-          alt={ariaLabel}
-          className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200"
-        />
-      </a>
-    </Link>
-  )
-}
-
-function CopyToClipboard({ icon: Icon, text, ...props }) {
-  const [show, setShow] = useState(false)
-
-  const handleClick = () => {
-    navigator.clipboard.writeText(text.contact)
-    setShow(true)
-    setTimeout(() => setShow(false), 3000)
-  }
-
-  return (
-    <div className="-m-1 p-1" {...props}>
-      <Icon
-        className="h-10 w-10 cursor-pointer fill-gray-500 transition hover:fill-gray-200"
-        onClick={handleClick}
-      />
-      <Notification show={show} setShow={setShow} text={text} />
-    </div>
-  )
-}
+import SocialLinks from '../atoms/SocialLinks'
 
 export default function Hero({ heroData }) {
   const { spotify } = heroData
@@ -165,15 +107,8 @@ export default function Hero({ heroData }) {
         </div>
 
         {/* Social links and copy-to-clipboard */}
-        <div className="flex justify-between gap-6 pt-5" onClick={(e) => e.stopPropagation()}>
-          {socialLinksData.map((link, index) => (
-            <SocialLink key={index} href={link.href} aria-label={link.ariaLabel} icon={link.icon} />
-          ))}
-          <CopyToClipboard
-            text={{ contact: 'hello@kevinmoral.es', type: 'Email' }}
-            aria-label="Send me an email"
-            icon={IoMail}
-          />
+        <div className="flex justify-between pt-5" onClick={(e) => e.stopPropagation()}>
+          <SocialLinks />
         </div>
       </div>
     </div>

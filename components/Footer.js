@@ -1,17 +1,13 @@
 import Link from './atoms/Link'
 import siteMetadata from '@/data/siteMetadata'
-import SocialIcon from '@/components/social-icons'
+import SocialLinks from './atoms/SocialLinks'
 
 export default function Footer() {
   return (
     <footer>
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
-          <SocialIcon kind="github" href={siteMetadata.github} />
-          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} />
-          <SocialIcon kind="twitter" href={siteMetadata.twitter} />
-          <SocialIcon kind="codepen" href={siteMetadata.codepen} />
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} />
+          <SocialLinks />
         </div>
         <div className="mb-2 flex flex-col items-center space-x-2 text-sm text-gray-400 md:flex-row md:space-x-2">
           <div>{`© ${new Date().getFullYear()}`}</div>
