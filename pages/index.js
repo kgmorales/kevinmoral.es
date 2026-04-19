@@ -3,6 +3,7 @@ import { PageSEO } from '@/components/atoms/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getNowPlaying } from '@/lib/spotify/spotify'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import Hero from '@/components/molecules/Hero'
 import Skills from '@/components/molecules/Skills'
 import RecentProjects from '@/components/molecules/RecentProjects'
@@ -47,6 +48,7 @@ export default function Home({ heroData, error }) {
       <Hero heroData={heroData} />
       <Skills />
       <RecentProjects MAX_PROJECTS="4" />
+      <SpeedInsights />
       <Analytics />
     </>
   )
