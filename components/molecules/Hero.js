@@ -8,8 +8,6 @@ import HeroPortrait from './HeroPortrait'
 import SpotifyNowPlayingBio from '@/components/spotify/spotify-bio/spotifyBio'
 import Scoreboard from '@/components/purdue/scoreboard/Scoreboard'
 import Purdue from '@/components/purdue/Purdue'
-import GamerTabs from '@/components/molecules/gamerTabs/gamerTabs'
-import Controller from '@/components/molecules/controller/Controller'
 import SpotifyNowPlaying from '../spotify/SpotifyNowPlaying'
 
 const socialLinksData = [
@@ -71,7 +69,7 @@ function CopyToClipboard({ icon: Icon, text, ...props }) {
 export default function Hero({ heroData }) {
   const { spotify } = heroData
 
-  // activeView can be "bio", "scoreboard", "gamerTabs", or "spotify"
+  // activeView can be "bio", "scoreboard", or "spotify"
   const [activeView, setActiveView] = useState('bio')
   const containerRef = useRef(null)
 
@@ -90,10 +88,6 @@ export default function Hero({ heroData }) {
   const togglePurdue = (e) => {
     e.stopPropagation()
     setActiveView((prev) => (prev === 'scoreboard' ? 'bio' : 'scoreboard'))
-  }
-  const toggleController = (e) => {
-    e.stopPropagation()
-    setActiveView((prev) => (prev === 'gamerTabs' ? 'bio' : 'gamerTabs'))
   }
   const toggleSpotify = (e) => {
     e.stopPropagation()
@@ -131,9 +125,7 @@ export default function Hero({ heroData }) {
           >
             {activeView === 'scoreboard' ? (
               <Scoreboard />
-            ) : // ) : activeView === 'gamerTabs' ? (
-            //   <GamerTabs />
-            activeView === 'spotify' ? (
+            ) : activeView === 'spotify' ? (
               <SpotifyNowPlayingBio spotify={spotify} />
             ) : (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -156,7 +148,6 @@ export default function Hero({ heroData }) {
           onClick={(e) => e.stopPropagation()}
         >
           <Purdue isActive={activeView === 'scoreboard'} onToggle={togglePurdue} />
-          {/* <Controller isActive={activeView === 'gamerTabs'} onToggle={toggleController} /> */}
           <SpotifyNowPlaying
             isActive={activeView === 'spotify'}
             onToggle={toggleSpotify}

@@ -1,4 +1,6 @@
 // pages/index.js
+export const config = { runtime: 'experimental-edge' }
+
 import { PageSEO } from '@/components/atoms/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getNowPlaying } from '@/lib/spotify/spotify'
