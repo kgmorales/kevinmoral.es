@@ -1,6 +1,4 @@
 // pages/index.js
-export const config = { runtime: 'experimental-edge' }
-
 import { PageSEO } from '@/components/atoms/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getNowPlaying } from '@/lib/spotify/spotify'
@@ -9,7 +7,7 @@ import Hero from '@/components/molecules/Hero'
 import Skills from '@/components/molecules/Skills'
 import RecentProjects from '@/components/molecules/RecentProjects'
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const track = await getNowPlaying()
 
@@ -21,7 +19,7 @@ export async function getServerSideProps() {
       },
     }
   } catch (err) {
-    console.error('SSR error in getServerSideProps:', err)
+    console.error('Build-time error in getStaticProps:', err)
     return {
       props: {
         heroData: {
