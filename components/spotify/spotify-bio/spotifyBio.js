@@ -1,12 +1,8 @@
-'use client'
 import React, { useState, useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import styles from './spotifyBio.module.css'
 import SpotifyLogo from '@/data/logos/spotify.svg'
-const portraitImage = '/static/images/avatar.webp'
 
 export default function SpotifyNowPlayingBio({ spotify }) {
   const containerRef = useRef(null)
@@ -23,7 +19,9 @@ export default function SpotifyNowPlayingBio({ spotify }) {
     }
   }, [spotify?.title])
 
-  // If not playing, show default image and text.
+  const containerClass =
+    'rounded-2xl border border-neutral-700 bg-themeColor p-4 shadow-[0_1px_1px_rgba(0,0,0,0.1),0_2px_2px_rgba(0,0,0,0.1),0_4px_4px_rgba(0,0,0,0.1),0_8px_8px_rgba(0,0,0,0.1),0_16px_16px_rgba(0,0,0,0.1)]'
+
   if (!spotify || !spotify.isPlaying) {
     return (
       <AnimatePresence exitBeforeEnter>
@@ -33,12 +31,10 @@ export default function SpotifyNowPlayingBio({ spotify }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className={styles.container}>
-            <div className={styles.defaultContent}>
+          <div className={containerClass}>
+            <div className="flex flex-col items-center gap-2">
               <iframe
-                style={{
-                  borderRadius: '16px',
-                }}
+                className="rounded-2xl"
                 src="https://open.spotify.com/embed/playlist/0PIc8E5CiFEuIcX3KFaM4D?utm_source=generator&theme=0"
                 width="100%"
                 height="152"
@@ -62,10 +58,9 @@ export default function SpotifyNowPlayingBio({ spotify }) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className={styles.container}>
-          {/* Spotify Logo at bottom-right; clicking toggles the view */}
+        <div className={containerClass}>
           <div
-            className={styles.spotifyContainer}
+            className="absolute bottom-[10px] right-[10px] z-[999] mx-auto h-10 w-10 cursor-pointer bg-themeColor text-center"
             onClick={(e) => {
               e.stopPropagation()
               setIsExpanded(!isExpanded)
@@ -77,18 +72,14 @@ export default function SpotifyNowPlayingBio({ spotify }) {
             {isExpanded ? (
               <motion.div
                 key="spotifyPlayer"
-                className={styles.spotifyPlayerWrapper}
+                className="mt-4 w-full overflow-hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
                 <iframe
-                  style={{
-                    borderRadius: '16px',
-                    color: '#171717',
-                    boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
-                  }}
+                  className="rounded-2xl text-themeColor shadow-[0_1px_1px_rgba(0,0,0,0.1)]"
                   src="https://open.spotify.com/embed/playlist/0PIc8E5CiFEuIcX3KFaM4D?utm_source=generator&theme=0"
                   width="100%"
                   height="300px"
@@ -104,43 +95,48 @@ export default function SpotifyNowPlayingBio({ spotify }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className={styles.musicContainer}
+                className="flex w-full items-center gap-4"
               >
-                <div className={styles.albumArt}>
+                <div className="shrink-0">
                   {album?.image?.href && (
                     <Image
                       src={album.image.href}
                       alt={album.name}
                       width={120}
                       height={120}
-                      className={styles.image}
+                      className="object-cover"
                     />
                   )}
                 </div>
-                <div className={styles.details}>
+                <div className="flex max-w-[200px] flex-col gap-2 overflow-hidden">
                   <Link href={href} legacyBehavior>
-                    <a ref={containerRef} className={styles.trackTitleMarquee}>
+                    <a
+                      ref={containerRef}
+                      className="relative block w-[300px] overflow-hidden whitespace-nowrap text-xl font-bold text-white no-underline"
+                    >
                       <span
                         ref={textRef}
                         style={
                           isOverflowing ? { '--overflow-distance': `${overflowDistance}px` } : {}
                         }
-                        className={isOverflowing ? styles.marqueeText : styles.normalText}
+                        className={isOverflowing ? 'inline-block animate-marquee' : 'inline-block'}
                       >
                         {title}
                       </span>
                     </a>
                   </Link>
                   <Link href={album?.href || '#'} legacyBehavior>
-                    <a className={styles.albumName}>{album?.name}</a>
+                    <a className="text-base text-[#aaa] no-underline">{album?.name}</a>
                   </Link>
-                  <div className={styles.artists}>
+                  <div className="text-[0.9rem] text-[#ccc]">
                     {artists?.map((artist, index) => (
                       <React.Fragment key={artist.id}>
                         <Link href={artist.href} legacyBehavior>
-                          <a className={styles.artistName}>{artist.name}</a>
+                          <a className="text-inherit no-underline transition-colors duration-300 hover:text-white">
+                            {artist.name}
+                          </a>
                         </Link>
-                        {index < artists.length - 1 && <span className={styles.separator}>, </span>}
+                        {index < artists.length - 1 && <span className="mx-[2px]">, </span>}
                       </React.Fragment>
                     ))}
                   </div>

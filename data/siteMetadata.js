@@ -4,7 +4,6 @@ const siteMetadata = {
   headerTitle: 'Kevin Morales - Full Stack Engineer',
   description: 'Kevin Morales | Full Stack Engineer | Chicago, IL',
   language: 'en-us',
-  theme: 'dark', // system, dark or light
   siteUrl: 'https://kevinmoral.es',
   siteRepo: 'https://github.com/kgmorales/kevinmoral.es',
   siteLogo: '/static/images/logo.svg',

@@ -2,9 +2,6 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  experimental: {
-    optimizeUniversalDefaults: true,
-  },
   content: [
     './pages/**/*.js',
     './components/**/*.js',
@@ -17,6 +14,9 @@ module.exports = {
     animation: {
       wiggle: 'wiggle 1s ease-in-out infinite',
       'photo-spin': 'photo-spin 2s 1 linear forwards',
+      blinker: 'blinker 1.2s cubic-bezier(0.5, 0, 1, 1) infinite alternate',
+      equalizer: 'equalizer 1.9s steps(20, end) infinite',
+      marquee: 'marquee 5s linear infinite alternate',
     },
     keyframes: {
       wiggle: {
@@ -27,9 +27,44 @@ module.exports = {
         '0%': { transform: 'rotate(0deg)' },
         '100%': { transform: 'rotate(360deg)' },
       },
+      blinker: {
+        from: { opacity: '0.9' },
+        to: { opacity: '0.1' },
+      },
+      equalizer: {
+        '0%': { height: '60%' },
+        '4%': { height: '50%' },
+        '8%': { height: '40%' },
+        '12%': { height: '30%' },
+        '16%': { height: '20%' },
+        '20%': { height: '30%' },
+        '24%': { height: '40%' },
+        '28%': { height: '10%' },
+        '32%': { height: '40%' },
+        '36%': { height: '60%' },
+        '40%': { height: '20%' },
+        '44%': { height: '40%' },
+        '48%': { height: '70%' },
+        '52%': { height: '30%' },
+        '56%': { height: '10%' },
+        '60%': { height: '30%' },
+        '64%': { height: '50%' },
+        '68%': { height: '60%' },
+        '72%': { height: '70%' },
+        '76%': { height: '80%' },
+        '80%': { height: '70%' },
+        '84%': { height: '60%' },
+        '88%': { height: '50%' },
+        '92%': { height: '60%' },
+        '96%': { height: '70%' },
+        '100%': { height: '80%' },
+      },
+      marquee: {
+        from: { transform: 'translateX(0)' },
+        to: { transform: 'translateX(calc(-1 * var(--overflow-distance, 0px)))' },
+      },
     },
     extend: {
-      aspectRatio: ['responsive'], // Add this line
       spacing: {
         '9/16': '56.25%',
       },
@@ -45,9 +80,6 @@ module.exports = {
       boxShadow: {
         neon: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff',
         normal: '2px 3px 5px 0px rgba(0, 0, 0, 0.25)',
-      },
-      border: {
-        root: `1px solid rgb(64, 64, 64)`,
       },
       fontSize: {
         '8.5xl': '7rem',
@@ -197,9 +229,5 @@ module.exports = {
       }),
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }

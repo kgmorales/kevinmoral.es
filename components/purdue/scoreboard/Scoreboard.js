@@ -1,22 +1,19 @@
-'use client'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import styles from './Scoreboard.module.css'
 import Live from './live/Live'
 import { Icons } from './consts/icons.constants'
 import * as utils from './utils/scoreboard.utils'
 import { getPurdue, extractPurdueGame } from '@/lib/purdue'
 
+const skeletonBase = 'animate-pulse bg-[#2c2c2c] rounded'
+
 const Scoreboard = () => {
-  // Local state for initial Purdue data.
   const [purdue, setPurdue] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  // Local state for our view model.
   const [vm, setVm] = useState(null)
 
-  // Fetch initial Purdue data on mount.
   useEffect(() => {
     let isMounted = true
     async function fetchInitialData() {
@@ -24,9 +21,7 @@ const Scoreboard = () => {
         const data = await getPurdue()
         if (isMounted) {
           setPurdue(data)
-          // Extract the initial competition from the fetched data.
           const initialCompetition = data?.team?.nextEvent?.[0]?.competitions?.[0] || {}
-          // Build the view model from the competition data.
           setVm(utils.getViewModel(initialCompetition))
           setLoading(false)
         }
@@ -44,14 +39,11 @@ const Scoreboard = () => {
     }
   }, [])
 
-  // Determine if the game is live.
   const isGameLive = purdue?.team?.nextEvent?.[0]?.competitions?.[0]?.status?.type?.state === 'in'
 
-  // For mapping purposes, supply fallback values so that the layout always renders.
   const teamInfo = loading ? [{}, {}] : vm?.teamInfo
   const gameInformation = loading ? {} : vm?.gameInformation
 
-  // Poll live data periodically if the game is live.
   useEffect(() => {
     if (!isGameLive || !vm) return
     let isMounted = true
@@ -67,7 +59,7 @@ const Scoreboard = () => {
         console.error('Error fetching live game data:', error)
       }
     }
-    fetchLiveData() // Initial fetch.
+    fetchLiveData()
     intervalId = setInterval(fetchLiveData, 20000)
     return () => {
       isMounted = false
@@ -82,60 +74,54 @@ const Scoreboard = () => {
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <div className={styles.scoreboard}>
-          {/* Live Container */}
+        <div className="relative flex w-full flex-col rounded-2xl border border-neutral-700 bg-themeColor shadow-normal">
           {isGameLive && (
-            <div className={styles.liveContainer}>
+            <div className="absolute left-[72%] top-[7%] -translate-x-1/2 -translate-y-1/2">
               {loading || !vm?.live ? (
-                <div className={styles.skeletonLive}></div>
+                <div className={`${skeletonBase} h-[60px] w-[60px] rounded-full`}></div>
               ) : (
                 <Live time={vm.live.time} />
               )}
             </div>
           )}
 
-          {/* Teams */}
-          <div className={styles.teamContainer}>
+          <div className="flex flex-col">
             {teamInfo.map((team, index) => (
               <React.Fragment key={index}>
                 {isGameLive ? (
-                  <div className={styles.dividerLive}>
+                  <div className="absolute left-[115px] top-[77px] w-full">
                     <p>VS</p>
                   </div>
                 ) : (
-                  <div className={styles.dividerPreview}>
+                  <div className="absolute left-[115px] top-[65px] w-full">
                     <p>VS</p>
                   </div>
                 )}
-                <div className={styles.team}>
-                  {/* Team Logo or TBD text */}
+                <div className="flex w-full items-center gap-2 border-b border-neutral-700 p-2 text-[20pt] text-white">
                   {loading || !team.name ? (
-                    <div className={styles.skeletonAvatar}></div>
+                    <div className={`${skeletonBase} h-[60px] w-[60px] rounded-full`}></div>
                   ) : team.isTBD ? (
-                    <div className={styles.tbdLogo}>TBD</div>
+                    <div>TBD</div>
                   ) : team.logo ? (
                     <Image src={team.logo} alt={`${team.name} logo`} width={60} height={60} />
                   ) : null}
-                  {/* Team Name */}
-                  <div className={styles.name}>
+                  <div className="flex shrink-0 justify-center tracking-[2px]">
                     {loading || !team.name ? (
-                      <div className={styles.skeletonText}></div>
+                      <div className={`${skeletonBase} h-5 w-[120px]`}></div>
                     ) : (
                       team.name
                     )}
                   </div>
-                  {/* Team Rank */}
-                  <span className={styles.rank}>
+                  <span className="mb-4 text-base">
                     {loading ? (
-                      <div className={styles.skeletonRank}></div>
+                      <div className={`${skeletonBase} h-5 w-10`}></div>
                     ) : (
                       Number(team.rank) < 25 && `#${team.rank}`
                     )}
                   </span>
-                  {/* Live Score (if game is live) */}
                   {isGameLive &&
                     (loading || !vm?.live ? (
-                      <div className={styles.skeletonScore}></div>
+                      <div className={`${skeletonBase} h-5 w-[50px]`}></div>
                     ) : (
                       <h6 className="ml-auto p-4">{vm.live.scores[index]}</h6>
                     ))}
@@ -144,39 +130,42 @@ const Scoreboard = () => {
             ))}
           </div>
 
-          {/* Game Information */}
-          <div className={styles.gameContainer}>
-            <div className={styles.gameAddress}>
+          <div className="flex h-full flex-row">
+            <div className="flex flex-col items-center justify-start gap-2 rounded-bl-2xl border-r border-neutral-700 p-2 text-center">
               {Icons.Address}
               {loading ? (
-                <span className={styles.skeletonText}></span>
+                <span className={`${skeletonBase} h-5 w-[120px]`}></span>
               ) : (
                 <p>{gameInformation.address}</p>
               )}
             </div>
-            <div className={styles.gameInfo}>
-              <p className={styles.gameInfoLine}>
+            <div className="flex flex-col items-start justify-start gap-2 rounded-l-2xl bg-themeColor p-2 text-center">
+              <p className="flex flex-row justify-start">
                 {Icons.Watch} :{' '}
                 {loading ? (
-                  <span className={styles.skeletonText}></span>
+                  <span className={`${skeletonBase} h-5 w-[120px]`}></span>
                 ) : (
                   `${gameInformation.watch}`
                 )}
               </p>
               {!isGameLive && (
-                <p className={styles.gameInfoLine}>
+                <p className="flex flex-row justify-start">
                   {Icons.Calendar} :{' '}
                   {loading ? (
-                    <span className={styles.skeletonText}></span>
+                    <span className={`${skeletonBase} h-5 w-[120px]`}></span>
                   ) : (
                     `${gameInformation.date}`
                   )}
                 </p>
               )}
               {isGameLive && vm?.live && (
-                <p className={styles.gameInfoLine}>
+                <p className="flex flex-row justify-start">
                   {Icons.Time} :{' '}
-                  {loading ? <span className={styles.skeletonText}></span> : `${vm.live.time}`}
+                  {loading ? (
+                    <span className={`${skeletonBase} h-5 w-[120px]`}></span>
+                  ) : (
+                    `${vm.live.time}`
+                  )}
                 </p>
               )}
             </div>

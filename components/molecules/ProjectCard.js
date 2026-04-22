@@ -6,7 +6,7 @@ import { MdOutlineLink } from 'react-icons/md'
 import YoutubeEmbed from './YoutubeEmbed'
 
 const ProjectCard = ({ title, description, imgSrc, href, tools, deployed, embedId, logoSrc }) => (
-  <div className="card">
+  <div className="mt-[30%] flex max-w-2xl flex-col-reverse items-center gap-8 rounded-lg bg-darkSecondary p-5 shadow-md transition-all sm:mt-8 sm:flex-row sm:p-10">
     {embedId ? (
       <div className="medium relative hidden w-full shrink-0 overflow-hidden rounded-lg shadow-2xl before:inset-0 before:z-10  sm:-mt-0 sm:w-1/2 md:-ml-[35%] md:block md:w-8/12">
         <YoutubeEmbed embedId={embedId} />

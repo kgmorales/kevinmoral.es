@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
-import smoothscroll from 'smoothscroll-polyfill'
 
 const ScrollTop = () => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    smoothscroll.polyfill()
     const handleWindowScroll = () => {
       if (window.scrollY > 200) setShow(true)
       else setShow(false)

@@ -2,7 +2,6 @@ import { getAllFilesFrontMatter } from '@/lib/mdx/mdx'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSEO } from '@/components/atoms/SEO'
-import { Analytics } from '@vercel/analytics/react'
 
 export const POSTS_PER_PAGE = 10
 
@@ -27,7 +26,6 @@ export default function Blog({ posts, initialDisplayPosts, pagination }) {
         pagination={pagination}
         title="All Posts"
       />
-      <Analytics />
     </>
   )
 }

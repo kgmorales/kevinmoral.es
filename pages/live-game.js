@@ -1,45 +1,23 @@
-'use client'
 import React, { useState, useEffect, useMemo } from 'react'
-import dynamic from 'next/dynamic'
 import ScoreboardLive from '@/components/live-game/scoreboardLive/scoreboardLive'
 import Leaders from '@/components/live-game/leader-tabs/leaders'
-import styles from './live-game.module.css'
 
 import { liveData } from '@/data/live-data'
 import { extractPurdueGame } from '@/lib/purdue'
 import * as utils from '@/lib/purdue/live-game'
 
-// Register AG Grid modules for v33+
-import { AllCommunityModule, ModuleRegistry, themeQuartz, colorSchemeDark } from 'ag-grid-community'
-ModuleRegistry.registerModules([AllCommunityModule])
-
-const myTheme = themeQuartz
-  .withPart(colorSchemeDark) // start with a dark color scheme
-  .withParams({
-    backgroundColor: '#171717',
-    headerBackgroundColor: '#171717',
-    headerTextColor: 'white',
-    borderColor: 'rgb(64, 64, 64)',
-  })
-
-// Dynamically import AgGridReact to avoid SSR issues.
-const AgGridReact = dynamic(() => import('ag-grid-react').then((mod) => mod.AgGridReact), {
-  ssr: false,
-})
+const pageClass = 'flex w-full flex-col gap-8 bg-themeColor p-4 text-white'
 
 function PurdueGame() {
-  // Initialize game data from liveData.
   const [gameData, setGameData] = useState(
     liveData?.events?.find((ev) => ev.shortName?.includes('PUR')) || {}
   )
 
-  // Extract competition and teams
   const { competition, homeTeam, awayTeam, isGameLive } = useMemo(
     () => utils.extractTeams(gameData),
     [gameData]
   )
 
-  // Poll for live
   useEffect(() => {
     let intervalId
     const fetchLiveData = async () => {
@@ -61,37 +39,56 @@ function PurdueGame() {
     }
   }, [isGameLive])
 
-  // Prepare leader cards.
   const homeLeaderCards = useMemo(() => utils.getLeaderCards(homeTeam), [homeTeam])
   const awayLeaderCards = useMemo(() => utils.getLeaderCards(awayTeam), [awayTeam])
 
-  // Build grid data and columns using our utilities.
   const rowData = useMemo(() => utils.getRowData(homeTeam, awayTeam), [homeTeam, awayTeam])
-  const columnDefs = useMemo(() => utils.getColumnDefs(homeTeam, awayTeam), [homeTeam, awayTeam])
+  const homeLabel = homeTeam.team?.shortDisplayName || 'Home'
+  const awayLabel = awayTeam.team?.shortDisplayName || 'Away'
 
-  // Basic error handling.
   if (!gameData.id) {
     return (
-      <div className={styles.container}>
+      <div className={pageClass}>
         <h2>No Purdue game found!</h2>
       </div>
     )
   }
   if (!competition.uid) {
     return (
-      <div className={styles.container}>
+      <div className={pageClass}>
         <h2>No competition data.</h2>
       </div>
     )
   }
 
   return (
-    <div className={styles.container}>
+    <div className={pageClass}>
       <ScoreboardLive homeTeam={homeTeam} awayTeam={awayTeam} competition={competition} />
       <Leaders homeLeaderCards={homeLeaderCards} awayLeaderCards={awayLeaderCards} />
-      <h3 className={styles.tableHeading}>Statistics Table</h3>
-      <div className={`ag-theme-alpine ${styles.gridWrapper}`}>
-        <AgGridReact theme={myTheme} rowData={rowData} columnDefs={columnDefs} />
+      <h3 className="mb-4 text-center text-2xl font-semibold text-white">Statistics Table</h3>
+      <div className="overflow-x-auto rounded-2xl border border-neutral-700">
+        <table className="w-full border-collapse text-left">
+          <thead className="bg-themeColor text-white">
+            <tr>
+              <th className="border-b border-neutral-700 px-4 py-3 text-sm font-semibold"></th>
+              <th className="border-b border-neutral-700 px-4 py-3 text-sm font-semibold">
+                {homeLabel}
+              </th>
+              <th className="border-b border-neutral-700 px-4 py-3 text-sm font-semibold">
+                {awayLabel}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rowData.map((row) => (
+              <tr key={row.statName} className="odd:bg-themeColor even:bg-neutral-900">
+                <td className="px-4 py-2 text-sm">{row.statName}</td>
+                <td className="px-4 py-2 text-sm">{row.homeValue}</td>
+                <td className="px-4 py-2 text-sm">{row.awayValue}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )

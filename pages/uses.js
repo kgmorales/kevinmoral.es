@@ -3,7 +3,6 @@ import ToolsGrid from '@/components/molecules/ToolsGrid'
 import { PageSEO } from '@/components/atoms/SEO'
 import siteMetadata from '/data/siteMetadata'
 import { AiFillApple, AiOutlineMacCommand, AiOutlineDesktop } from 'react-icons/ai'
-import { Analytics } from '@vercel/analytics/react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Tools() {
@@ -100,7 +99,6 @@ export default function Tools() {
           </AnimatePresence>
         </div>
       </div>
-      <Analytics />
     </>
   )
 }

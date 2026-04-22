@@ -1,81 +1,57 @@
-import { useState } from 'react'
-import styles from './leaders.module.css'
-
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
-import Avatar from '@mui/material/Avatar'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
+import { Tab } from '@headlessui/react'
+import Image from 'next/image'
 import LeaderBio from './leader-bio/leader-bio'
 
-// A11y helper for Tabs:
-function a11yProps(index) {
-  return {
-    id: `leader-tab-${index}`,
-    'aria-controls': `leader-tabpanel-${index}`,
-  }
-}
-
 function LeaderTabsHorizontal({ leaders }) {
-  const [value, setValue] = useState(0)
-  const handleChange = (event, newValue) => {
-    setValue(newValue)
-  }
   if (!leaders || leaders.length === 0) {
-    return <Typography>No leaders available</Typography>
+    return <p className="text-white">No leaders available</p>
   }
   return (
-    <Box className={styles.leaderTabsContainer}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="Leader Tabs"
-        className={styles.tabs}
-        TabIndicatorProps={{ style: { backgroundColor: 'rgb(64, 64, 64)' } }}
-      >
-        {leaders.map((leader, index) => (
-          <Tab
-            key={index}
-            icon={
-              <Avatar
-                alt={leader.athleteName}
-                src={leader.athleteImage}
-                className={styles.tabAvatar}
-              />
-            }
-            {...a11yProps(index)}
-          />
-        ))}
-      </Tabs>
-      {leaders.map((leader, index) => (
-        <div
-          role="tabpanel"
-          hidden={value !== index}
-          id={`leader-tabpanel-${index}`}
-          aria-labelledby={`leader-tab-${index}`}
-          key={index}
-          className={styles.leaderTabPanel}
-        >
-          {value === index && (
-            <Box className={styles.bioContainer}>
-              <LeaderBio leader={leader} />
-            </Box>
-          )}
-        </div>
-      ))}
-    </Box>
+    <Tab.Group>
+      <div className="flex flex-col rounded-[10px]">
+        <Tab.List className="flex border-b border-neutral-700">
+          {leaders.map((leader, index) => (
+            <Tab key={index} className="relative p-3 outline-none">
+              {({ selected }) => (
+                <>
+                  <Image
+                    alt={leader.athleteName}
+                    src={leader.athleteImage}
+                    width={100}
+                    height={100}
+                    className="h-[100px] w-[100px] rounded-full object-cover"
+                  />
+                  {selected && (
+                    <span className="absolute inset-x-0 -bottom-px h-0.5 bg-neutral-700" />
+                  )}
+                </>
+              )}
+            </Tab>
+          ))}
+        </Tab.List>
+        <Tab.Panels>
+          {leaders.map((leader, index) => (
+            <Tab.Panel key={index} className="p-4">
+              <div className="text-center">
+                <LeaderBio leader={leader} />
+              </div>
+            </Tab.Panel>
+          ))}
+        </Tab.Panels>
+      </div>
+    </Tab.Group>
   )
 }
 
 export default function Leaders({ homeLeaderCards, awayLeaderCards }) {
   return (
     <>
-      <h3 className={styles.tableHeading}>Game Leaders</h3>
-      <div className={styles.leaderSection}>
-        <div className={styles.leaderColumn}>
+      <h3 className="mb-4 text-center text-2xl font-semibold text-white">Game Leaders</h3>
+      <div className="flex flex-wrap justify-around gap-4">
+        <div className="min-w-[320px] flex-1 rounded-[10px] p-4">
           <LeaderTabsHorizontal leaders={homeLeaderCards} />
         </div>
-        <div className={styles.leaderColumn}>
+        <div className="min-w-[320px] flex-1 rounded-[10px] p-4">
           <LeaderTabsHorizontal leaders={awayLeaderCards} />
         </div>
       </div>
