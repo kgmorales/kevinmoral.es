@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Link from '@/components/atoms/Link'
 import PageTitle from '@/components/atoms/PageTitle'
 import ScrollTop from '@/components/atoms/ScrollTop'
@@ -19,6 +20,14 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
   const { slug, fileName, date, title, tags, readingTime } = frontMatter
   return (
     <SectionContainer>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+          integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+          crossOrigin="anonymous"
+        />
+      </Head>
       <BlogSEO
         url={`${siteMetadata.siteUrl}/blog/${slug}`}
         authorDetails={authorDetails}

@@ -73,6 +73,8 @@ module.exports = withBundleAnalyzer({
       'static-resource.np.community.playstation.net',
       'store-images.s-microsoft.com',
     ],
+    // 1 year — image URLs are content-hashed, so a long TTL is safe.
+    minimumCacheTTL: 31536000,
   },
   webpack: (config) => {
     config.module.rules.push({

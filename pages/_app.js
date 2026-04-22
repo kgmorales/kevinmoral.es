@@ -1,6 +1,5 @@
 import '@/css/tailwind.css'
 import '@/css/prism.css'
-import 'katex/dist/katex.css'
 
 import Head from 'next/head'
 
@@ -30,9 +29,9 @@ export default function App({ Component, pageProps }) {
       </Head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=G-JK3YG6KYBM`}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-analytics" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
