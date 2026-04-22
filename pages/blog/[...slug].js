@@ -1,7 +1,7 @@
 import fs from 'fs'
 import PageTitle from '@/components/atoms/PageTitle'
 import generateRss from '@/lib/utils/generate-rss'
-import { MDXLayoutRenderer } from '@/components/MDXComponents'
+import { MDXLayoutRenderer } from '@/lib/mdx/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx/mdx'
 
 const DEFAULT_LAYOUT = 'PostLayout'

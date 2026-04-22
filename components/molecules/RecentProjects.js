@@ -1,7 +1,7 @@
 import projectsData from '@/data/projectsData'
 
 import ProjectCard from '@/components/molecules/ProjectCard'
-import AnimatedDiv from '@/components/framer-motion/AnimatedDiv'
+import FadeIn from '@/components/atoms/FadeIn'
 import { FadeContainer } from '@/lib/animation/FramerMotionVariants'
 import Link from '@/components/atoms/Link'
 
@@ -15,7 +15,7 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
           <span className="font-poppins title-font text-3xl font-bold">Projects</span>
         </div>
         <div className="py-5">
-          <AnimatedDiv
+          <FadeIn
             variants={FadeContainer}
             className="mx-auto grid grid-cols-1 gap-4 md:ml-[20%] xl:ml-[24%]"
           >
@@ -32,7 +32,7 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
                 deployed={d.deployed}
               />
             ))}
-          </AnimatedDiv>
+          </FadeIn>
         </div>
         <div className="mt-5 flex justify-end text-base font-medium leading-6">
           <Link href="/projects" className="mt-5 hover:text-primary-400" aria-label="all projects">

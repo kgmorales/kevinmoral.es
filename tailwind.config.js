@@ -1,4 +1,3 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
@@ -83,9 +82,6 @@ module.exports = {
       },
       fontSize: {
         '8.5xl': '7rem',
-      },
-      fontFamily: {
-        sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: colors.sky,

@@ -1,6 +1,6 @@
 import Link from '@/components/atoms/Link'
 import PageTitle from '@/components/atoms/PageTitle'
-import SectionContainer from '@/components/SectionContainer'
+import SectionContainer from '@/components/atoms/SectionContainer'
 import { BlogSEO } from '@/components/atoms/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import formatDate from '@/lib/utils/formatDate'

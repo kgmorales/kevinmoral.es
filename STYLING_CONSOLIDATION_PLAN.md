@@ -152,9 +152,37 @@ Drop: `@mui/material`, `@emotion/react`, `@emotion/styled`, `@tailwindcss/aspect
 **Deferred (still on the table):**
 
 - Upgrade to Next 14 + React 18 — separate PR recommended; would unlock `experimental.optimizePackageImports` and fix the squoosh/Node-20 family of bugs at the source.
-- Promote atomic design consistently (move `Footer.js`, `LayoutWrapper.js`, `SectionContainer.js`, `MDXComponents.js` into `organisms/` / `templates/`, or flatten `components/framer-motion/` into `atoms/`).
 - Consider swapping the ad-hoc `cn()` for `clsx + tailwind-merge` once class composition becomes more complex.
 - Replace `framer-motion` v6's deprecated `exitBeforeEnter` with `mode="wait"` in the 6 call sites, and bump to v11.
+
+### Phase 5 — Atomic design + Lighthouse pass — ✅ DONE
+
+**Atomic design consolidation.** `components/` now has exactly three subtrees (`atoms/`, `molecules/`, `organisms/`); no loose files at the root.
+
+- `components/Footer.js` → `components/organisms/Footer.js`
+- `components/LayoutWrapper.js` → `components/organisms/LayoutWrapper.js`
+- `components/SectionContainer.js` → `components/atoms/SectionContainer.js`
+- `components/MDXComponents.js` → `lib/mdx/MDXComponents.js` (it's MDX config, not a UI component)
+- `components/framer-motion/AnimatedDiv.js` → `components/atoms/FadeIn.js` (folder-by-library anti-pattern removed; component renamed)
+- `components/social-icons/` → `components/atoms/social-icons/`
+- `components/live-game/` → `components/organisms/live-game/`
+- `components/purdue/` → `components/organisms/purdue/`
+- `components/spotify/` → `components/organisms/spotify/`
+
+All import sites updated; `next build` and `next lint` stay green.
+
+**Lighthouse tweaks.**
+
+- **Preconnect origins** in `pages/_document.js` for `www.googletagmanager.com`, `www.google-analytics.com`, `i.scdn.co` (Spotify images), `a.espncdn.com` (ESPN logos) — warms the connection before the assets are requested.
+- **LCP** — `HeroPortrait` already uses `priority`; added a realistic `sizes` attribute (so the image CDN serves the right width per breakpoint) and the modern `fetchpriority="high"` attribute.
+- **Theme color** — `meta[name=theme-color]` / `msapplication-TileColor` bumped from `#000000` to `#171717` so mobile browser chrome matches the actual page background (`bg-gray-900`).
+- **Reduce unused JS** — `Scoreboard` and `SpotifyNowPlayingBio` are now loaded via `next/dynamic(..., { ssr: false })` in `components/molecules/Hero.js`; they only ship to the client when the user clicks the toggles, not on initial page load.
+- **Remove unused font reference** — `tailwind.config.js` no longer declares `sans: ['InterVariable', ...]` (the font file is never loaded anywhere, so the declaration was decorative at best and misled `prefers-reduced-motion`-style audits).
+
+**Known deferred items (require bigger lifts):**
+
+- **Unused CSS (`katex/dist/katex.css`, `css/prism.css`)** — Next 12's pages router forces global CSS imports into `_app.js`, which means those files load on every route even though only blog posts need them. A clean fix requires moving both to CDN `<link>` tags in `PostLayout` or migrating to the App Router (Next 14+).
+- **Framer Motion footprint** — moving to `LazyMotion` + `domAnimation` would halve its bundle cost; needs a coordinated refactor across the 6 call sites.
 
 ### Phase 4 (original notes, optional)
 

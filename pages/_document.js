@@ -4,6 +4,10 @@ class MyDocument extends Document {
     return (
       <Html lang="en" className="dark scroll-smooth">
         <Head>
+          <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
+          <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="" />
+          <link rel="preconnect" href="https://i.scdn.co" crossOrigin="" />
+          <link rel="preconnect" href="https://a.espncdn.com" crossOrigin="" />
           <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
           <link
             rel="icon"
@@ -19,8 +23,8 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/static/favicons/site.webmanifest" />
           <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-          <meta name="msapplication-TileColor" content="#000000" />
-          <meta name="theme-color" content="#000000" />
+          <meta name="msapplication-TileColor" content="#171717" />
+          <meta name="theme-color" content="#171717" />
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
           <meta
             name="google-site-verification"

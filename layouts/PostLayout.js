@@ -1,7 +1,7 @@
 import Link from '@/components/atoms/Link'
 import PageTitle from '@/components/atoms/PageTitle'
 import ScrollTop from '@/components/atoms/ScrollTop'
-import SectionContainer from '@/components/SectionContainer'
+import SectionContainer from '@/components/atoms/SectionContainer'
 import { BlogSEO } from '@/components/atoms/SEO'
 import Image from '@/components/atoms/Image'
 import Tag from '@/components/atoms/Tag'

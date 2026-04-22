@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMail } from 'react-icons/io5'
 import Notification from '@/components/atoms/Notification'
 import HeroPortrait from './HeroPortrait'
-import SpotifyNowPlayingBio from '@/components/spotify/spotify-bio/spotifyBio'
-import Scoreboard from '@/components/purdue/scoreboard/Scoreboard'
-import Purdue from '@/components/purdue/Purdue'
-import SpotifyNowPlaying from '../spotify/SpotifyNowPlaying'
+import Purdue from '@/components/organisms/purdue/Purdue'
+import SpotifyNowPlaying from '@/components/organisms/spotify/SpotifyNowPlaying'
+
+// Lazy-load heavy click-activated views to shrink the home page's initial bundle.
+const Scoreboard = dynamic(() => import('@/components/organisms/purdue/scoreboard/Scoreboard'), {
+  ssr: false,
+})
+const SpotifyNowPlayingBio = dynamic(
+  () => import('@/components/organisms/spotify/spotify-bio/spotifyBio'),
+  { ssr: false }
+)
 
 const socialLinksData = [
   {

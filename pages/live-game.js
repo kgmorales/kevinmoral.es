@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import ScoreboardLive from '@/components/live-game/scoreboardLive/scoreboardLive'
-import Leaders from '@/components/live-game/leader-tabs/leaders'
+import ScoreboardLive from '@/components/organisms/live-game/scoreboardLive/scoreboardLive'
+import Leaders from '@/components/organisms/live-game/leader-tabs/leaders'
 
 import { liveData } from '@/data/live-data'
 import { extractPurdueGame } from '@/lib/purdue'

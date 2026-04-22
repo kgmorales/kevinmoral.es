@@ -1,4 +1,4 @@
-import SocialIcon from '@/components/social-icons'
+import SocialIcon from '@/components/atoms/social-icons'
 import Image from '@/components/atoms/Image'
 import { PageSEO } from '@/components/atoms/SEO'
 

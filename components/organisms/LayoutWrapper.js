@@ -1,8 +1,8 @@
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logos/logo.svg'
-import Link from './atoms/Link'
-import SectionContainer from './SectionContainer'
-import Footer from '@/components/Footer'
+import Link from '@/components/atoms/Link'
+import SectionContainer from '@/components/atoms/SectionContainer'
+import Footer from '@/components/organisms/Footer'
 import MobileNav from '@/components/molecules/MobileNav'
 import { useEffect, useRef, useState } from 'react'
 

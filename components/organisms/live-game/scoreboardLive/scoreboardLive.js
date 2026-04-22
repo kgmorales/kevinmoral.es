@@ -1,4 +1,4 @@
-import Live from '@/components/purdue/scoreboard/live/Live'
+import Live from '@/components/organisms/purdue/scoreboard/live/Live'
 import Image from 'next/image'
 
 export default function ScoreboardLive({ homeTeam, awayTeam, competition }) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from '@/components/atoms/Link'
 import headerNavLinks from '@/data/headerNavLinks'
-import Footer from '../Footer'
+import Footer from '@/components/organisms/Footer'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)

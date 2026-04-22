@@ -4,7 +4,7 @@ import 'katex/dist/katex.css'
 
 import Head from 'next/head'
 
-import LayoutWrapper from '@/components/LayoutWrapper'
+import LayoutWrapper from '@/components/organisms/LayoutWrapper'
 import Script from 'next/script'
 import * as ga from '../lib/google-analytics'
 import { useRouter } from 'next/router'
